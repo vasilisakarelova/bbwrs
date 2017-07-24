@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+  <title>Lessons</title>
+  
+  <link rel="stylesheet" href="/css/index.css">
+</head>
+<body>
+
+  <!-- <section class="section js-ref-section section_graphic-design">
+    <h1>Graphic<br>Design</h1>
+    <canvas id="graphic"></canvas>
+  </section>
+
+  <section class="section js-ref-section section_strategy">
+    <h1>Strategy</h1>
+  </section>
+
+  <section class="section js-ref-section section_interface">
+    <h1>Inerface</h1>
+
+    <button class="i-button js-ref-absolute-elem">
+      <span class="i-button-shadow"></span>
+      <span class="i-button-overlay"></span>
+    </button>
+
+    <button class="i-plus js-ref-absolute-elem">
+      <span class="i-plus-shadow"></span>
+      <span class="i-plus-body">
+        <span class="i-plus-line"></span>
+        <span class="i-plus-line"></span>
+      </span>
+    </button>
+
+    <div class="js-ref-absolute-elem input-wrap">
+      <input type="text" class="i-input js-ref-input-raw" value="Hi">
+      <span class="i-input-inner js-ref-input"></span>
+    </div>
+
+    <label class="toggler js-ref-absolute-elem">
+      <input class="toggler-checkbox" type="checkbox" hidden>
+      <span class="toggler-wrap"><span class="toggler-oval"></span></span>
+    </label>
+
+    <label class="radio js-ref-absolute-elem">
+      <input class="radio-checkbox" type="checkbox" hidden>
+      <span class="radio-wrap"><span class="radio-oval"></span></span>
+    </label>
+
+    <button class="i-burger js-ref-absolute-elem js-ref-burger">
+      <span class="i-burger-line"></span>
+      <span class="i-burger-line"></span>
+      <span class="i-burger-line"></span>
+    </button>
+
+    <div class="js-ref-absolute-elem">
+      <div class="i-range js-ref-range">
+        <div class="i-range-thumb">
+          <span class="i-range-thumb-shadow"></span>
+          <span class="i-range-thumb-body"></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="i-loading js-ref-absolute-elem">
+      <div class="i-loading-item"></div>
+      <div class="i-loading-item"></div>
+      <div class="i-loading-item"></div>
+    </div>
+
+    <div class="i-like js-ref-absolute-elem js-ref-like">
+      <div class="i-like-bg js-rev-like-bg">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 193 163">
+          <path fill="#000000" fill-rule="evenodd" d="M13.9097,13.8631 C-4.6463,32.3481 -4.6273,62.0931 13.9097,80.5961 L96.0257,162.5921 C123.4307,135.2921 150.8347,107.9921 178.2377,80.6921 C196.7937,62.2071 196.7937,32.4431 178.2377,13.9581 C159.6827,-4.5269 129.8057,-4.5279 111.2507,13.9581 L96.1217,29.0301 L80.8967,13.8631 C62.3417,-4.6209 32.4657,-4.6209 13.9097,13.8631"/>
+        </svg>
+      </div>
+      <div class="i-like-overlay">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 193 163" xmlns:xlink="http://www.w3.org/1999/xlink">
+          <defs>
+            <path id="a" d="M13.9097,13.8631 C-4.6463,32.3481 -4.6273,62.0931 13.9097,80.5961 L96.0257,162.5921 C123.4307,135.2921 150.8347,107.9921 178.2377,80.6921 C196.7937,62.2071 196.7937,32.4431 178.2377,13.9581 C159.6827,-4.5269 129.8057,-4.5279 111.2507,13.9581 L96.1217,29.0301 L80.8967,13.8631 C62.3417,-4.6209 32.4657,-4.6209 13.9097,13.8631 Z"/>
+            <mask id="b" width="192.155" height="162.592" x="0" y="0" fill="white">
+              <use xlink:href="#a"/>
+            </mask>
+          </defs>
+          <use fill="#FFFFFF" fill-rule="evenodd" stroke="#000000" stroke-width="12" mask="url(#b)" xlink:href="#a"/>
+        </svg>
+      </div>
+    </div>
+
+    <label class="done js-ref-absolute-elem">
+      <input class="done-checkbox" type="checkbox" hidden>
+      <span class="done-wrap">
+        <span class="done-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 43 42">
+            <polygon fill="#000000" points="5.567 11.044 .433 14.15 16.985 41.509 22.184 41.396 42.959 3.433 37.695 .553 19.422 33.945"/>
+          </svg></span>
+      </span>
+    </label>
+
+    <div class="time js-ref-absolute-elem"><span class="js-ref-hour"></span><span class="i-time-dots">:</span><span class="js-ref-min"></span></div>
+
+    <div class="i-select js-ref-absolute-elem js-ref-select">
+      <div class="i-select-shadow"></div>
+      <div class="i-select-body">
+        <span class="i-select-icon">
+          <span class="i-select-icon-line"></span>
+          <span class="i-select-icon-line"></span>
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <section class="section js-ref-section section_ux section-is-active">
+    <h1>User<br/>Experience</h1>
+    <div class="ux-rectangle ux-fill js-ref-ux-dragable">
+      <div class="ux-inner"></div>
+    </div>
+
+    <div class="ux-rectangle ux-stroke"></div>
+  </section>
+
+  <section class="section js-ref-section section_3d">
+    <h1>3d Graphics</h1>
+    <div class="threed-cube-wrap">
+      <img class="threed-cube-front js-ref-3d-cube" src="/assets/img/3d.png">
+    </div>
+  </section>
+
+  <section class="section js-ref-section section_motion">
+    <h1>Motion</h1>
+  </section>
+
+  <section class="section js-ref-section section_art">
+    <h1>Art<br>Projects</h1>
+  </section>
+
+  <section class="section js-ref-section section_illustartions">
+    <h1>Illustrations</h1>
+    <canvas id="illustartions" resize></canvas>
+  </section>
+
+  <section class="section js-ref-section section_identity">
+    <h1>Identity</h1>
+  </section>
+
+  <section class="section js-ref-section section_product">
+    <h1>Product<br/>Design</h1>
+  </section>
+
+  <section class="section js-ref-section section_petshot">
+    <h1>This</h1>
+  </section>
+
+  <section class="section js-ref-section section_petshot">
+    <h1>Is</h1>
+  </section>
+
+  <section class="section js-ref-section section_petshot">
+    <h1>Multidisciplinary</h1>
+  </section> -->
+
+  <div class="section ref-section shot">
+    <h1 class="title" style="position: absolute; left: 0px; top: 0px;">How to build greate visual language?</h1>
+  </div>
+  <div class="section ref-section shot">
+    <h1 class="title title_absolute">It’s</h1>
+  </div>
+  <div class="section ref-section shot">
+    <h1 class="title title_absolute">All</h1>
+  </div>
+  <div class="section ref-section shot">
+    <h1 class="title title_absolute">About</h1>
+  </div>
+  <div class="section ref-section shot">
+    <h1 class="title title_absolute">The</h1>
+  </div>
+  <div class="section ref-section shot">
+    <h1 class="title title">Details</h1>
+  </div>
+  <div class="section ref-section shot">
+    <h1 class="title title">And connecting them together</h1>
+  </div>
+
+  <div class="section ref-section" id="graphic"></div>
+  <div class="section ref-section" id="strategy"></div>
+  <div class="section ref-section" id="interface"></div>
+  <div class="section ref-section" id="ux"></div>
+  <div class="section ref-section" id="3d"></div>
+  <div class="section ref-section" id="motion"></div>
+  <div class="section ref-section" id="art"></div>
+  <div class="section ref-section" id="illustration"></div>
+  <div class="section ref-section" id="identity"></div>
+  <div class="section ref-section" id="design"></div>
+  <div class="section ref-section shot">
+    This
+  </div>
+  <div class="section ref-section shot">
+    Is
+  </div>
+  <div class="section ref-section shot">
+    Multidisciplinary
+  </div>
+
+  <footer>
+    <span class="wrs">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <g fill="currentColor" fill-rule="evenodd">
+          <path d="M12,0.918581864 C5.88989845,0.918581864 0.918581864,5.88989845 0.918581864,12.0003563 C0.918581864,18.1104579 5.88989845,23.0814181 12,23.0814181 C18.1104579,23.0814181 23.0814181,18.1104579 23.0814181,12.0003563 C23.0814181,5.88989845 18.1104579,0.918581864 12,0.918581864 M12,24 C5.38321753,24 0,18.6167825 0,12.0003563 C0,5.38321753 5.38321753,0 12,0 C18.6167825,0 24,5.38321753 24,12.0003563 C24,18.6167825 18.6167825,24 12,24"/>
+          <path class="smile" fill-rule="nonzero" d="M5.15718644,15.3522172 C7.2314143,21.7673549 18.5220567,22.0453442 18.8428136,13"/>
+          <path class="eye" d="M11.8863529 13.9075826L8.29023529 13.9075826 7.89 13.4178435 8.74517647 9.56636522C7.63482353 10.0091478 6.31623529 9.77436522 5.43847059 8.90966957L6.08152941 8.27558261C6.82729412 9.00984348 8.02482353 9.0968 8.86764706 8.47801739L9.12035294 8.29227826 9.85588235 8.75732174 8.91176471 13.0112348 11.8863529 13.0112348 11.8863529 13.9075826zM16.1788588 9.4154087C15.3649765 9.4154087 14.5994471 9.10271304 14.0238 8.53506087L14.6672118 7.90097391C15.0709765 8.29923478 15.6081529 8.51871304 16.1788588 8.51871304 16.7492118 8.51871304 17.2863882 8.29923478 17.6905059 7.90097391L18.3339176 8.53506087C17.7579176 9.10271304 16.9923882 9.4154087 16.1788588 9.4154087"/>
+        </g>
+      </svg>
+    </span>
+
+    <button class="skip-button ref-skip-button">
+      <span class="skip-button-inner">Skip</span>
+    </button>
+  </footer>
+
+  <script src="/js/common.js"></script>
+</body>
+</html>

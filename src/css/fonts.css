@@ -1,0 +1,7 @@
+@font-face {
+  font-family: 'NimbusSanL';
+  src: url('/assets/fonts/subset-NimbusSanL-Regu.woff2') format('woff2'),
+    url('/assets/fonts/subset-NimbusSanL-Regu.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
