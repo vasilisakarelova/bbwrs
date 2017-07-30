@@ -11,7 +11,7 @@
   var $button = u('.ref-skip-button')
   var x = $button.size().left + $button.size().width / 2
   var y = $button.size().top + $button.size().height / 2
-  
+
   u('.skip-button-inner').first().style.transform = 'translate3d(0,0,0)'
   $button.first().style.transform = 'translate3d(0px, 0px, 0px)'
 
@@ -249,6 +249,139 @@ var motionInit = function (p) {
 }
 
 var motion = new p5(motionInit, 'motion')
+
+// Identity
+// ----------------------------------------------------------------------------
+var identityInit = function (p) {
+  var $canvas
+  var $title
+
+  p.setup = function () {
+    $title = p.createElement('h1', 'Identity')
+    $title.position(0, 0)
+    $title.addClass('title')
+    $canvas = p.createCanvas(p.windowWidth + 150, p.windowHeight + 150)
+    $canvas.position(-75, -75)
+    $canvas.addClass('is-blurry')
+  }
+}
+
+var identity = new p5(identityInit, 'identity')
+
+// Product Design
+// ----------------------------------------------------------------------------
+var designInit = function (p) {
+  var colors = [
+    '#DC5034',
+    '#F2AF00',
+    '#7AB800',
+    '#0085C3',
+    '#AAAAAA'
+  ]
+
+  var currentColor
+  var lastColor
+  var $canvas;
+  var $title;
+
+  var Engine = Matter.Engine;
+      Common = Matter.Common,
+      World = Matter.World,
+      Bodies = Matter.Bodies,
+      Mouse = Matter.Mouse,
+      MouseConstraint = Matter.MouseConstraint;
+
+  var engine;
+  var world;
+  var mConstraint;
+  var boxes = [];
+
+  p.setup = function () {
+    $title = p.createElement('h1', 'Product Design')
+    $title.position(0, 0)
+    $title.addClass('title')
+    $canvas = p.createCanvas(p.windowWidth, (p.windowHeight - 210))
+    $canvas.position(0, 105)
+
+    engine = Engine.create();
+    world = engine.world;
+    Engine.run(engine);
+    var opts = {
+      isStatic: true
+    }
+
+    // walls
+    World.add(world, [
+      Bodies.rectangle(p.width, p.height/2, 1, p.height, opts),
+      Bodies.rectangle(p.width/2, p.height, p.width, 1, opts),
+      Bodies.rectangle(0, p.height/2, 1, p.height, opts)
+    ]);
+
+    var canvasmouse = Mouse.create($canvas.elt);
+    canvasmouse.pixelRatio = p.pixelDensity();
+    var options = {
+      mouse: canvasmouse
+    }
+    mConstraint = MouseConstraint.create(engine, options);
+    World.add(world, mConstraint);
+    console.log(mConstraint);
+  }
+
+  p.draw = function () {
+    p.background('transparent');
+    Engine.update(engine);
+
+    for (var i = 0; i < boxes.length; i++) {
+      boxes[i].show();
+    }
+
+    if (mConstraint.body) {
+      var pos = mConstraint.body.position;
+      var offset = mConstraint.constraint.pointB;
+      var m = mConstraint.mouse.position;
+      p.stroke(0, 255, 0);
+      p.line(pos.x + offset.x, pos.y + offset.y, m.x, m.y);
+    }
+  }
+
+  p.windowResized = function() {
+    p.resizeCanvas(p.windowWidth, (p.windowHeight - 210));
+  }
+
+  document.getElementById('design').addEventListener('click', function designClick() {
+    for (var i = 0; i < 25; i++) {
+      boxes.push(new drawStack(p.mouseX, p.mouseY, Common.random(50, 60), Common.random(60, 100)));
+    }
+  }, { once: true });
+
+  function drawStack(x, y, w, h) {
+    var options = {
+      friction: 0.3,
+      restitution: 0.6
+    }
+    this.body = Bodies.rectangle(x, y, w, h, options);
+    this.w = w;
+    this.h = h;
+    this.color = p.random(colors);
+    World.add(world, this.body);
+
+    this.show = function() {
+      var pos = this.body.position;
+      var angle = this.body.angle;
+
+      p.push();
+      p.translate(pos.x, pos.y);
+      p.rotate(angle);
+      p.rectMode(p.CENTER);
+      p.noStroke();
+      p.fill(this.color);
+      p.rect(0, 0, this.w, this.h);
+      p.pop();
+    }
+  }
+}
+
+var design = new p5(designInit, 'design'); 
 
 // function chnageSlide () {
 //   var id = (u(this).data('section-id') * 1)
