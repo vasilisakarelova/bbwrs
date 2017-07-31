@@ -38,7 +38,7 @@
 })()
 
 ;(function () {
-  var currentSection = 0
+  var currentSection = 16
 
   u('.ref-section').each(function (section, i) {
     u(section).data('index', i)
@@ -332,15 +332,16 @@ var designInit = function (p) {
   var boxes = [];
 
   p.setup = function () {
+    $canvas = p.createCanvas(p.windowWidth, (p.windowHeight))
+    $canvas.position(0, 0)
     $title = p.createElement('h1', 'Product Design')
     $title.position(0, 0)
     $title.addClass('title')
-    $canvas = p.createCanvas(p.windowWidth, (p.windowHeight - 210))
-    $canvas.position(0, 105)
 
-    engine = Engine.create();
-    world = engine.world;
-    Engine.run(engine);
+    engine = Engine.create()
+    world = engine.world
+    Engine.run(engine)
+
     var opts = {
       isStatic: true
     }
@@ -385,14 +386,14 @@ var designInit = function (p) {
 
   document.getElementById('design').addEventListener('click', function designClick() {
     for (var i = 0; i < 25; i++) {
-      boxes.push(new drawStack(p.mouseX, p.mouseY, Common.random(50, 60), Common.random(60, 100)));
+      boxes.push(new drawStack(p.mouseX, p.mouseY, Common.random(40, 100), Common.random(60, 200)));
     }
   }, { once: true });
 
   function drawStack(x, y, w, h) {
     var options = {
-      friction: 0.3,
-      restitution: 0.6
+      friction: 0.1,
+      restitution: 0.1
     }
     this.body = Bodies.rectangle(x, y, w, h, options);
     this.w = w;
