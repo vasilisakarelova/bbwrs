@@ -64,58 +64,6 @@
   })
 })()
 
-
-// Illustartion
-// ----------------------------------------------------------------------------
-var illustrationInit = function (p) {
-  var colors = [
-    '#ff0000',
-    '#ff6a00',
-    '#fff10f',
-    '#2acf27',
-    '#0cacf0',
-    '#6900ff',
-    '#0c0c0c'
-  ]
-
-  var currentColor
-  var lastColor
-  var $canvas
-  var $title
-
-  p.setup = function () {
-    $title = p.createElement('h1', 'Illustration')
-    $title.position(0, 0)
-    $title.addClass('title')
-    $canvas = p.createCanvas(p.displayWidth, p.displayHeight)
-    $canvas.position(0, 0)
-  }
-
-  function drawDot () {
-    currentColor = p.random(colors)
-
-    while (lastColor === currentColor) {
-      currentColor = p.random(colors)
-    }
-
-    lastColor = currentColor
-    p.strokeWeight(0)
-    p.fill(currentColor)
-    p.ellipse(p.mouseX, p.mouseY, 10, 10)
-  }
-
-  function drawLine () {
-    p.stroke(currentColor)
-    p.strokeWeight(10)
-    p.line(p.mouseX, p.mouseY, p.pmouseX, p.pmouseY)
-  }
-
-  p.touchStarted = drawDot
-  p.touchMoved = drawLine
-}
-
-var illustration = new p5(illustrationInit, 'illustration')
-
 // Graphic
 // ----------------------------------------------------------------------------
 var graphicInit = function (p) {
@@ -141,6 +89,42 @@ var graphicInit = function (p) {
 }
 
 var graphic = new p5(graphicInit, 'graphic')
+
+// Strategy
+// ----------------------------------------------------------------------------
+var strategyInit = function (p) {
+  var $canvas
+  var $title
+
+  p.setup = function () {
+    $title = p.createElement('h1', 'Strategy')
+    $title.position(0, 0)
+    $title.addClass('title')
+    $canvas = p.createCanvas(p.windowWidth + 150, p.windowHeight + 150)
+    $canvas.position(-75, -75)
+    $canvas.addClass('is-blurry')
+  }
+}
+
+var strategy = new p5(strategyInit, 'strategy')
+
+// Interface
+// ----------------------------------------------------------------------------
+var interfcInit = function (p) {
+  var $canvas
+  var $title
+
+  p.setup = function () {
+    $title = p.createElement('h1', 'Interface')
+    $title.position(0, 0)
+    $title.addClass('title')
+    $canvas = p.createCanvas(p.windowWidth + 150, p.windowHeight + 150)
+    $canvas.position(-75, -75)
+    $canvas.addClass('is-blurry')
+  }
+}
+
+var interfc = new p5(interfcInit, 'interface')
 
 // Motion
 // ----------------------------------------------------------------------------
@@ -249,6 +233,57 @@ var motionInit = function (p) {
 }
 
 var motion = new p5(motionInit, 'motion')
+
+// Illustartion
+// ----------------------------------------------------------------------------
+var illustrationInit = function (p) {
+  var colors = [
+    '#ff0000',
+    '#ff6a00',
+    '#fff10f',
+    '#2acf27',
+    '#0cacf0',
+    '#6900ff',
+    '#0c0c0c'
+  ]
+
+  var currentColor
+  var lastColor
+  var $canvas
+  var $title
+
+  p.setup = function () {
+    $title = p.createElement('h1', 'Illustration')
+    $title.position(0, 0)
+    $title.addClass('title')
+    $canvas = p.createCanvas(p.displayWidth, p.displayHeight)
+    $canvas.position(0, 0)
+  }
+
+  function drawDot () {
+    currentColor = p.random(colors)
+
+    while (lastColor === currentColor) {
+      currentColor = p.random(colors)
+    }
+
+    lastColor = currentColor
+    p.strokeWeight(0)
+    p.fill(currentColor)
+    p.ellipse(p.mouseX, p.mouseY, 10, 10)
+  }
+
+  function drawLine () {
+    p.stroke(currentColor)
+    p.strokeWeight(10)
+    p.line(p.mouseX, p.mouseY, p.pmouseX, p.pmouseY)
+  }
+
+  p.touchStarted = drawDot
+  p.touchMoved = drawLine
+}
+
+var illustration = new p5(illustrationInit, 'illustration')
 
 // Identity
 // ----------------------------------------------------------------------------
@@ -381,7 +416,7 @@ var designInit = function (p) {
   }
 }
 
-var design = new p5(designInit, 'design'); 
+var design = new p5(designInit, 'design');
 
 // function chnageSlide () {
 //   var id = (u(this).data('section-id') * 1)
