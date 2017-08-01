@@ -23,8 +23,8 @@ a {
 .title {
   margin: 0;
   position: absolute;
-  left: 10px;
-  top: 10px;
+  left: 30px;
+  top: 15px;
   font-size: 80px;
   line-height: 80px;
   font-family: 'NimbusSanL';
@@ -48,8 +48,20 @@ a {
   }
 }
 
+canvas {
+  cursor: default;
+}
+
 canvas.is-blurry {
   filter: blur(40px);
+}
+
+#logo-canvas {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -300px;
+  margin-top: -300px;
 }
 
 /** F O O T E R */
