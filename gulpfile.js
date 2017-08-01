@@ -1,4 +1,5 @@
 const browsersync = require('browser-sync').create()
+const spa = require('browser-sync-spa')
 const gulp = require('gulp')
 const postcss = require('gulp-postcss')
 const reload = browsersync.reload
@@ -38,6 +39,12 @@ gulp.task('js', () => {
 
 // Serve from Build Derictory
 gulp.task('serve', () => {
+  browsersync.use(spa({
+    history: {
+      index: '/index.html'
+    }
+  }))
+  
   browsersync.init({
     server: {
       baseDir: './build'

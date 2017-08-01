@@ -37,32 +37,32 @@
   decouple(window, 'mousemove', animate)
 })()
 
-;(function () {
-  var currentSection = 16
+// ;(function () {
+//   var currentSection = 16
 
-  u('.ref-section').each(function (section, i) {
-    u(section).data('index', i)
+//   u('.ref-section').each(function (section, i) {
+//     u(section).data('index', i)
 
-    if (i > currentSection) {
-      u(section).addClass('is-hidden')
-    }
-  })
+//     if (i > currentSection) {
+//       u(section).addClass('is-hidden')
+//     }
+//   })
 
-  function changeSection () {
-    u('.ref-section').addClass('is-hidden').filter(function (section, i) {
-      return i === currentSection
-    }).removeClass('is-hidden')
-  }
+//   function changeSection () {
+//     u('.ref-section').addClass('is-hidden').filter(function (section, i) {
+//       return i === currentSection
+//     }).removeClass('is-hidden')
+//   }
 
-  u('.ref-skip-button').on('click', function (e) {
-    console.log(currentSection)
-    if(currentSection < u('.ref-section').length - 1) {
-      currentSection = currentSection + 1
-      changeSection()
-    }
+//   u('.ref-skip-button').on('click', function (e) {
+//     console.log(currentSection)
+//     if(currentSection < u('.ref-section').length - 1) {
+//       currentSection = currentSection + 1
+//       changeSection()
+//     }
 
-  })
-})()
+//   })
+// })()
 
 // Graphic
 // ----------------------------------------------------------------------------
@@ -88,8 +88,6 @@ var graphicInit = function (p) {
   p.touchMoved = drawDot
 }
 
-var graphic = new p5(graphicInit, 'graphic')
-
 // Strategy
 // ----------------------------------------------------------------------------
 var strategyInit = function (p) {
@@ -106,7 +104,7 @@ var strategyInit = function (p) {
   }
 }
 
-var strategy = new p5(strategyInit, 'strategy')
+// var strategy = new p5(strategyInit, 'strategy')
 
 // Interface
 // ----------------------------------------------------------------------------
@@ -124,7 +122,7 @@ var interfcInit = function (p) {
   }
 }
 
-var interfc = new p5(interfcInit, 'interface')
+// var interfc = new p5(interfcInit, 'interface')
 
 // Motion
 // ----------------------------------------------------------------------------
@@ -232,8 +230,6 @@ var motionInit = function (p) {
   }
 }
 
-var motion = new p5(motionInit, 'motion')
-
 // Illustartion
 // ----------------------------------------------------------------------------
 var illustrationInit = function (p) {
@@ -283,8 +279,6 @@ var illustrationInit = function (p) {
   p.touchMoved = drawLine
 }
 
-var illustration = new p5(illustrationInit, 'illustration')
-
 // Identity
 // ----------------------------------------------------------------------------
 var identityInit = function (p) {
@@ -301,7 +295,7 @@ var identityInit = function (p) {
   }
 }
 
-var identity = new p5(identityInit, 'identity')
+// var identity = new p5(identityInit, 'identity')
 
 // Product Design
 // ----------------------------------------------------------------------------
@@ -417,7 +411,62 @@ var designInit = function (p) {
   }
 }
 
-var design = new p5(designInit, 'design');
+
+u('.ref-section').each(function (el, i) {
+  u(el).data('id', ++i)
+})
+
+function changeHref (id) {
+  u('.ref-skip-button').attr('href', ++id || 2)
+}
+
+changeHref()
+
+// Router
+// ----------------------------------------------------------------------------
+page('/', function (ctx, next) {
+  u('.section')
+    .removeClass('section_show')
+    .filter(function (el, i) {
+      return i == 0
+    }).addClass('section_show')
+
+  changeHref()
+})
+
+page('/8', function (ctx, next) {
+  var graphic = new p5(graphicInit, 'graphic')
+  next()
+})
+
+page('/13', function (ctx, next) {
+  var motion = new p5(motionInit, 'motion')
+  next()
+})
+
+page('/15', function (ctx, next) {
+  var illustration = new p5(illustrationInit, 'illustration')
+  next()
+})
+
+page('/17', function (ctx, next) {
+  var design = new p5(designInit, 'design')
+  next()
+})
+
+page('/:id', function (ctx, next) {
+  if(ctx.params.id) {
+    u('.section')
+      .removeClass('section_show')
+      .filter(function (el) {
+        return u(el).data('id') == ctx.params.id
+      }).addClass('section_show')
+
+    changeHref(ctx.params.id)
+  }
+})
+
+page()
 
 // function chnageSlide () {
 //   var id = (u(this).data('section-id') * 1)
