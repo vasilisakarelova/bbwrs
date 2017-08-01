@@ -23,10 +23,8 @@ a {
 .title {
   margin: 0;
   position: absolute;
-  left: 30px;
-  top: 15px;
-  font-size: 80px;
-  line-height: 80px;
+  left: 2.2vw; /* 30px */
+  top: 1.1vw; /* 15px */
   font-family: 'NimbusSanL';
   text-transform: uppercase;
   font-weight: normal;
@@ -43,8 +41,8 @@ a {
 
 @media screen and (min-width: 768px) {
   .title {
-    font-size: 105px;
-    line-height: 105px;
+    font-size: 7.69vw; /* 105px */
+    line-height: 1; /* 105px */
   }
 }
 
@@ -74,8 +72,8 @@ canvas.is-blurry {
 /** F O O T E R */
 footer {
   position: fixed;
-  bottom: 30px;
-  left: 30px;
+  bottom: 2.196193265vw; /* 30px */
+  left: 2.196193265vw; /* 30px */
   color: #000;
   font-family: 'NimbusSanL';
   z-index: 2;
@@ -87,10 +85,10 @@ footer {
 
 .footer__share {
   display: inline-block;
-  margin-right: 120px;
+  margin-right: 8.78477306vw; /* 120px */
   vertical-align: top;
-  font-size: 15px;
-  line-height: 20px;
+  font-size: 1.1vw; /* 15px */
+  line-height: 1.3333333333;
   letter-spacing: 0.05em;
 }
 
@@ -98,14 +96,14 @@ footer {
   display: inline-block;
   vertical-align: top;
   margin: 0;
-  font-size: 15px;
-  line-height: 20px;
+  font-size: 1.1vw;
+  line-height: 1.3333333333;
   letter-spacing: 0.05em;
 }
 
 .wrs {
-  height: 22px;
-  width: 22px;
+  height: 1.6105417277vw; /* 22px */
+  width: 1.6105417277vw; /* 22px */
   display: inline-block;
   vertical-align: middle;
 }
@@ -190,20 +188,20 @@ footer {
   display: block;
   padding: 0;
   margin: 0;
-  width: 80px;
-  height: 80px;
-  line-height: 80px;
+  width: 5.86vw; /* 80px */
+  height: 5.86vw; /* 80px */
+  line-height: 5.86vw;
   position: fixed;
-  bottom: 15px;
-  right: 30px;
+  bottom: 1.1vw; /* 15px */
+  right: 2.2vw; /* 30px */
   background-color: #000;
   border: none;
   color: #fff;
   cursor: pointer;
   will-change: color;
-  font-size: 17px;
+  font-size: 1.24vw; /* 17px */
   outline: none;
-  border-radius: 40px;
+  border-radius: 100%;
   will-change: transform;
   transform: translate3d(0, 0, 0);
   transition: transform 300ms cubic-bezier(.175,.8,.35,1.375);

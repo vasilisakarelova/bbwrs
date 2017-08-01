@@ -50533,8 +50533,8 @@ page()
 
   function project(point, size){
     return {
-      x: (point.x + Math.SQRT2*point.z) * size,
-      y: (point.y + Math.SQRT2*point.w) * size
+      x: (point.x + Math.SQRT2 * point.z) * size,
+      y: (point.y + Math.SQRT2 * point.w) * size
     }
   }
 
@@ -50622,7 +50622,7 @@ page()
       x: canvas.width / 2, 
       y: canvas.height / 2, 
       size: gh * canvas.height, 
-      line_width: 2,
+      line_width: 4,
     })
 
     lasttime = time
