@@ -15,6 +15,11 @@ body {
   cursor: default;
 }
 
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
 .title {
   margin: 0;
   position: absolute;
@@ -44,25 +49,44 @@ body {
 }
 
 canvas.is-blurry {
-  filter: blur(40px)
+  filter: blur(40px);
 }
 
 /** F O O T E R */
 footer {
   position: fixed;
-  bottom: 15px;
-  left: 15px;
+  bottom: 30px;
+  left: 30px;
   color: #000;
   font-family: 'NimbusSanL';
-  font-size: 15px;
-  line-height: 20px;
-  letter-spacing: 0.05em;
   z-index: 2;
 }
 
+.footer__row {
+  font-size: 0;
+}
+
+.footer__share {
+  display: inline-block;
+  margin-right: 120px;
+  vertical-align: top;
+  font-size: 15px;
+  line-height: 20px;
+  letter-spacing: 0.05em;
+}
+
+.footer__text {
+  display: inline-block;
+  vertical-align: top;
+  margin: 0;
+  font-size: 15px;
+  line-height: 20px;
+  letter-spacing: 0.05em;
+}
+
 .wrs {
-  height: 48px;
-  width: 48px;
+  height: 22px;
+  width: 22px;
   display: inline-block;
   vertical-align: middle;
 }
@@ -151,8 +175,8 @@ footer {
   height: 80px;
   line-height: 80px;
   position: fixed;
-  bottom: 10px;
-  right: 15px;
+  bottom: 15px;
+  right: 30px;
   background-color: #000;
   border: none;
   color: #fff;
@@ -163,7 +187,8 @@ footer {
   border-radius: 40px;
   will-change: transform;
   transform: translate3d(0, 0, 0);
-  transition: transform 300ms;
+  transition: transform 300ms cubic-bezier(.175,.8,.35,1.375);
+  text-align: center;
 }
 
 .skip-button_hidden {
@@ -178,7 +203,7 @@ footer {
   display: inline-block;
   will-change: transform;
   transform: translate3d(0, 0, 0);
-  transition: transform 300ms;
+  transition: transform 300ms cubic-bezier(.175,.8,.35,1.375);
 }
 .skip-button.is-focus .skip-button-inner {
   transition: none;
