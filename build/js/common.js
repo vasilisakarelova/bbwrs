@@ -49761,8 +49761,8 @@ var graphicInit = function (p) {
   p.setup = function () {
     $title = p.createElement('h1', 'Graphic')
     $title.addClass('title')
-    $canvas = p.createCanvas(p.windowWidth + 150, p.windowHeight + 150)
-    $canvas.position(-75, -75)
+    $canvas = p.createCanvas(p.windowWidth + 300, p.windowHeight + 300)
+    $canvas.position(-150, -150)
     $canvas.addClass('is-blurry')
   }
 
@@ -50308,6 +50308,8 @@ function changeHref (id) {
 
 changeHref()
 
+var shotTimer = 600
+
 // Router
 // ----------------------------------------------------------------------------
 page('/', function (ctx, next) {
@@ -50318,6 +50320,34 @@ page('/', function (ctx, next) {
     }).addClass('section_show')
 
   changeHref()
+})
+
+page('/2', function (ctx, next) {
+  requestTimeout(function () {
+    page('/3')
+  }, shotTimer)
+  next()
+})
+
+page('/3', function (ctx, next) {
+  requestTimeout(function () {
+    page('/4')
+  }, shotTimer)
+  next()
+})
+
+page('/4', function (ctx, next) {
+  requestTimeout(function () {
+    page('/5')
+  }, shotTimer)
+  next()
+})
+
+page('/5', function (ctx, next) {
+  requestTimeout(function () {
+    page('/6')
+  }, shotTimer)
+  next()
 })
 
 page('/8', function (ctx, next) {

@@ -52,8 +52,15 @@ canvas {
   cursor: default;
 }
 
+#graphic {
+  transform: translate(0px, 0px) translateZ(0px)
+}
+
 canvas.is-blurry {
-  filter: blur(40px);
+  filter: blur(30px);
+  position: absolute;
+  top: -150px;
+  left: -150px;
 }
 
 #logo-canvas {
