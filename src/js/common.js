@@ -592,14 +592,6 @@ var designInit = function (p) {
     for (var i = 0; i < boxes.length; i++) {
       boxes[i].show();
     }
-
-    if (mConstraint.body) {
-      var pos = mConstraint.body.position;
-      var offset = mConstraint.constraint.pointB;
-      var m = mConstraint.mouse.position;
-      p.stroke(0, 255, 0);
-      p.line(pos.x + offset.x, pos.y + offset.y, m.x, m.y);
-    }
   }
 
   p.windowResized = function() {
