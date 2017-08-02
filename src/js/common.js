@@ -300,13 +300,14 @@ var illustrationInit = function (p) {
   var $title
 
   p.setup = function () {
-    $title = p.createElement('h1', 'Illustration')
-    $title.addClass('title')
+    p.background(255)
     $canvas = p.createCanvas(p.displayWidth, p.displayHeight)
     $canvas.position(0, 0)
+    $title = p.createElement('h1', 'Illustration')
+    $title.addClass('title')
   }
 
-  function drawDot () {
+  function drawDot() {
     currentColor = p.random(colors)
 
     while (lastColor === currentColor) {
@@ -319,10 +320,14 @@ var illustrationInit = function (p) {
     p.ellipse(p.mouseX, p.mouseY, 10, 10)
   }
 
-  function drawLine () {
+  function drawLine() {
     p.stroke(currentColor)
     p.strokeWeight(10)
     p.line(p.mouseX, p.mouseY, p.pmouseX, p.pmouseY)
+  }
+
+  function saveImg() {
+    p.save($canvas, 'wrs.jpg')
   }
 
   p.touchStarted = drawDot
@@ -584,16 +589,25 @@ var multidisciplinaryInit = function (p) {
   }
 }
 
+var currentPageId = 0
 
 u('.ref-section').each(function (el, i) {
-  u(el).data('id', ++i)
+  u(el).data('id', i++)
 })
 
 function changeHref (id) {
-  u('.ref-skip-button').attr('href', ++id || 2)
+  u('.ref-skip-button').attr('href', id + 1)
 }
 
-changeHref()
+window.addEventListener('keydown', function (e) {
+  if (e.which === 37) {
+    page('/' + (currentPageId - 1))
+  } else if (e.which == 39) {
+    page('/' + (currentPageId + 1))
+  }
+})
+
+changeHref(currentPageId)
 
 var shotTimer = 600
 
@@ -609,6 +623,13 @@ page('/', function (ctx, next) {
   changeHref()
 })
 
+
+page('/1', function (ctx, next) {
+  requestTimeout(function () {
+    page('/2')
+  }, shotTimer)
+  next()
+})
 
 page('/2', function (ctx, next) {
   requestTimeout(function () {
@@ -631,77 +652,72 @@ page('/4', function (ctx, next) {
   next()
 })
 
-page('/5', function (ctx, next) {
-  requestTimeout(function () {
-    page('/6')
-  }, shotTimer)
-  next()
-})
-
-page('/8', function (ctx, next) {
+page('/7', function (ctx, next) {
   var graphic = new p5(graphicInit, 'graphic')
   next()
 })
 
-page('/9', function (ctx, next) {
+page('/8', function (ctx, next) {
   var strategy = new p5(strategyInit, 'strategy')
   next()
 })
 
-page('/10', function (ctx, next) {
+page('/9', function (ctx, next) {
   var interface = new p5(interfaceInit, 'interface')
   next()
 })
 
-page('/11', function (ctx, next) {
+page('/10', function (ctx, next) {
   var ux = new p5(uxInit, 'ux')
   next()
 })
 
-page('/12', function (ctx, next) {
+page('/11', function (ctx, next) {
   var threeD = new p5(threeDInit, '3d')
   next()
 })
 
-page('/13', function (ctx, next) {
+page('/12', function (ctx, next) {
   var motion = new p5(motionInit, 'motion')
   next()
 })
 
-page('/14', function (ctx, next) {
+page('/13', function (ctx, next) {
   var art = new p5(artInit, 'art')
   next()
 })
 
-page('/15', function (ctx, next) {
+page('/14', function (ctx, next) {
   var illustration = new p5(illustrationInit, 'illustration')
   next()
 })
 
-page('/16', function (ctx, next) {
+page('/15', function (ctx, next) {
   var identity = new p5(identityInit, 'identity')
   next()
 })
 
-page('/17', function (ctx, next) {
+page('/16', function (ctx, next) {
   var design = new p5(designInit, 'design')
   next()
 })
 
-page('/20', function (ctx, next) {
+page('/19', function (ctx, next) {
   var multidisciplinary = new p5(multidisciplinaryInit, 'multidisciplinary')
   next()
 })
 
 page('/:id', function (ctx, next) {
   if(ctx.params.id) {
+    currentPageId = Number(ctx.params.id)
+
     u('.section')
       .removeClass('section_show')
       .filter(function (el) {
         return u(el).data('id') == ctx.params.id
       }).addClass('section_show')
-
-    changeHref(ctx.params.id)
+    
+    changeHref(currentPageId)
   }
 })
 
@@ -762,7 +778,7 @@ page()
 
 
 ;(function () {
-  var canvas = document.getElementById('logo-canvas')
+  var canvas = document.getElementById('hypercube')
   var ctx = canvas.getContext('2d')
 
   function app1(p,a,c1,c2){
