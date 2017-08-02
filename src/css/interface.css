@@ -1,7 +1,6 @@
-.js-ref-absolute-elem {
+.i-absolute {
   position: absolute;
   will-change: transform;
-  cursor: pointer;
   user-select: none;
 }
 
@@ -46,6 +45,7 @@
   background-color: transparent;
   outline: none;
   padding: 0;
+  position: relative;
 }
 
 .i-plus-shadow {
@@ -163,15 +163,15 @@
   z-index: 1;
 }
 
-.toggler-checkbox:checked+.toggler-wrap {
+.i-toggler-checkbox:checked+.i-toggler-wrap {
   background-color: #fff;
 }
-.toggler-checkbox:checked+.toggler-wrap .toggler-oval {
+.i-toggler-checkbox:checked+.i-toggler-wrap .i-toggler-oval {
   transform: translate3d(70px, 0, 0);
   background-color: #000;
 }
 
-.toggler-wrap {
+.i-toggler-wrap {
   display: block;
   width: 150px;
   height: 80px;
@@ -182,7 +182,7 @@
   transition: background-color 300ms;
 }
 
-.toggler-oval {
+.i-toggler-oval {
   display: block;
   width: 76px;
   height: 76px;
@@ -264,7 +264,14 @@
   top: 15px;
 }
 
-.radio-wrap {
+[type="checkbox"] {
+  position: absolute;
+  font-size: 0;
+  line-height: 0;
+  opacity: 0;
+}
+
+.i-radio-wrap {
   display: block;
   width: 40px;
   height: 40px;
@@ -274,7 +281,7 @@
   background-color: #fff;
 }
 
-.radio-oval {
+.i-radio-oval {
   display: block;
   width: 26px;
   height: 26px;
@@ -285,11 +292,11 @@
   top: 7px;
   will-change: opacity, transform;
   opacity: 0;
-  transform: scale(0.8);
-  transition: opacity 180ms, transform 200ms cubic-bezier(1.0,1.0,.45,1.5);
+  transform: scale(0.5);
+  transition: opacity 100ms, transform 220ms cubic-bezier(.175,.8,.35,1.375);
 }
 
-.radio-checkbox:checked+.radio-wrap .radio-oval {
+.i-radio-checkbox:checked+.i-radio-wrap .i-radio-oval {
   opacity: 1;
   transform: scale(1.0);
 }
@@ -345,8 +352,12 @@
   }
 }
 
+.i-loading-wrapper {
+  font-size: 0;
+}
 .i-loading-item {
   display: inline-block;
+  font-size: 0;
   width: 20px;
   height: 20px;
   border: 3px solid #000;
@@ -356,16 +367,18 @@
   animation: Loading 1.4s infinite;
 }
 
-.i-loading-item:nth-child(1n) {
+.i-loading-item:nth-child(1) {
   animation-delay: 0s; 
 }
-.i-loading-item:nth-child(2n) {
+.i-loading-item:nth-child(2) {
   animation-delay: 0.2s;
 }
-.i-loading-item:nth-child(3n) {
+.i-loading-item:nth-child(3) {
   animation-delay: 0.4s;
+  margin-right: 0;
 }
-.i-like-overlay {
+
+.i-like {
   width: 130px;
   position: relative;
   z-index: 2;
@@ -387,7 +400,8 @@
   position: absolute;
   top: 0;
   left: 0;
-  z-index: 1;
+  z-index: 0;
+  opacity: 0;
 }
 
 .i-like-bg.is-animate {
@@ -408,7 +422,7 @@
   }
 }
 
-.i-time-dots {
+.i-timer-dots {
   animation: Dots 1.2s infinite; 
 }
 
@@ -461,8 +475,8 @@
   /*transform: rotate(45deg);*/
 }
 
-.time {
-  font-size: 105px;
-  line-height: 105px;
+.i-timer {
+  font-size: 7.69vw; /* 105px */
+  line-height: 1;
   font-family: 'NimbusSanL';
 }
