@@ -151,7 +151,9 @@ var artInit = function (p) {
     return klyaksa[i]
   }
 
-  u('#art').on('click', function (e) {
+  u('.art-item').remove()
+
+  function setKlakson() {
     var $wrap = u('<div class="art-item"></div>')
 
     $wrap.append(getKlakson())
@@ -159,10 +161,12 @@ var artInit = function (p) {
 
     u(this).append($wrap)
 
-    $wrap.first().style.cssText = 'left:' + (e.x - $wrap.size().width / 2) + 'px; top:' + (e.y - $wrap.size().height / 2) + 'px;'
+    $wrap.first().style.cssText = 'left:' + (p.mouseX - $wrap.size().width / 2) + 'px; top:' + (p.mouseY - $wrap.size().height / 2) + 'px;'
 
     $wrap.first().style.visibility = 'visible'
-  })
+  }
+
+  p.mouseClicked = setKlakson
 }
 
 // identity
@@ -675,7 +679,6 @@ page('/10', function (ctx, next) {
 })
 
 page('/11', function (ctx, next) {
-  hypercube()
   var threeD = new p5(threeDInit, '3d')
   next()
 })
