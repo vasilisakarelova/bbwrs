@@ -2,11 +2,11 @@
   function handleShare(e) {
     e.preventDefault()
 
-    const URL = 'https://www.facebook.com/sharer.php?u=' + e.currentTarget.href
-    const w = 550
-    const h = 450
-    const top = (window.innerHeight / 2) - (h / 2)
-    const left = (window.innerWidth / 2) - (w / 2)
+    var URL = 'https://www.facebook.com/sharer.php?u=' + e.currentTarget.href
+    var w = 550
+    var h = 450
+    var top = (window.innerHeight / 2) - (h / 2)
+    var left = (window.innerWidth / 2) - (w / 2)
 
     window.open(
       URL,
@@ -20,4 +20,4 @@
   }
 
   u('.ref-share-button').on('click', handleShare)
-})();
+})()

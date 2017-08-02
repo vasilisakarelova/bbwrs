@@ -50,8 +50,8 @@
 
       m = checkTime(m)
 
-      document.querySelector('.ref-hour').innerHTML = h
-      document.querySelector('.ref-min').innerHTML = m
+      u('.ref-hour').text(h)
+      u('.ref-min').text(m)
 
       var t = requestTimeout(startTime, 500)
     }

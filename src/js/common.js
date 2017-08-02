@@ -8,6 +8,7 @@
 //=require ./share.js
 //=require ./interface.js
 
+
 // Skip button hover animations
 // =============================================================================
 ;(function () {
@@ -674,6 +675,7 @@ page('/10', function (ctx, next) {
 })
 
 page('/11', function (ctx, next) {
+  hypercube()
   var threeD = new p5(threeDInit, '3d')
   next()
 })
@@ -777,8 +779,7 @@ page()
 //   })
 // })()
 
-
-;(function () {
+function hypercube() {
   var canvas = document.getElementById('hypercube')
   var ctx = canvas.getContext('2d')
 
@@ -939,4 +940,4 @@ page()
     requestAnimationFrame(main)
   })
 
-})();
+}
