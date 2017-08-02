@@ -49889,8 +49889,6 @@ if (typeof module === 'object' && module.exports) {
   decouple(window, 'mousemove', animate)
 })()
 
-<<<<<<< Updated upstream
-=======
 // ;(function () {
 //   var currentSection = 16
 
@@ -50034,7 +50032,6 @@ var buildInit = function (p) {
   }
 }
 
->>>>>>> Stashed changes
 // Graphic
 // ----------------------------------------------------------------------------
 var graphicInit = function (p) {
@@ -50597,11 +50594,8 @@ var multidisciplinaryInit = function (p) {
   }
 }
 
-<<<<<<< Updated upstream
 var currentPageId = 0
 
-=======
->>>>>>> Stashed changes
 u('.ref-section').each(function (el, i) {
   u(el).data('id', i++)
 })
@@ -50632,7 +50626,6 @@ page('/', function (ctx, next) {
     }).addClass('section_show')
   var design = new p5(buildInit, 'build')
   next()
-  changeHref()
 })
 
 
@@ -50728,7 +50721,7 @@ page('/:id', function (ctx, next) {
       .filter(function (el) {
         return u(el).data('id') == ctx.params.id
       }).addClass('section_show')
-    
+
     changeHref(currentPageId)
   }
 })
@@ -50935,17 +50928,10 @@ page()
     var m = tesseractwithrotation(t, t * 2, t * 3, mouse.x / 100, mouse.y / 100, 0)
 
     drawtesseract(ctx, m, {
-<<<<<<< Updated upstream
-      x: canvas.width / 2, 
-      y: canvas.height / 2, 
-      size: gh * canvas.height, 
-      line_width: 4,
-=======
       x: canvas.width / 2,
       y: canvas.height / 2,
       size: gh * canvas.height,
-      line_width: 2,
->>>>>>> Stashed changes
+      line_width: 4,
     })
 
     lasttime = time
