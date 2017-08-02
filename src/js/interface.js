@@ -15,7 +15,7 @@
     return Math.floor(Math.random() * (max - min + 1)) + min
   }
 
-  u('.js-ref-absolute-elem').each(function (elem) {
+  u('.ref-interface-item').each(function (elem) {
     var w = u(elem).size().width
     var h = u(elem).size().height
     var t = getRandomInt(5000, 10000)
@@ -42,97 +42,97 @@
     })
   })
 
-  function startTime () {
-    var today = new Date()
-    var h = today.getHours()
-    var m = today.getMinutes()
+  // function startTime () {
+  //   var today = new Date()
+  //   var h = today.getHours()
+  //   var m = today.getMinutes()
 
-    m = checkTime(m)
+  //   m = checkTime(m)
 
-    document.querySelector('.js-ref-hour').innerHTML = h
-    document.querySelector('.js-ref-min').innerHTML = m
+  //   document.querySelector('.js-ref-hour').innerHTML = h
+  //   document.querySelector('.js-ref-min').innerHTML = m
 
-    var t = requestTimeout(startTime, 500)
-  }
+  //   var t = requestTimeout(startTime, 500)
+  // }
 
-  function checkTime (i) {
-    if (i < 10) { i = '0' + i }
-    return i
-  }
+  // function checkTime (i) {
+  //   if (i < 10) { i = '0' + i }
+  //   return i
+  // }
 
-  startTime()
+  // startTime()
+
+  // ;(function () {
+  //   var $inner = u('.js-ref-input')
+
+  //   u('.js-ref-input-raw')
+  //     .on('keyup', function () {
+  //       $inner.text(this.value)
+  //     })
+  //     .trigger('keyup')
+  // })()
+
+  // ;(function () {
+  //   var $bg = u('.js-rev-like-bg')
+
+  //   u('.js-ref-like').on('click', function (e) {
+  //     $bg
+  //       .addClass('is-animate')
+  //       .on('animationend webkitAnimationEnd', function (e) {
+  //         $bg.removeClass('is-animate')
+  //       })
+  //   })
+  // })()
 
   ;(function () {
-    var $inner = u('.js-ref-input')
-
-    u('.js-ref-input-raw')
-      .on('keyup', function () {
-        $inner.text(this.value)
-      })
-      .trigger('keyup')
-  })()
-
-  ;(function () {
-    var $bg = u('.js-rev-like-bg')
-
-    u('.js-ref-like').on('click', function (e) {
-      $bg
-        .addClass('is-animate')
-        .on('animationend webkitAnimationEnd', function (e) {
-          $bg.removeClass('is-animate')
-        })
-    })
-  })()
-
-  ;(function () {
-    u('.js-ref-burger').on('click', function (e) {
+    u('.ref-burger').on('click', function (e) {
       u(this).toggleClass('is-active')
     })
   })()
 
-  ;(function () {
-    u('.js-ref-select').on('click', function (e) {
-      u(this).toggleClass('is-active')
-    })
-  })()
+  // ;(function () {
+  //   u('.js-ref-select').on('click', function (e) {
+  //     u(this).toggleClass('is-active')
+  //   })
+  // })()
 
-  ;(function () {
-    var range = document.querySelector('.js-ref-range')
-    var thumb = range.children[0]
+  // ;(function () {
+  //   var range = document.querySelector('.js-ref-range')
+  //   var thumb = range.children[0]
 
-    thumb.onmousedown = function (e) {
-      var thumbCoords = getCoords(thumb)
-      var shiftX = e.pageX - thumbCoords.left
-      var sliderCoords = getCoords(range)
+  //   thumb.onmousedown = function (e) {
+  //     var thumbCoords = getCoords(thumb)
+  //     var shiftX = e.pageX - thumbCoords.left
+  //     var sliderCoords = getCoords(range)
 
-      document.onmousemove = function (e) {
-        var newLeft = e.pageX - shiftX - sliderCoords.left
+  //     document.onmousemove = function (e) {
+  //       var newLeft = e.pageX - shiftX - sliderCoords.left
 
-        if (newLeft < 0) { newLeft = 0 }
+  //       if (newLeft < 0) { newLeft = 0 }
 
-        var rightEdge = range.offsetWidth - thumb.offsetWidth
+  //       var rightEdge = range.offsetWidth - thumb.offsetWidth
 
-        if (newLeft > rightEdge) { newLeft = rightEdge }
+  //       if (newLeft > rightEdge) { newLeft = rightEdge }
 
-        thumb.style.transform = 'translate3d(' + newLeft + 'px, 0, 0)'
-      }
+  //       thumb.style.transform = 'translate3d(' + newLeft + 'px, 0, 0)'
+  //     }
 
-      document.onmouseup = function () {
-        document.onmousemove = document.onmouseup = null
-      }
+  //     document.onmouseup = function () {
+  //       document.onmousemove = document.onmouseup = null
+  //     }
 
-      return false
-    }
+  //     return false
+  //   }
 
-    thumb.ondragstart = function () { return false }
+  //   thumb.ondragstart = function () { return false }
 
-    function getCoords (elem) {
-      var box = elem.getBoundingClientRect()
+  //   function getCoords (elem) {
+  //     var box = elem.getBoundingClientRect()
 
-      return {
-        top: box.top + window.pageYOffset,
-        left: box.left + window.pageXOffset
-      }
-    }
-  })()
+  //     return {
+  //       top: box.top + window.pageYOffset,
+  //       left: box.left + window.pageXOffset
+  //     }
+  //   }
+  // })()
 })()

@@ -1,4 +1,4 @@
-.js-ref-absolute-elem {
+.i-absolute {
   position: absolute;
   will-change: transform;
   cursor: pointer;
@@ -46,6 +46,7 @@
   background-color: transparent;
   outline: none;
   padding: 0;
+  position: relative;
 }
 
 .i-plus-shadow {

@@ -6,6 +6,7 @@
 //=require ./p5.dom.js
 //=require ./umbrella.js
 //=require ./share.js
+//=require ./interface.js
 
 // Skip button hover animations
 // =============================================================================

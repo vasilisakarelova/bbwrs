@@ -1,6 +1,6 @@
 @import url('normalize.css');
 @import url('./fonts.css');
-/*@import url('./interface.css');*/
+@import url('./interface.css');
 
 html,
 body {
@@ -61,7 +61,7 @@ canvas.is-blurry {
   left: -150px;
 }
 
-#logo-canvas {
+#hypercube {
   position: absolute;
   top: 50%;
   left: 50%;
