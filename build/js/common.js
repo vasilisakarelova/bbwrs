@@ -49692,6 +49692,29 @@ if (typeof module === 'object' && module.exports) {
   };
 }
 
+;(function () {
+  function handleShare(e) {
+    e.preventDefault()
+
+    const URL = 'https://www.facebook.com/sharer.php?u=' + e.currentTarget.href
+    const w = 550
+    const h = 450
+    const top = (window.innerHeight / 2) - (h / 2)
+    const left = (window.innerWidth / 2) - (w / 2)
+
+    window.open(
+      URL,
+      '',
+      'height=' + h + ',' +
+      'width=' + w + ',' + 
+      'top=' + top + ',' +
+      'left=' + left + ',' +
+      'toolbar=0, location=0, menubar=0, directories=0, scrollbars=0'
+    )
+  }
+
+  u('.ref-share-button').on('click', handleShare)
+})();
 
 // Skip button hover animations
 // =============================================================================
@@ -49724,33 +49747,6 @@ if (typeof module === 'object' && module.exports) {
 
   decouple(window, 'mousemove', animate)
 })()
-
-// ;(function () {
-//   var currentSection = 16
-
-//   u('.ref-section').each(function (section, i) {
-//     u(section).data('index', i)
-
-//     if (i > currentSection) {
-//       u(section).addClass('is-hidden')
-//     }
-//   })
-
-//   function changeSection () {
-//     u('.ref-section').addClass('is-hidden').filter(function (section, i) {
-//       return i === currentSection
-//     }).removeClass('is-hidden')
-//   }
-
-//   u('.ref-skip-button').on('click', function (e) {
-//     console.log(currentSection)
-//     if(currentSection < u('.ref-section').length - 1) {
-//       currentSection = currentSection + 1
-//       changeSection()
-//     }
-
-//   })
-// })()
 
 // Graphic
 // ----------------------------------------------------------------------------
@@ -50321,6 +50317,7 @@ page('/', function (ctx, next) {
 
   changeHref()
 })
+
 
 page('/2', function (ctx, next) {
   requestTimeout(function () {

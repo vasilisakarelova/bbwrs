@@ -5,6 +5,7 @@
 //=require ./p5.js
 //=require ./p5.dom.js
 //=require ./umbrella.js
+//=require ./share.js
 
 // Skip button hover animations
 // =============================================================================
@@ -37,33 +38,6 @@
 
   decouple(window, 'mousemove', animate)
 })()
-
-// ;(function () {
-//   var currentSection = 16
-
-//   u('.ref-section').each(function (section, i) {
-//     u(section).data('index', i)
-
-//     if (i > currentSection) {
-//       u(section).addClass('is-hidden')
-//     }
-//   })
-
-//   function changeSection () {
-//     u('.ref-section').addClass('is-hidden').filter(function (section, i) {
-//       return i === currentSection
-//     }).removeClass('is-hidden')
-//   }
-
-//   u('.ref-skip-button').on('click', function (e) {
-//     console.log(currentSection)
-//     if(currentSection < u('.ref-section').length - 1) {
-//       currentSection = currentSection + 1
-//       changeSection()
-//     }
-
-//   })
-// })()
 
 // Graphic
 // ----------------------------------------------------------------------------
@@ -634,6 +608,7 @@ page('/', function (ctx, next) {
 
   changeHref()
 })
+
 
 page('/2', function (ctx, next) {
   requestTimeout(function () {
