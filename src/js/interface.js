@@ -42,25 +42,27 @@
     })
   })
 
-  // function startTime () {
-  //   var today = new Date()
-  //   var h = today.getHours()
-  //   var m = today.getMinutes()
+  ;(function () {
+    function startTime () {
+      var today = new Date()
+      var h = today.getHours()
+      var m = today.getMinutes()
 
-  //   m = checkTime(m)
+      m = checkTime(m)
 
-  //   document.querySelector('.js-ref-hour').innerHTML = h
-  //   document.querySelector('.js-ref-min').innerHTML = m
+      document.querySelector('.ref-hour').innerHTML = h
+      document.querySelector('.ref-min').innerHTML = m
 
-  //   var t = requestTimeout(startTime, 500)
-  // }
+      var t = requestTimeout(startTime, 500)
+    }
 
-  // function checkTime (i) {
-  //   if (i < 10) { i = '0' + i }
-  //   return i
-  // }
+    function checkTime (i) {
+      if (i < 10) { i = '0' + i }
+      return i
+    }
 
-  // startTime()
+    startTime()
+  })()
 
   // ;(function () {
   //   var $inner = u('.js-ref-input')
@@ -72,17 +74,17 @@
   //     .trigger('keyup')
   // })()
 
-  // ;(function () {
-  //   var $bg = u('.js-rev-like-bg')
+  ;(function () {
+    var $bg = u('.ref-like-bg')
 
-  //   u('.js-ref-like').on('click', function (e) {
-  //     $bg
-  //       .addClass('is-animate')
-  //       .on('animationend webkitAnimationEnd', function (e) {
-  //         $bg.removeClass('is-animate')
-  //       })
-  //   })
-  // })()
+    u('.ref-like').on('click', function (e) {
+      $bg
+        .addClass('is-animate')
+        .on('animationend webkitAnimationEnd', function (e) {
+          $bg.removeClass('is-animate')
+        })
+    })
+  })()
 
   ;(function () {
     u('.ref-burger').on('click', function (e) {
