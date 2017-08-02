@@ -124,8 +124,7 @@ var buildInit = function (p) {
     World.add(world, [
       Bodies.rectangle(p.width, p.height/2, 1, p.height, opts),
       Bodies.rectangle(p.width/2, p.height, p.width, 1, opts),
-      Bodies.rectangle(p.width/2, 1, p.width, 1, opts),
-      Bodies.rectangle(0, p.height/2, 1, p.height, opts)
+      Bodies.rectangle(1, p.height/2, 1, p.height, opts)
     ]);
 
     var canvasmouse = Mouse.create($canvas.elt);
@@ -306,8 +305,9 @@ var artInit = function (p) {
 
     $wrap.first().style.visibility = 'visible'
   }
-
-  p.mouseClicked = setKlakson
+  
+  p.mousePressed = null
+  p.mousePressed = setKlakson
 }
 
 // identity
@@ -769,6 +769,20 @@ changeHref(currentPageId)
 
 var shotTimer = 600
 
+var build,
+  graphic,
+  strategy,
+  interface,
+  ux,
+  threeD,
+  motion,
+  art = new p5(artInit, 'art'),
+  illustration,
+  identity,
+  design,
+  multidisciplinary
+
+
 // Router
 // ----------------------------------------------------------------------------
 page('/', function (ctx, next) {
@@ -777,7 +791,7 @@ page('/', function (ctx, next) {
     .filter(function (el, i) {
       return i == 0
     }).addClass('section_show')
-  var design = new p5(buildInit, 'build')
+  build = new p5(buildInit, 'build')
   next()
 })
 
@@ -811,58 +825,58 @@ page('/4', function (ctx, next) {
 })
 
 page('/7', function (ctx, next) {
-  var graphic = new p5(graphicInit, 'graphic')
+  graphic = new p5(graphicInit, 'graphic')
   next()
 })
 
 page('/8', function (ctx, next) {
-  var strategy = new p5(strategyInit, 'strategy')
+  strategy = new p5(strategyInit, 'strategy')
   next()
 })
 
 page('/9', function (ctx, next) {
-  var interface = new p5(interfaceInit, 'interface')
+  interface = new p5(interfaceInit, 'interface')
   next()
 })
 
 page('/10', function (ctx, next) {
-  var ux = new p5(uxInit, 'ux')
+  ux = new p5(uxInit, 'ux')
   next()
 })
 
 page('/11', function (ctx, next) {
-  var threeD = new p5(threeDInit, '3d')
+  threeD = new p5(threeDInit, '3d')
   hypercube()
   next()
 })
 
 page('/12', function (ctx, next) {
-  var motion = new p5(motionInit, 'motion')
+  motion = new p5(motionInit, 'motion')
   next()
 })
 
 page('/13', function (ctx, next) {
-  var art = new p5(artInit, 'art')
+  art
   next()
 })
 
 page('/14', function (ctx, next) {
-  var illustration = new p5(illustrationInit, 'illustration')
+  illustration = new p5(illustrationInit, 'illustration')
   next()
 })
 
 page('/15', function (ctx, next) {
-  var identity = new p5(identityInit, 'identity')
+  identity = new p5(identityInit, 'identity')
   next()
 })
 
 page('/16', function (ctx, next) {
-  var design = new p5(designInit, 'design')
+  design = new p5(designInit, 'design')
   next()
 })
 
 page('/19', function (ctx, next) {
-  var multidisciplinary = new p5(multidisciplinaryInit, 'multidisciplinary')
+  multidisciplinary = new p5(multidisciplinaryInit, 'multidisciplinary')
   next()
 })
 

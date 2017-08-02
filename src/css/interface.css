@@ -406,6 +406,7 @@
 
 .i-like-bg.is-animate {
   transform: scale(1.5);
+  transform-origin: center center;
   opacity: 0;
   animation: Like 400ms;
 }
