@@ -96,8 +96,8 @@ var buildInit = function (p) {
   VIEW.height = window.innerHeight / 2
   VIEW.centerX = VIEW.width / 2
   VIEW.centerY = VIEW.height / 2
-  VIEW.offsetX = -10
-  VIEW.offsetY = -10
+  VIEW.offsetX = 0
+  VIEW.offsetY = 0
 
   p.setup = function () {
     $canvas = p.createCanvas(window.innerWidth, window.innerHeight)
@@ -124,7 +124,6 @@ var buildInit = function (p) {
     World.add(world, [
       Bodies.rectangle(p.width, p.height/2, 1, p.height, opts),
       Bodies.rectangle(p.width/2, p.height, p.width, 1, opts),
-      Bodies.rectangle(p.width/2, 1, p.width, 1, opts),
       Bodies.rectangle(0, p.height/2, 1, p.height, opts)
     ]);
 
@@ -153,11 +152,31 @@ var buildInit = function (p) {
         bodiesDom[i].offsetHeight,
         bodyOpts
       );
-      bodiesDom[i].id = body.id;
-      bodies.push(body);
+      bodiesDom[i].id = body.id
+      bodies.push(body)
     }
-    World.add(engine.world, bodies);
-    window.requestAnimationFrame(update);
+    World.add(engine.world, bodies)
+    window.requestAnimationFrame(update)
+
+    $canvas.elt.style.zIndex = '2'
+  }
+
+  p.draw = function() {
+    p.background('transparent',0)
+
+    for (var i = 0; i < bodies.length; i++) {
+      var pos = bodies[i].position
+      var angle = bodies[i].angle
+
+      p.push()
+      p.translate(pos.x, pos.y)
+      p.rotate(angle)
+      p.rectMode(p.CENTER)
+      p.noStroke()
+      p.fill('transparent',0)
+      p.rect(0, 0, bodiesDom[i].offsetWidth, bodiesDom[i].offsetHeight)
+      p.pop()
+    }
   }
 
   function update() {
@@ -165,20 +184,20 @@ var buildInit = function (p) {
         var bodyDom = bodiesDom[i];
         var body = null;
       for (var j = 0, k = bodies.length; j < k; j++) {
-          if ( bodies[j].id == bodyDom.id ) {
-                body = bodies[j];
-                break;
-            }
+        if ( bodies[j].id == bodyDom.id ) {
+          body = bodies[j];
+          break;
         }
+      }
 
-        if ( body === null ) continue;
+      if ( body === null ) continue;
 
-      bodyDom.style.transform = "translate( "
+      bodyDom.style.transform = 'translate( '
           + ((VIEW.offsetX + body.position.x) * VIEW.scale - bodyDom.offsetWidth/2 )
-          + "px, "
+          + 'px, '
           + (VIEW.offsetY *2 + ( body.position.y) * VIEW.scale - bodyDom.offsetHeight/2)
-          + "px )";
-      bodyDom.style.transform += "rotate( " + body.angle + "rad )";
+          + 'px )';
+      bodyDom.style.transform += 'rotate( ' + body.angle + 'rad )';
     }
     window.requestAnimationFrame(update);
   }
@@ -524,12 +543,12 @@ var designInit = function (p) {
       World = Matter.World,
       Bodies = Matter.Bodies,
       Mouse = Matter.Mouse,
-      MouseConstraint = Matter.MouseConstraint;
+      MouseConstraint = Matter.MouseConstraint
 
-  var engine;
-  var world;
-  var mConstraint;
-  var boxes = [];
+  var engine
+  var world
+  var mConstraint
+  var boxes = []
 
   p.setup = function () {
     $canvas = p.createCanvas(p.windowWidth, (p.windowHeight))
@@ -567,8 +586,8 @@ var designInit = function (p) {
   }
 
   p.draw = function () {
-    p.background('transparent');
-    Engine.update(engine);
+    p.background('transparent')
+    Engine.update(engine)
 
     for (var i = 0; i < boxes.length; i++) {
       boxes[i].show();
