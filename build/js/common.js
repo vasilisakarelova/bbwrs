@@ -49889,6 +49889,152 @@ if (typeof module === 'object' && module.exports) {
   decouple(window, 'mousemove', animate)
 })()
 
+<<<<<<< Updated upstream
+=======
+// ;(function () {
+//   var currentSection = 16
+
+//   u('.ref-section').each(function (section, i) {
+//     u(section).data('index', i)
+
+//     if (i > currentSection) {
+//       u(section).addClass('is-hidden')
+//     }
+//   })
+
+//   function changeSection () {
+//     u('.ref-section').addClass('is-hidden').filter(function (section, i) {
+//       return i === currentSection
+//     }).removeClass('is-hidden')
+//   }
+
+//   u('.ref-skip-button').on('click', function (e) {
+//     console.log(currentSection)
+//     if(currentSection < u('.ref-section').length - 1) {
+//       currentSection = currentSection + 1
+//       changeSection()
+//     }
+
+//   })
+// })()
+
+// How to Build
+// ----------------------------------------------------------------------------
+var buildInit = function (p) {
+  var $canvas
+  var $title
+
+  var Engine = Matter.Engine,
+      Common = Matter.Common,
+      World = Matter.World,
+      Bodies = Matter.Bodies,
+      Mouse = Matter.Mouse,
+      MouseConstraint = Matter.MouseConstraint;
+
+  var engine
+  var world
+  var mConstraint
+  var boxes = []
+  var bodies = []
+  var bodiesDOM
+
+  var VIEW = {}
+  VIEW.SAFE_WIDTH = window.innerWidth
+  VIEW.SAFE_HEIGHT = window.innerHeight
+  VIEW.scale = 1
+  VIEW.width = window.innerWidth / 2
+  VIEW.height = window.innerHeight / 2
+  VIEW.centerX = VIEW.width / 2
+  VIEW.centerY = VIEW.height / 2
+  VIEW.offsetX = -10
+  VIEW.offsetY = -10
+
+  p.setup = function () {
+    $canvas = p.createCanvas(window.innerWidth, window.innerHeight)
+    $canvas.position(0, 0)
+
+    p.textSize(32);
+    p.createSpan("how", 0, 0).addClass('title title_single_unit')
+    p.createSpan("to", 0, 0).addClass('title title_single_unit')
+    p.createSpan("build", 0, 0).addClass('title title_single_unit')
+    p.createSpan("great", 0, 0).addClass('title title_single_unit')
+    p.createSpan("visual", 0, 0).addClass('title title_single_unit')
+    p.createSpan("language", 0, 0).addClass('title title_single_unit')
+    p.createSpan("?", 0, 0).addClass('title title_single_unit')
+
+    engine = Engine.create()
+    world = engine.world
+    Engine.run(engine)
+
+    var opts = {
+      isStatic: true
+    }
+
+    // walls
+    World.add(world, [
+      Bodies.rectangle(p.width, p.height/2, 1, p.height, opts),
+      Bodies.rectangle(p.width/2, p.height, p.width, 1, opts),
+      Bodies.rectangle(p.width/2, 1, p.width, 1, opts),
+      Bodies.rectangle(0, p.height/2, 1, p.height, opts)
+    ]);
+
+    var canvasmouse = Mouse.create($canvas.elt);
+    canvasmouse.pixelRatio = p.pixelDensity();
+    var options = {
+      mouse: canvasmouse
+    }
+    mConstraint = MouseConstraint.create(engine, options);
+    World.add(world, mConstraint);
+
+    Engine.run(engine);
+
+    bodiesDom = document.querySelectorAll('.title_single_unit');
+
+    var bodyOpts = {
+      friction: 0.1,
+      restitution: 0.1
+    }
+
+    for (var i = 0, l = bodiesDom.length; i < l; i++) {
+      var body = Bodies.rectangle(
+        VIEW.centerX,
+        20,
+        bodiesDom[i].offsetWidth,
+        bodiesDom[i].offsetHeight,
+        bodyOpts
+      );
+    	bodiesDom[i].id = body.id;
+      bodies.push(body);
+    }
+    World.add(engine.world, bodies);
+    window.requestAnimationFrame(update);
+  }
+
+  function update() {
+    for (var i = 0, l = bodiesDom.length; i < l; i++) {
+        var bodyDom = bodiesDom[i];
+        var body = null;
+    	for (var j = 0, k = bodies.length; j < k; j++) {
+        	if ( bodies[j].id == bodyDom.id ) {
+                body = bodies[j];
+                break;
+            }
+        }
+
+        if ( body === null ) continue;
+
+      bodyDom.style.transform = "translate( "
+          + ((VIEW.offsetX + body.position.x) * VIEW.scale - bodyDom.offsetWidth/2 )
+          + "px, "
+          + (VIEW.offsetY *2 + ( body.position.y) * VIEW.scale - bodyDom.offsetHeight/2)
+          + "px )";
+      bodyDom.style.transform += "rotate( " + body.angle + "rad )";
+    }
+    window.requestAnimationFrame(update);
+  }
+}
+
+>>>>>>> Stashed changes
 // Graphic
 // ----------------------------------------------------------------------------
 var graphicInit = function (p) {
@@ -50331,11 +50477,15 @@ var multidisciplinaryInit = function (p) {
       World = Matter.World,
       Bodies = Matter.Bodies,
       Mouse = Matter.Mouse,
-      MouseConstraint = Matter.MouseConstraint;
+      MouseConstraint = Matter.MouseConstraint,
+      Constraint = Matter.Constraint;
 
   var engine;
   var world;
+  var mConstraint;
   var gradientStart, gradientEnd;
+  var i;
+  var particles = [];
 
   p.setup = function () {
     $canvas = p.createCanvas(p.windowWidth, (p.windowHeight))
@@ -50362,30 +50512,38 @@ var multidisciplinaryInit = function (p) {
       Bodies.rectangle(0, p.height/2, 1, p.height, opts)
     ]);
 
-    var canvasmouse = Mouse.create($canvas.elt);
-    canvasmouse.pixelRatio = p.pixelDensity();
-    var options = {
-      mouse: canvasmouse
-    }
-    mConstraint = MouseConstraint.create(engine, options);
-    World.add(world, mConstraint);
+    var prevParticle = null;
+
+    /*for (var x = 20; x < 380; x += 40) {
+      var fixed = false;
+      if (!prevParticle) {
+        fixed = true;
+      }
+      var particle = new Particle(x,100,10, fixed)
+      particles.push(particle)
+
+      if (prevParticle) {
+        var optionsConstraint = {
+          bodyA: particle.body,
+          bodyB: prevParticle.body,
+          length: 50,
+          stiffness: 0.4
+        }
+
+        var constraint = Constraint.create(optionsConstraint)
+        World.add(world, constraint)
+      }
+      prevParticle = particle
+    }*/
+
   }
 
   p.draw = function () {
     p.background('transparent');
     setGradient(0, 0, p.width, p.height, gradientStart, gradientEnd);
-    Engine.update(engine);
 
-    for (var i = 0; i < boxes.length; i++) {
-      boxes[i].show();
-    }
-
-    if (mConstraint.body) {
-      var pos = mConstraint.body.position;
-      var offset = mConstraint.constraint.pointB;
-      var m = mConstraint.mouse.position;
-      p.stroke(0, 255, 0);
-      p.line(pos.x + offset.x, pos.y + offset.y, m.x, m.y);
+    for (i = 0; i < particles.length; i++) {
+      particles[i].show()
     }
   }
 
@@ -50414,33 +50572,36 @@ var multidisciplinaryInit = function (p) {
     World.add(world, this.body);
 
     this.isOffScreen = function() {
-      var pos = this.body.position;
-      return (pos.y > height + 100);
+      var pos = this.body.position
+      return (pos.y > height + 100)
     }
 
     this.removeFromWorld = function() {
-      World.remove(world, this.body);
+      World.remove(world, this.body)
     }
 
     this.show = function() {
-      var pos = this.body.position;
-      var angle = this.body.angle;
-      push();
-      translate(pos.x, pos.y);
-      rotate(angle);
-      rectMode(CENTER);
-      strokeWeight(1);
-      stroke(255);
-      fill(127);
-      ellipse(0, 0, this.r * 2);
-      pop();
+      var pos = this.body.position
+      var angle = this.body.angle
+      p.push()
+      p.translate(pos.x, pos.y)
+      p.rotate(angle)
+      p.rectMode(p.CENTER)
+      p.strokeWeight(1)
+      p.stroke(255)
+      p.fill(127)
+      p.ellipse(0, 0, this.r * 2)
+      p.pop()
     }
 
   }
 }
 
+<<<<<<< Updated upstream
 var currentPageId = 0
 
+=======
+>>>>>>> Stashed changes
 u('.ref-section').each(function (el, i) {
   u(el).data('id', i++)
 })
@@ -50469,7 +50630,8 @@ page('/', function (ctx, next) {
     .filter(function (el, i) {
       return i == 0
     }).addClass('section_show')
-
+  var design = new p5(buildInit, 'build')
+  next()
   changeHref()
 })
 
@@ -50662,7 +50824,7 @@ page()
       }
       _edges = edges
     }
-    return _edges 
+    return _edges
   }
 
   function tesseractwithrotation(a,b,c,d,e,f) {
@@ -50703,7 +50865,7 @@ page()
     ctx.lineWidth = opts.line_width || 1
     ctx.beginPath()
     for (var i = 0; i < edges.length; i++) {
-      var v1 = project(tesseract[edges[i][0]], opts.size), 
+      var v1 = project(tesseract[edges[i][0]], opts.size),
         v2 = project(tesseract[edges[i][1]], opts.size)
       ctx.moveTo(v1.x+opts.x,v1.y+opts.y)
       ctx.lineTo(v2.x+opts.x,v2.y+opts.y)
@@ -50773,10 +50935,17 @@ page()
     var m = tesseractwithrotation(t, t * 2, t * 3, mouse.x / 100, mouse.y / 100, 0)
 
     drawtesseract(ctx, m, {
+<<<<<<< Updated upstream
       x: canvas.width / 2, 
       y: canvas.height / 2, 
       size: gh * canvas.height, 
       line_width: 4,
+=======
+      x: canvas.width / 2,
+      y: canvas.height / 2,
+      size: gh * canvas.height,
+      line_width: 2,
+>>>>>>> Stashed changes
     })
 
     lasttime = time
