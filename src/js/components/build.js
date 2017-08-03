@@ -47,9 +47,9 @@ function buildInit(p) {
 
     // walls
     World.add(world, [
-      Bodies.rectangle(p.width, p.height/2, 5, p.height, opts),
-      Bodies.rectangle(p.width/2, p.height, p.width, 5, opts),
-      Bodies.rectangle(1, p.height/2, 5, p.height, opts)
+      Bodies.rectangle(p.width, p.height/2, 10, p.height, opts),
+      Bodies.rectangle(p.width/2, p.height, p.width, 10, opts),
+      Bodies.rectangle(1, p.height/2, 10, p.height, opts)
     ]);
 
     var canvasmouse = Mouse.create($canvas.elt);
@@ -68,7 +68,7 @@ function buildInit(p) {
     bodiesDom = document.querySelectorAll('.title_single_unit');
 
     var bodyOpts = {
-      density: 1,
+      density: 0.001,
       frictionAir: 0.06,
       restitution: 0.3,
       friction: 0.01,
@@ -124,7 +124,7 @@ function buildInit(p) {
       bodyDom.style.cssText = 'will-chnage: transform; transform: translate3d( '
         + ((VIEW.offsetX + body.position.x) * VIEW.scale - bodyDom.offsetWidth/2 )
         + 'px, '
-        + ((VIEW.offsetY + body.position.y) * VIEW.scale - bodyDom.offsetHeight/2)
+        + ((VIEW.offsetY * 2 + body.position.y) * VIEW.scale - bodyDom.offsetHeight/2)
         + 'px, '
         + '0) '
         + 'rotate('
