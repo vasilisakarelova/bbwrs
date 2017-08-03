@@ -26,6 +26,7 @@
     strategy = new p5(strategyInit, 'strategy'),
     interface = new p5(interfaceInit, 'interface'),
     ux = new p5(uxInit, 'ux'),
+    details = new p5(detailsInit, 'detials'),
     threeD = new p5(threeDInit, '3d'),
     art = new p5(artInit, 'art'),
     illustration = new p5(illustrationInit, 'illustration'),
@@ -72,58 +73,63 @@
     next()
   })
 
-  page('/7', function (ctx, next) {
+  page('/5', function (ctx, next) {
+    detailsInit
+    next()
+  })
+
+  page('/6', function (ctx, next) {
     graphic
     next()
   })
 
-  page('/8', function (ctx, next) {
+  page('/7', function (ctx, next) {
     strategy
     next()
   })
 
-  page('/9', function (ctx, next) {
+  page('/8', function (ctx, next) {
     interface
     next()
   })
 
-  page('/10', function (ctx, next) {
+  page('/9', function (ctx, next) {
     ux
     next()
   })
 
-  page('/11', function (ctx, next) {
-    threeD
+  page('/10', function (ctx, next) {
     hypercube()
+    threeD
     next()
   })
 
-  page('/12', function (ctx, next) {
+  page('/11', function (ctx, next) {
     new p5(motionInit, 'motion')
     next()
   })
 
-  page('/13', function (ctx, next) {
+  page('/12', function (ctx, next) {
     art
     next()
   })
 
-  page('/14', function (ctx, next) {
+  page('/13', function (ctx, next) {
     illustration
     next()
   })
 
-  page('/15', function (ctx, next) {
+  page('/14', function (ctx, next) {
     identity
     next()
   })
 
-  page('/16', function (ctx, next) {
+  page('/15', function (ctx, next) {
     design 
     next()
   })
 
-  page('/19', function (ctx, next) {
+  page('/18', function (ctx, next) {
     multidisciplinary
     next()
   })

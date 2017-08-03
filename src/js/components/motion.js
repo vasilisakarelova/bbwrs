@@ -19,12 +19,15 @@ function motionInit(p) {
   var nodeY = []
   var angle = []
   var frequency = []
+  var mouseX = 0
+  var mouseY = 0
   var $title
+  var $canvas
 
   var organicConstant = 1.0
 
   p.setup = function () {
-    p.createCanvas(p.windowWidth, p.windowHeight)
+    $canvas = p.createCanvas(p.windowWidth, p.windowHeight)
     $title = p.createElement('h1', 'Motion')
     $title.addClass('title')
 
@@ -75,10 +78,15 @@ function motionInit(p) {
 
     p.endShape(p.CLOSE)
   }
+  
+  p.select('#motion').mouseMoved(function (e) {
+    mouseX = e.x
+    mouseY = e.y
+  })
 
   function moveShape () {
-    deltaX = p.mouseX - centerX
-    deltaY = p.mouseY - centerY
+    deltaX = mouseX - centerX
+    deltaY = mouseY - centerY
 
     deltaX *= springing
     deltaY *= springing

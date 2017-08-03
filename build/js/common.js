@@ -49947,7 +49947,7 @@ function buildInit(p) {
     for (var i = 0, l = bodiesDom.length; i < l; i++) {
       var body = Bodies.rectangle(
         VIEW.centerX,
-        20,
+        0,
         bodiesDom[i].offsetWidth,
         bodiesDom[i].offsetHeight,
         bodyOpts
@@ -50196,12 +50196,15 @@ function motionInit(p) {
   var nodeY = []
   var angle = []
   var frequency = []
+  var mouseX = 0
+  var mouseY = 0
   var $title
+  var $canvas
 
   var organicConstant = 1.0
 
   p.setup = function () {
-    p.createCanvas(p.windowWidth, p.windowHeight)
+    $canvas = p.createCanvas(p.windowWidth, p.windowHeight)
     $title = p.createElement('h1', 'Motion')
     $title.addClass('title')
 
@@ -50252,10 +50255,15 @@ function motionInit(p) {
 
     p.endShape(p.CLOSE)
   }
+  
+  p.select('#motion').mouseMoved(function (e) {
+    mouseX = e.x
+    mouseY = e.y
+  })
 
   function moveShape () {
-    deltaX = p.mouseX - centerX
-    deltaY = p.mouseY - centerY
+    deltaX = mouseX - centerX
+    deltaY = mouseY - centerY
 
     deltaX *= springing
     deltaY *= springing
@@ -50495,6 +50503,12 @@ function artInit(p) {
     $wrap.position(p.mouseX - ($wrap.elt.offsetWidth / 2), p.mouseY - ($wrap.elt.offsetHeight / 2))
   }
 }
+function detailsInit(p) {
+  u('.hidden-char').on('mouseover', function (e) {
+    u(this).addClass('char-show')
+  })
+}
+
 
 // Skip button hover animations
 // =============================================================================
@@ -50803,6 +50817,8 @@ function hypercube() {
 
     ux = new p5(uxInit, 'ux'),
 
+    details = new p5(detailsInit, 'detials'),
+
     threeD = new p5(threeDInit, '3d'),
 
     art = new p5(artInit, 'art'),
@@ -50895,7 +50911,17 @@ function hypercube() {
 
 
 
-  page('/7', function (ctx, next) {
+  page('/5', function (ctx, next) {
+
+    detailsInit
+
+    next()
+
+  })
+
+
+
+  page('/6', function (ctx, next) {
 
     graphic
 
@@ -50905,7 +50931,7 @@ function hypercube() {
 
 
 
-  page('/8', function (ctx, next) {
+  page('/7', function (ctx, next) {
 
     strategy
 
@@ -50915,7 +50941,7 @@ function hypercube() {
 
 
 
-  page('/9', function (ctx, next) {
+  page('/8', function (ctx, next) {
 
     interface
 
@@ -50925,7 +50951,7 @@ function hypercube() {
 
 
 
-  page('/10', function (ctx, next) {
+  page('/9', function (ctx, next) {
 
     ux
 
@@ -50935,11 +50961,11 @@ function hypercube() {
 
 
 
-  page('/11', function (ctx, next) {
-
-    threeD
+  page('/10', function (ctx, next) {
 
     hypercube()
+
+    threeD
 
     next()
 
@@ -50947,7 +50973,7 @@ function hypercube() {
 
 
 
-  page('/12', function (ctx, next) {
+  page('/11', function (ctx, next) {
 
     new p5(motionInit, 'motion')
 
@@ -50957,7 +50983,7 @@ function hypercube() {
 
 
 
-  page('/13', function (ctx, next) {
+  page('/12', function (ctx, next) {
 
     art
 
@@ -50967,7 +50993,7 @@ function hypercube() {
 
 
 
-  page('/14', function (ctx, next) {
+  page('/13', function (ctx, next) {
 
     illustration
 
@@ -50977,7 +51003,7 @@ function hypercube() {
 
 
 
-  page('/15', function (ctx, next) {
+  page('/14', function (ctx, next) {
 
     identity
 
@@ -50987,7 +51013,7 @@ function hypercube() {
 
 
 
-  page('/16', function (ctx, next) {
+  page('/15', function (ctx, next) {
 
     design 
 
@@ -50997,7 +51023,7 @@ function hypercube() {
 
 
 
-  page('/19', function (ctx, next) {
+  page('/18', function (ctx, next) {
 
     multidisciplinary
 

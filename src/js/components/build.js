@@ -74,7 +74,7 @@ function buildInit(p) {
     for (var i = 0, l = bodiesDom.length; i < l; i++) {
       var body = Bodies.rectangle(
         VIEW.centerX,
-        20,
+        0,
         bodiesDom[i].offsetWidth,
         bodiesDom[i].offsetHeight,
         bodyOpts
