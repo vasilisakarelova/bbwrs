@@ -11,7 +11,7 @@ function motionInit(p) {
   var springing = 0.009
   var damping = 0.1
 
-  var nodes = 40
+  var nodes = 20
 
   var nodeStartX = []
   var nodeStartY = []
@@ -19,12 +19,15 @@ function motionInit(p) {
   var nodeY = []
   var angle = []
   var frequency = []
+  var mouseX = 0
+  var mouseY = 0
   var $title
+  var $canvas
 
   var organicConstant = 1.0
 
   p.setup = function () {
-    p.createCanvas(p.windowWidth, p.windowHeight)
+    $canvas = p.createCanvas(p.windowWidth, p.windowHeight)
     $title = p.createElement('h1', 'Motion')
     $title.addClass('title')
 
@@ -40,7 +43,7 @@ function motionInit(p) {
     }
 
     for (var i = 0; i < nodes; i++) {
-      frequency[i] = p.random(0, 3)
+      frequency[i] = p.random(0, 20)
     }
 
     p.noStroke()
@@ -75,10 +78,15 @@ function motionInit(p) {
 
     p.endShape(p.CLOSE)
   }
+  
+  p.select('#motion').mouseMoved(function (e) {
+    mouseX = e.x
+    mouseY = e.y
+  })
 
   function moveShape () {
-    deltaX = p.mouseX - centerX
-    deltaY = p.mouseY - centerY
+    deltaX = mouseX - centerX
+    deltaY = mouseY - centerY
 
     deltaX *= springing
     deltaY *= springing
@@ -94,8 +102,8 @@ function motionInit(p) {
     organicConstant = 1 - ((p.abs(accelX) + p.abs(accelY)))
 
     for (var i = 0; i < nodes; i++) {
-      nodeX[i] = nodeStartX[i] + p.sin(p.radians(angle[i])) * (accelX*2);
-      nodeY[i] = nodeStartY[i] + p.sin(p.radians(angle[i])) * (accelX*2);
+      nodeX[i] = nodeStartX[i] + p.sin(p.radians(angle[i])) * (accelX*3);
+      nodeY[i] = nodeStartY[i] + p.sin(p.radians(angle[i])) * (accelX*3);
       angle[i] += frequency[i]
     }
   }

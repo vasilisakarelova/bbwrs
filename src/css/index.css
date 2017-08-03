@@ -41,15 +41,13 @@ a {
 
 .title_single_unit {
   position: absolute;
-  display: inline-block;
-  padding-right: 30px;
   z-index: 1;
 }
 
 @media screen and (min-width: 768px) {
   .title {
-    font-size: 7.69vw; /* 105px */
-    line-height: 1; /* 105px */
+    font-size: 9.88vw; /* 135px */
+    line-height: 1; /* 135px */
   }
 }
 
@@ -287,4 +285,29 @@ footer {
 
 .section_show {
   display: block;
+}
+
+@keyframes Wow {
+  from {
+    transform: scale(1.2);
+  }
+  15% {
+    transform: scale(0.9);
+  }
+  35% {
+    transform: scale(1.05);
+  }
+  to {
+    transform: scale(1.0);
+  }
+}
+
+.char {
+  display: inline-block;
+  opacity: 0;
+}
+
+.char-show {
+  opacity: 1;
+  animation: Wow 600ms forwards;
 }

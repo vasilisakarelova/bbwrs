@@ -31,10 +31,10 @@ function buildInit(p) {
     $canvas = p.createCanvas(window.innerWidth, window.innerHeight)
     $canvas.position(0, 0)
 
-    p.createSpan("how", 0, 0).addClass('title title_single_unit')
     p.createSpan("to build", 0, 0).addClass('title title_single_unit')
     p.createSpan("great", 0, 0).addClass('title title_single_unit')
     p.createSpan("visual", 0, 0).addClass('title title_single_unit')
+    p.createSpan("how", 0, 0).addClass('title title_single_unit')
     p.createSpan("language?", 0, 0).addClass('title title_single_unit')
 
     engine = Engine.create()
@@ -77,7 +77,7 @@ function buildInit(p) {
     for (var i = 0, l = bodiesDom.length; i < l; i++) {
       var body = Bodies.rectangle(
         VIEW.centerX,
-        20,
+        0,
         bodiesDom[i].offsetWidth,
         bodiesDom[i].offsetHeight,
         bodyOpts
@@ -124,7 +124,7 @@ function buildInit(p) {
       bodyDom.style.cssText = 'will-chnage: transform; transform: translate3d( '
         + ((VIEW.offsetX + body.position.x) * VIEW.scale - bodyDom.offsetWidth/2 )
         + 'px, '
-        + (VIEW.offsetY *2 + ( body.position.y) * VIEW.scale - bodyDom.offsetHeight/2)
+        + ((VIEW.offsetY + body.position.y) * VIEW.scale - bodyDom.offsetHeight/2)
         + 'px, '
         + '0) '
         + 'rotate('

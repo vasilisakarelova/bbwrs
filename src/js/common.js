@@ -22,6 +22,7 @@
 //=require ./components/illustration.js
 //=require ./components/multidisciplinary.js
 //=require ./components/art.js
+//=require ./components/details.js
 
 // Skip button hover animations
 // =============================================================================
