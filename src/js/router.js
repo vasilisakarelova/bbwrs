@@ -29,6 +29,7 @@
     details = new p5(detailsInit, 'detials'),
     threeD = new p5(threeDInit, '3d'),
     art = new p5(artInit, 'art'),
+    motion = new p5(motionInit, 'motion'),
     illustration = new p5(illustrationInit, 'illustration'),
     identity = new p5(identityInit, 'identity'),
     design = new p5(designInit, 'design'),
@@ -105,7 +106,7 @@
   })
 
   page('/11', function (ctx, next) {
-    new p5(motionInit, 'motion')
+    motion
     next()
   })
 
