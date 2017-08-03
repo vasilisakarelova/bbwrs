@@ -42,9 +42,17 @@ function multidisciplinaryInit(p) {
       Bodies.rectangle(0, p.height/2, 1, p.height, opts)
     ]);
 
+    var canvasmouse = Mouse.create($canvas.elt);
+    canvasmouse.pixelRatio = p.pixelDensity();
+    var options = {
+      mouse: canvasmouse
+    }
+    mConstraint = MouseConstraint.create(engine, options);
+    World.add(world, mConstraint);
+
     var prevParticle = null;
 
-    /*for (var x = 20; x < 380; x += 40) {
+    for (var x = 20; x < 380; x += 40) {
       var fixed = false;
       if (!prevParticle) {
         fixed = true;
@@ -64,7 +72,7 @@ function multidisciplinaryInit(p) {
         World.add(world, constraint)
       }
       prevParticle = particle
-    }*/
+    }
 
   }
 

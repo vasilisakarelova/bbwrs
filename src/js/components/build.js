@@ -47,16 +47,17 @@ function buildInit(p) {
 
     // walls
     World.add(world, [
-      Bodies.rectangle(p.width, p.height/2, 1, p.height, opts),
-      Bodies.rectangle(p.width/2, p.height, p.width, 1, opts),
-      Bodies.rectangle(1, p.height/2, 1, p.height, opts)
+      Bodies.rectangle(p.width, p.height/2, 5, p.height, opts),
+      Bodies.rectangle(p.width/2, p.height, p.width, 5, opts),
+      Bodies.rectangle(1, p.height/2, 5, p.height, opts)
     ]);
 
     var canvasmouse = Mouse.create($canvas.elt);
     canvasmouse.pixelRatio = p.pixelDensity();
 
     var options = {
-      mouse: canvasmouse
+      mouse: canvasmouse,
+      stiffness: 0.2
     }
 
     mConstraint = MouseConstraint.create(engine, options);
@@ -67,8 +68,10 @@ function buildInit(p) {
     bodiesDom = document.querySelectorAll('.title_single_unit');
 
     var bodyOpts = {
-      friction: 0.1,
-      restitution: 0.1
+      density: 1,
+      frictionAir: 0.06,
+      restitution: 0.3,
+      friction: 0.01,
     }
 
     for (var i = 0, l = bodiesDom.length; i < l; i++) {
@@ -90,7 +93,6 @@ function buildInit(p) {
   }
 
   p.draw = function() {
-
     for (var i = 0; i < bodies.length; i++) {
       var pos = bodies[i].position
       var angle = bodies[i].angle
@@ -118,7 +120,7 @@ function buildInit(p) {
       }
 
       if ( body === null ) continue;
-      
+
       bodyDom.style.cssText = 'will-chnage: transform; transform: translate3d( '
         + ((VIEW.offsetX + body.position.x) * VIEW.scale - bodyDom.offsetWidth/2 )
         + 'px, '
@@ -126,7 +128,7 @@ function buildInit(p) {
         + 'px, '
         + '0) '
         + 'rotate('
-        + body.angle 
+        + body.angle
         + 'rad)'
     }
 
