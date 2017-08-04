@@ -7,7 +7,8 @@ function buildInit(p) {
       World = Matter.World,
       Bodies = Matter.Bodies,
       Mouse = Matter.Mouse,
-      MouseConstraint = Matter.MouseConstraint;
+      MouseConstraint = Matter.MouseConstraint,
+      Events = Matter.Events
 
   var engine
   var world
@@ -52,20 +53,20 @@ function buildInit(p) {
       Bodies.rectangle(1, p.height/2, 10, p.height, opts)
     ]);
 
-    var canvasmouse = Mouse.create($canvas.elt);
-    canvasmouse.pixelRatio = p.pixelDensity();
+    var canvasmouse = Mouse.create($canvas.elt)
+    canvasmouse.pixelRatio = p.pixelDensity()
 
     var options = {
       mouse: canvasmouse,
       stiffness: 0.2
     }
 
-    mConstraint = MouseConstraint.create(engine, options);
-    World.add(world, mConstraint);
+    mConstraint = MouseConstraint.create(engine, options)
+    World.add(world, mConstraint)
 
     Engine.run(engine);
 
-    bodiesDom = document.querySelectorAll('.title_single_unit');
+    bodiesDom = document.querySelectorAll('.title_single_unit')
 
     var bodyOpts = {
       density: 0.001,
@@ -90,6 +91,14 @@ function buildInit(p) {
     window.requestAnimationFrame(update)
 
     $canvas.style('z-index', 2)
+
+    Events.on(mConstraint, 'startdrag', function(ev){
+      ev.body.isStatic = false
+    })
+
+    Events.on(mConstraint, 'enddrag', function(ev){
+      ev.body.isStatic = true
+    })
   }
 
   p.draw = function() {
