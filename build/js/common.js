@@ -49979,11 +49979,9 @@ function buildInit(p) {
   p.draw = function() {
     for (var i = 0; i < bodies.length; i++) {
       var pos = bodies[i].position
-      var angle = bodies[i].angle
 
       p.push()
       p.translate(pos.x, pos.y)
-      p.rotate(angle)
       p.rectMode(p.CENTER)
       p.noStroke()
       p.fill('transparent', 0)
@@ -50011,9 +50009,6 @@ function buildInit(p) {
         + ((VIEW.offsetY * 2 + body.position.y) * VIEW.scale - bodyDom.offsetHeight/2)
         + 'px, '
         + '0) '
-        + 'rotate('
-        + body.angle
-        + 'rad)'
     }
 
     window.requestAnimationFrame(update)
