@@ -326,7 +326,7 @@
   transition: transform 300ms;
 }
 
-.i-range-thumb:active .i-range-thumb-shadow {
+.i-range-thumb:hover .i-range-thumb-shadow {
   transform: translate3d(1px, 1px, 0);
 }
 

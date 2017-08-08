@@ -276,3 +276,38 @@ function hypercube() {
 
 
 //=require ./router.js
+
+
+;(function () {
+  function resizerInit(p) {
+    var $canvas
+    var $title
+    var $r = p.select('.resizer')
+    var $img = p.select('.resizer-img')
+    var isActive = false
+
+    p.setup = function () {
+      // $canvas = p.createCanvas(p.windowWidth, p.windowHeight)
+    }
+
+    p.windowResized = resizeHandler
+
+    function resizeHandler() {
+      if (p.windowWidth < 1024) {
+        if(!isActive) {
+          $r.addClass('active')
+          isActive = true
+        }
+        var w = p.round(p.map(window.innerWidth, 320, 1024, 101, 0))
+        $img.style('transform', 'translate3d('+ (w * 1024) * -1 +'px, -50%, 0)')
+
+      } else {
+        isActive = false
+        $r.removeClass('active')
+      }
+    }
+
+  }
+
+  new p5(resizerInit, 'resizer')
+})()
