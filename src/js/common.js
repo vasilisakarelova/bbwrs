@@ -299,7 +299,7 @@ function hypercube() {
           isActive = true
         }
         var w = p.round(p.map(window.innerWidth, 320, 1024, 101, 0))
-        $img.style('transform': 'translate3d('+ (w * 1024) * -1 +'px, -50%, 0)')
+        $img.style('transform', 'translate3d('+ (w * 1024) * -1 +'px, -50%, 0)')
 
       } else {
         isActive = false
