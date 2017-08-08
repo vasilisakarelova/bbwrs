@@ -13,7 +13,6 @@ function buildInit(p) {
   var engine
   var world
   var mConstraint
-  var boxes = []
   var bodies = []
   var bodiesDOM
 
@@ -119,16 +118,16 @@ function buildInit(p) {
 
   function update() {
     for (var i = 0, l = bodiesDom.length; i < l; i++) {
-        var bodyDom = bodiesDom[i];
-        var body = null;
+        var bodyDom = bodiesDom[i]
+        var body = null
       for (var j = 0, k = bodies.length; j < k; j++) {
         if ( bodies[j].id == bodyDom.id ) {
-          body = bodies[j];
-          break;
+          body = bodies[j]
+          break
         }
       }
 
-      if ( body === null ) continue;
+      if ( body === null ) continue
 
       bodyDom.style.cssText = 'will-chnage: transform; transform: translate3d( '
         + ((VIEW.offsetX + body.position.x) * VIEW.scale - bodyDom.offsetWidth/2 )
