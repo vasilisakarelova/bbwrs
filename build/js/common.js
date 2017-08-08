@@ -50477,7 +50477,7 @@ function multidisciplinaryInit(p) {
       var posX = ev.mouse.position.x
       var posY = ev.mouse.position.y
 
-      canvasWrapper.style.background = `linear-gradient( ${ angle }deg, #ff9897, #f650a0), radial-gradient(circle at ${posX}px ${posY}px, rgba(255, 152, 151,1) 51%, rgba(246, 80, 160, 1) 100%)`
+      canvasWrapper.style.background = `linear-gradient( ${ angle }deg, rgba(255, 152, 151, .5) 30%, rgba(246, 80, 160, .5) 100%), radial-gradient(circle at ${posX}px ${posY}px, rgba(255, 152, 151,1) 30%, rgba(246, 80, 160, 1) 100%)`
     })
   }
 
