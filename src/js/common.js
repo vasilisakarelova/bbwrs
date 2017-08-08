@@ -4,6 +4,7 @@
 //=require ./matter.js
 //=require ./p5.js
 //=require ./p5.dom.js
+//=require ./p5.play.js
 //=require ./umbrella.js
 //=require ./share.js
 //=require ./interface.js
