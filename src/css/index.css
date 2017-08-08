@@ -311,3 +311,31 @@ footer {
   opacity: 1;
   animation: Wow 600ms forwards;
 }
+
+.resizer {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #fff;
+  z-index: 9999;
+  display: none;
+}
+
+.resizer.active {
+  display: block;
+}
+
+.resizer-body {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+}
+
+.resizer-img {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 103424px;
+}

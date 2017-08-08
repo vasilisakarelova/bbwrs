@@ -49816,45 +49816,45 @@ window.addEventListener('load', function () {
     //   })
     // })()
 
-    // ;(function () {
-    //   var range = document.querySelector('.js-ref-range')
-    //   var thumb = range.children[0]
+    ;(function () {
+      var range = u('.ref-range').first()
+      var thumb = range.children[0]
 
-    //   thumb.onmousedown = function (e) {
-    //     var thumbCoords = getCoords(thumb)
-    //     var shiftX = e.pageX - thumbCoords.left
-    //     var sliderCoords = getCoords(range)
+      thumb.onmousedown = function (e) {
+        var thumbCoords = getCoords(thumb)
+        var shiftX = e.pageX - thumbCoords.left
+        var sliderCoords = getCoords(range)
 
-    //     document.onmousemove = function (e) {
-    //       var newLeft = e.pageX - shiftX - sliderCoords.left
+        document.onmousemove = function (e) {
+          var newLeft = e.pageX - shiftX - sliderCoords.left
 
-    //       if (newLeft < 0) { newLeft = 0 }
+          if (newLeft < 0) { newLeft = 0 }
 
-    //       var rightEdge = range.offsetWidth - thumb.offsetWidth
+          var rightEdge = range.offsetWidth - thumb.offsetWidth
 
-    //       if (newLeft > rightEdge) { newLeft = rightEdge }
+          if (newLeft > rightEdge) { newLeft = rightEdge }
 
-    //       thumb.style.transform = 'translate3d(' + newLeft + 'px, 0, 0)'
-    //     }
+          thumb.style.transform = 'translate3d(' + newLeft + 'px, 0, 0)'
+        }
 
-    //     document.onmouseup = function () {
-    //       document.onmousemove = document.onmouseup = null
-    //     }
+        document.onmouseup = function () {
+          document.onmousemove = document.onmouseup = null
+        }
 
-    //     return false
-    //   }
+        return false
+      }
 
-    //   thumb.ondragstart = function () { return false }
+      thumb.ondragstart = function () { return false }
 
-    //   function getCoords (elem) {
-    //     var box = elem.getBoundingClientRect()
+      function getCoords (elem) {
+        var box = elem.getBoundingClientRect()
 
-    //     return {
-    //       top: box.top + window.pageYOffset,
-    //       left: box.left + window.pageXOffset
-    //     }
-    //   }
-    // })()
+        return {
+          top: box.top + window.pageYOffset,
+          left: box.left + window.pageXOffset
+        }
+      }
+    })()
   })()
 })
 
@@ -51088,4 +51088,39 @@ function hypercube() {
 
   page()
 
+})()
+
+
+;(function () {
+  function resizerInit(p) {
+    var $canvas
+    var $title
+    var $r = p.select('.resizer')
+    var $img = p.select('.resizer-img')
+    var isActive = false
+
+    p.setup = function () {
+      // $canvas = p.createCanvas(p.windowWidth, p.windowHeight)
+    }
+
+    p.windowResized = resizeHandler
+
+    function resizeHandler() {
+      if (p.windowWidth < 1024) {
+        if(!isActive) {
+          $r.addClass('active')
+          isActive = true
+        }
+        var w = p.round(p.map(window.innerWidth, 320, 1024, 101, 0))
+        $img.style('transform': 'translate3d('+ (w * 1024) * -1 +'px, -50%, 0)')
+
+      } else {
+        isActive = false
+        $r.removeClass('active')
+      }
+    }
+
+  }
+
+  new p5(resizerInit, 'resizer')
 })()
