@@ -54670,10 +54670,6 @@ function uxInit(p) {
       }
     }
 
-    // circleShape.debug = p.mouseIsPressed
-    // triangleShape.debug = p.mouseIsPressed
-    // rectShape.debug = p.mouseIsPressed
-
     p.drawSprites()
   }
 }
