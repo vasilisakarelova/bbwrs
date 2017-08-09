@@ -10,7 +10,7 @@ function uxInit(p) {
     $title.addClass('title')
     $canvas = p.createCanvas(p.windowWidth, p.windowHeight)
 
-    circleShape = p.createSprite(p.windowWidth / 2.2, p.windowHeight / 2, 160, 160)
+    circleShape = p.createSprite(p.windowWidth / 2.2, p.windowHeight / 2, 50, 50)
     circleShape.draw = function() {
       p.push()
       p.noFill()
@@ -27,7 +27,7 @@ function uxInit(p) {
       p.pop()
     }
 
-    triangleShape = p.createSprite(p.windowWidth / 4, p.windowHeight / 2, 160, 160)
+    triangleShape = p.createSprite(p.windowWidth / 4, p.windowHeight / 2, 50, 50)
     triangleShape.draw = function() {
       p.push()
       p.noFill()
@@ -44,7 +44,7 @@ function uxInit(p) {
       p.pop()
     }
 
-    rectShape = p.createSprite(p.windowWidth / 1.5, p.windowHeight / 2, 160, 160)
+    rectShape = p.createSprite(p.windowWidth / 1.5, p.windowHeight / 2, 50, 50)
     rectShape.draw = function() {
       p.push()
       p.noFill()
@@ -105,30 +105,44 @@ function uxInit(p) {
   }
 
   p.draw = function() {
-    p.background(255,255,255)
+    p.background('transparent')
 
     if (draggedSprite != null) {
       switch (draggedSpriteType) {
         case 'rect':
-          draggedSprite.position.x = p.mouseX;
-          draggedSprite.position.y = p.mouseY;
+          draggedSprite.position.x = p.mouseX
+          draggedSprite.position.y = p.mouseY
           draggedSprite.collide(circleShape)
           draggedSprite.collide(triangleShape)
-          break;
+          if(draggedSprite.overlap(rectShape)) {
+            draggedSprite.position.x = p.windowWidth / 1.5
+            draggedSprite.position.y = p.windowHeight / 2
+            draggedSprite = null
+          }
+          break
         case 'triangle':
-          draggedSprite.position.x = p.mouseX;
-          draggedSprite.position.y = p.mouseY;
+          draggedSprite.position.x = p.mouseX
+          draggedSprite.position.y = p.mouseY
           draggedSprite.collide(rectShape)
           draggedSprite.collide(circleShape)
-          break;
+
+          if(draggedSprite.overlap(triangleShape)) {
+            draggedSprite.position.x = p.windowWidth / 4
+            draggedSprite.position.y = p.windowHeight / 2
+            draggedSprite = null
+          }
+          break
         case 'circle':
-          draggedSprite.position.x = p.mouseX;
-          draggedSprite.position.y = p.mouseY;
+          draggedSprite.position.x = p.mouseX
+          draggedSprite.position.y = p.mouseY
           draggedSprite.collide(rectShape)
           draggedSprite.collide(triangleShape)
-          break;
-        default:
-
+          if(draggedSprite.overlap(circleShape)) {
+            draggedSprite.position.x = p.windowWidth / 2.2
+            draggedSprite.position.y = p.windowHeight / 2
+            draggedSprite = null
+          }
+          break
       }
     }
 
