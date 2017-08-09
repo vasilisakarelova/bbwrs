@@ -54536,8 +54536,7 @@ function uxInit(p) {
     $title.addClass('title')
     $canvas = p.createCanvas(p.windowWidth, p.windowHeight)
 
-    circleShape = p.createSprite(p.windowWidth / 2.2, p.windowHeight / 1.5, 0, 0)
-    circleShape.setCollider('circle', 0, 0, 40)
+    circleShape = p.createSprite(p.windowWidth / 2.2, p.windowHeight / 1.5, 160, 160)
 
     circleShape.draw = function() {
       p.push()
@@ -54548,7 +54547,6 @@ function uxInit(p) {
     }
 
     circle = p.createSprite(p.random(160, p.windowWidth - 160), p.random(160, p.windowHeight - 160), 160, 160)
-    circle.setCollider('circle', 0, 0, 80)
 
     circle.draw = function() {
       p.push()
@@ -54567,12 +54565,11 @@ function uxInit(p) {
     }
 
     triangle = p.createSprite(p.random(80, p.windowWidth - 80), p.random(80, p.windowHeight - 80), 100, 100)
-    triangle.rotation = p.random(90)
+    triangle.rotation = p.random(360)
     triangle.draw = function() {
       p.push()
       p.fill('#417ce6')
       p.triangle(-80, 80, 0, -80, 80, 80)
-      p.rotate(p.random(90))
       p.pop()
     }
 
@@ -54587,7 +54584,7 @@ function uxInit(p) {
     }
 
     rect = p.createSprite(p.random(160, p.windowWidth - 160), p.random(160, p.windowHeight - 160), 100, 100)
-    rect.rotation = p.random(90)
+    rect.rotation = p.random(360)
     rect.draw = function() {
       p.push()
       p.fill('#ff3600')
@@ -54641,6 +54638,17 @@ function uxInit(p) {
   p.draw = function() {
     p.background('transparent')
 
+    if(circle.overlapPoint(circleShape.position.x, circleShape.position.y)) {
+      circle.velocity.x = 0
+      circle.velocity.y = 0
+
+      // console.log(circle.position.x - )
+
+      circle.position.x -= (circle.position.x - circleShape.position.x) * 0.5
+      circle.position.y -= (circle.position.y - circleShape.position.y) * 0.5
+      // console.log(circle.position.x)
+    }
+
     if (draggedSprite != null) {
       switch (draggedSpriteType) {
         case 'rect':
@@ -54690,25 +54698,30 @@ function uxInit(p) {
           draggedSprite.collide(rectShape)
           draggedSprite.collide(triangleShape)
 
-          draggedSprite.overlap(circleShape, function (e) {
-            e.velocity.x = 0
-            e.velocity.y = 0
+          if(draggedSprite.overlapPoint(circleShape.position.x, circleShape.position.y)) {
+            // console.log('FIRE')
+          }
 
-            e.position.y = circleShape.position.y
-            e.position.x = circleShape.position.x
+          // draggedSprite.overlap(circleShape, function (e) {
+          //   e.velocity.x = 0
+          //   e.velocity.y = 0
 
-            draggedSprite = null
-          })
+          //   e.position.y = circleShape.position.y
+          //   e.position.x = circleShape.position.x
+
+          //   draggedSprite = null
+          // })
 
           break
       }
 
-      // circleShape.debug = true
+
+      circleShape.debug = true
       // triangleShape.debug = true
       // rectShape.debug = true
       // rect.debug = true
       // triangle.debug = true
-      // circle.debug = true
+      circle.debug = true
     }
 
 
