@@ -54214,9 +54214,7 @@ function identityInit(p) {
   p.setup = function () {
     $title = p.createElement('h1', 'Identity')
     $title.addClass('title')
-    $canvas = p.createCanvas(p.windowWidth + 150, p.windowHeight + 150)
-    $canvas.position(-75, -75)
-    $canvas.addClass('is-blurry')
+    $canvas = p.createCanvas(p.windowWidth, p.windowHeight)
   }
 }
 function buildInit(p) {
@@ -54545,7 +54543,7 @@ function uxInit(p) {
       p.pop()
     }
 
-    circle = p.createSprite(p.windowWidth / 2.2, p.windowHeight / 1.3)
+    circle = p.createSprite(p.windowWidth / 1.5, p.windowHeight / 1.3)
     circle.draw = function() {
       p.push()
       p.fill(237,205,0)
@@ -54562,7 +54560,7 @@ function uxInit(p) {
       p.pop()
     }
 
-    triangle = p.createSprite(p.windowWidth / 4, p.windowHeight / 1.3, 160, 160)
+    triangle = p.createSprite(p.windowWidth / 2.2, p.windowHeight / 1.3, 160, 160)
     triangle.draw = function() {
       p.push()
       p.fill(255, 152, 151)
@@ -54579,7 +54577,7 @@ function uxInit(p) {
       p.pop()
     }
 
-    rect = p.createSprite(p.windowWidth / 1.5, p.windowHeight / 1.3)
+    rect = p.createSprite(p.windowWidth / 4, p.windowHeight / 1.3)
     rect.draw = function() {
       p.push()
       p.fill(246, 80, 160)
@@ -54672,9 +54670,9 @@ function uxInit(p) {
       }
     }
 
-    circleShape.debug = p.mouseIsPressed
-    triangleShape.debug = p.mouseIsPressed
-    rectShape.debug = p.mouseIsPressed
+    // circleShape.debug = p.mouseIsPressed
+    // triangleShape.debug = p.mouseIsPressed
+    // rectShape.debug = p.mouseIsPressed
 
     p.drawSprites()
   }
@@ -55664,7 +55662,7 @@ function hypercube() {
           $r.addClass('active')
           isActive = true
         }
-        var w = p.round(p.map(window.innerWidth, 320, 1024, 50, 0))
+        var w = p.round(p.map(window.innerWidth, 320, 1024, 76, 0))
         $img.style('transform', 'translate3d('+ (w * 1024) * -1 +'px, -55%, 0)')
 
       } else {

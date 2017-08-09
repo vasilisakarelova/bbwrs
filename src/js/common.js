@@ -305,7 +305,7 @@ function hypercube() {
           $r.addClass('active')
           isActive = true
         }
-        var w = p.round(p.map(window.innerWidth, 320, 1024, 50, 0))
+        var w = p.round(p.map(window.innerWidth, 320, 1024, 76, 0))
         $img.style('transform', 'translate3d('+ (w * 1024) * -1 +'px, -55%, 0)')
 
       } else {
