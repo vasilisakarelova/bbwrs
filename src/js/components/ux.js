@@ -115,7 +115,7 @@ function uxInit(p) {
     triangle.onMouseReleased = function() {
       triangle.velocity.x = 0
       triangle.velocity.y = 0
-      
+
       if (draggedSprite == this) {
         draggedSprite = null
         draggedSpriteType = null
@@ -145,9 +145,6 @@ function uxInit(p) {
     }
 
     function fixedFigure(figure, shape) {
-      figure.velocity.x = 0
-      figure.velocity.y = 0
-
       figure.position.x -= (figure.position.x - shape.position.x) * 0.2
       figure.position.y -= (figure.position.y - shape.position.y) * 0.2
       
