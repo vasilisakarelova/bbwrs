@@ -54567,6 +54567,7 @@ function uxInit(p) {
     }
 
     triangle = p.createSprite(p.random(80, p.windowWidth - 80), p.random(80, p.windowHeight - 80), 100, 100)
+    triangle.rotation = p.random(90)
     triangle.draw = function() {
       p.push()
       p.fill('#417ce6')
@@ -54586,6 +54587,7 @@ function uxInit(p) {
     }
 
     rect = p.createSprite(p.random(160, p.windowWidth - 160), p.random(160, p.windowHeight - 160), 100, 100)
+    rect.rotation = p.random(90)
     rect.draw = function() {
       p.push()
       p.fill('#ff3600')
@@ -54655,6 +54657,8 @@ function uxInit(p) {
             e.position.y = rectShape.position.y
             e.position.x = rectShape.position.x
 
+            e.rotation = 0
+
             draggedSprite = null
           })
 
@@ -54672,6 +54676,8 @@ function uxInit(p) {
 
             e.position.y = triangleShape.position.y
             e.position.x = triangleShape.position.x
+
+            e.rotation = 0
 
             draggedSprite = null
           })
