@@ -54530,6 +54530,10 @@ function uxInit(p) {
   var triangle, rect, circle, draggedSprite, draggedSpriteType
 
   var grey = '#adadad'
+  var green = '#1ebc1e'
+  var blue = '#417ce6'
+  var red = '#ff3600'
+  var center = p.windowWidth / 2.2
 
   p.setup = function () {
     $title = p.createElement('h1', 'User<br/>experience')
@@ -54541,7 +54545,7 @@ function uxInit(p) {
       p.push()
       p.noFill()
       p.stroke(grey)
-      p.ellipse(0,0, 160, 160)
+      p.ellipse(0, 0, 160, 160)
       p.pop()
     }
 
@@ -54549,7 +54553,7 @@ function uxInit(p) {
 
     circle.draw = function() {
       p.push()
-      p.fill('#1ebc1e')
+      p.fill(green)
       p.ellipse(0,0, 160, 160)
       p.pop()
     }
@@ -54567,7 +54571,7 @@ function uxInit(p) {
     triangle.rotation = p.random(360)
     triangle.draw = function() {
       p.push()
-      p.fill('#417ce6')
+      p.fill(blue)
       p.triangle(-80, 80, 0, -80, 80, 80)
       p.pop()
     }
@@ -54586,7 +54590,7 @@ function uxInit(p) {
     rect.rotation = p.random(360)
     rect.draw = function() {
       p.push()
-      p.fill('#ff3600')
+      p.fill(red)
       p.rect(0, 0, 160, 160)
       p.pop()
     }
@@ -54644,29 +54648,13 @@ function uxInit(p) {
     if (draggedSprite != null) {
       switch (draggedSpriteType) {
         case 'rect':
-          draggedSprite.velocity.x = (p.mouseX - draggedSprite.position.x) * 0.2;
-          draggedSprite.velocity.y = (p.mouseY - draggedSprite.position.y) * 0.2;
-
-          draggedSprite.collide(circleShape)
-          draggedSprite.collide(triangleShape)
-
+          moveFigure(draggedSprite, [triangleShape, circleShape])
           break
         case 'triangle':
-          draggedSprite.velocity.x = (p.mouseX - draggedSprite.position.x) * 0.2;
-          draggedSprite.velocity.y = (p.mouseY - draggedSprite.position.y) * 0.2;
-
-          draggedSprite.collide(rectShape)
-          draggedSprite.collide(circleShape)
-
-
+          moveFigure(draggedSprite, [rectShape, circleShape])
           break
         case 'circle':
-          draggedSprite.velocity.x = (p.mouseX - draggedSprite.position.x) * 0.2;
-          draggedSprite.velocity.y = (p.mouseY - draggedSprite.position.y) * 0.2;
-
-          draggedSprite.collide(rectShape)
-          draggedSprite.collide(triangleShape)
-
+          moveFigure(draggedSprite, [rectShape, triangleShape])
           break
       }
     }
@@ -54682,6 +54670,14 @@ function uxInit(p) {
         figure.rotation -= (figure.rotation - 0) * 0.1
     }
 
+    function moveFigure(figure, collides) {
+      figure.velocity.x = (p.mouseX - figure.position.x) * 0.2
+      figure.velocity.y = (p.mouseY - figure.position.y) * 0.2
+
+      for (var i = 0; i < collides.length; i++) {
+        draggedSprite.collide(collides[i])
+      }
+    }
 
     p.drawSprites()
   }
