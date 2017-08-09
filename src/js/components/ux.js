@@ -47,8 +47,10 @@ function uxInit(p) {
       p.push()
       p.fill('#417ce6')
       p.triangle(-80, 80, 0, -80, 80, 80)
+      p.rotate(p.random(90))
       p.pop()
     }
+
 
     rectShape = p.createSprite(p.windowWidth / 1.5, p.windowHeight / 1.5, 100, 100)
     rectShape.draw = function() {
@@ -171,12 +173,12 @@ function uxInit(p) {
           break
       }
 
-      circleShape.debug = true
-      triangleShape.debug = true
-      rectShape.debug = true
-      rect.debug = true
-      triangle.debug = true
-      circle.debug = true
+      // circleShape.debug = true
+      // triangleShape.debug = true
+      // rectShape.debug = true
+      // rect.debug = true
+      // triangle.debug = true
+      // circle.debug = true
     }
 
 
