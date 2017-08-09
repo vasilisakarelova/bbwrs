@@ -11,11 +11,11 @@ const include = require('gulp-include')
 let isProduction = util.env.prod ? true : false
 
 //copy assets
-gulp.task('copy:images', function() {
-  return gulp.src('./src/assets/*.*')
-    .pipe(isProduction ? sourcemaps.write('./') : util.noop())
-    .pipe(gulp.dest('./build/assets/'))
-});
+// gulp.task('copy:images', function() {
+//   return gulp.src('./src/assets/*.*')
+//     .pipe(isProduction ? sourcemaps.write('./') : util.noop())
+//     .pipe(gulp.dest('./build/assets/'))
+// });
 
 // Build CSS
 gulp.task('css', () => {
@@ -78,7 +78,6 @@ gulp.task('default', [
 
 // Build task
 gulp.task('dev', [
-  'copy:images',
   'css',
   'js',
   'serve',

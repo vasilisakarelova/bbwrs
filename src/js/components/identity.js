@@ -5,8 +5,6 @@ function identityInit(p) {
   p.setup = function () {
     $title = p.createElement('h1', 'Identity')
     $title.addClass('title')
-    $canvas = p.createCanvas(p.windowWidth + 150, p.windowHeight + 150)
-    $canvas.position(-75, -75)
-    $canvas.addClass('is-blurry')
+    $canvas = p.createCanvas(p.windowWidth, p.windowHeight)
   }
 }

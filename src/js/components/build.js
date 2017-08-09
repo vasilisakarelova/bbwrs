@@ -110,7 +110,7 @@ function buildInit(p) {
       p.rotate(angle)
       p.rectMode(p.CENTER)
       p.noStroke()
-      p.fill('transparent', 0)
+      p.noFill()
       p.rect(0, 0, bodiesDom[i].offsetWidth, bodiesDom[i].offsetHeight)
       p.pop()
     }

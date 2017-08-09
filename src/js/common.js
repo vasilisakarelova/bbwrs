@@ -286,12 +286,18 @@ function hypercube() {
     var $r = p.select('.resizer')
     var $img = p.select('.resizer-img')
     var isActive = false
+    var $wrap
 
     p.setup = function () {
       // $canvas = p.createCanvas(p.windowWidth, p.windowHeight)
+      // $wrap = p.createDiv('')
+      // $wrap.style('position', 'fixed')
+      // $wrap.style('width', p.windowWidth)
+      // $wrap.style('height', p.windowHeight)
     }
 
     p.windowResized = resizeHandler
+    resizeHandler()
 
     function resizeHandler() {
       if (p.windowWidth < 1024) {
@@ -299,8 +305,8 @@ function hypercube() {
           $r.addClass('active')
           isActive = true
         }
-        var w = p.round(p.map(window.innerWidth, 320, 1024, 101, 0))
-        $img.style('transform', 'translate3d('+ (w * 1024) * -1 +'px, -50%, 0)')
+        var w = p.round(p.map(window.innerWidth, 320, 1024, 50, 0))
+        $img.style('transform', 'translate3d('+ (w * 1024) * -1 +'px, -55%, 0)')
 
       } else {
         isActive = false
