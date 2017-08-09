@@ -41,10 +41,6 @@ function illustrationInit(p) {
     p.line(p.mouseX, p.mouseY, p.pmouseX, p.pmouseY)
   }
 
-  function saveImg() {
-    p.save($canvas, 'wrs.jpg')
-  }
-
   p.touchStarted = drawDot
   p.touchMoved = drawLine
 }

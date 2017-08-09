@@ -79,6 +79,9 @@ function uxInit(p) {
     }
 
     rect.onMouseReleased = function() {
+      rect.velocity.x = 0
+      rect.velocity.y = 0
+
       if (draggedSprite == this) {
         draggedSprite = null
         draggedSpriteType = null
@@ -93,6 +96,9 @@ function uxInit(p) {
     }
 
     circle.onMouseReleased = function() {
+      circle.velocity.x = 0
+      circle.velocity.y = 0
+
       if (draggedSprite == this) {
         draggedSprite = null
         draggedSpriteType = null
@@ -107,6 +113,9 @@ function uxInit(p) {
     }
 
     triangle.onMouseReleased = function() {
+      triangle.velocity.x = 0
+      triangle.velocity.y = 0
+      
       if (draggedSprite == this) {
         draggedSprite = null
         draggedSpriteType = null
