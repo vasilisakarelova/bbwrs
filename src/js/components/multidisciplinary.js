@@ -30,7 +30,7 @@ function multidisciplinaryInit(p) {
   VIEW.offsetY = 0
 
   p.setup = function () {
-    $canvas = p.createCanvas(p.windowWidth, (p.windowHeight))
+    $canvas = p.createCanvas(p.windowWidth, p.windowHeight)
     $canvas.position(0, 0)
 
     p.createSpan("M", 0, 0).addClass('title title_single_unit rel')
