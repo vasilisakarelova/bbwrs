@@ -2,6 +2,8 @@
   position: absolute;
   will-change: transform;
   user-select: none;
+  left: 0;
+  top: 0;
 }
 
 .i-button {

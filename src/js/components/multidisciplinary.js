@@ -18,6 +18,8 @@ function multidisciplinaryInit(p) {
   var particles = []
   var particlesDom = []
 
+  var $gradien
+
   var VIEW = {}
   VIEW.SAFE_WIDTH = window.innerWidth
   VIEW.SAFE_HEIGHT = window.innerHeight
@@ -106,6 +108,10 @@ function multidisciplinaryInit(p) {
         World.add(world, constraint)
       }
       prevParticle = particle
+
+      $gradien = p.createDiv('')
+      $gradien.size(p.windowWidth, p.windowHeight)
+      $gradien.position(0, 0)
     }
 
     window.requestAnimationFrame(update)
@@ -120,14 +126,12 @@ function multidisciplinaryInit(p) {
       ev.body.isStatic = true
     })
 
-    var canvasWrapper = document.querySelector("#multidisciplinary")
-
     Events.on(mConstraint, 'mousemove', function(ev){
       var angle = 360 * ( ev.mouse.position.x) / p.width
       var posX = ev.mouse.position.x
       var posY = ev.mouse.position.y
 
-      canvasWrapper.style.background = 'linear-gradient(' + angle + 'deg, rgba(255, 152, 151, .5) 30%, rgba(246, 80, 160, .5) 100%), radial-gradient(circle at ' + posX + 'px '+ posY + 'px, rgba(255, 152, 151,1) 30%, rgba(246, 80, 160, 1) 100%)'
+      $gradien.style('background', 'linear-gradient(' + angle + 'deg, rgba(255, 152, 151, .5) 30%, rgba(246, 80, 160, .5) 100%), radial-gradient(circle at ' + posX + 'px '+ posY + 'px, rgba(255, 152, 151,1) 30%, rgba(246, 80, 160, 1) 100%)')
     })
   }
 

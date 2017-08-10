@@ -54952,6 +54952,8 @@ function multidisciplinaryInit(p) {
   var particles = []
   var particlesDom = []
 
+  var $gradien
+
   var VIEW = {}
   VIEW.SAFE_WIDTH = window.innerWidth
   VIEW.SAFE_HEIGHT = window.innerHeight
@@ -55040,6 +55042,10 @@ function multidisciplinaryInit(p) {
         World.add(world, constraint)
       }
       prevParticle = particle
+
+      $gradien = p.createDiv('')
+      $gradien.size(p.windowWidth, p.windowHeight)
+      $gradien.position(0, 0)
     }
 
     window.requestAnimationFrame(update)
@@ -55054,14 +55060,12 @@ function multidisciplinaryInit(p) {
       ev.body.isStatic = true
     })
 
-    var canvasWrapper = document.querySelector("#multidisciplinary")
-
     Events.on(mConstraint, 'mousemove', function(ev){
       var angle = 360 * ( ev.mouse.position.x) / p.width
       var posX = ev.mouse.position.x
       var posY = ev.mouse.position.y
 
-      canvasWrapper.style.background = 'linear-gradient(' + angle + 'deg, rgba(255, 152, 151, .5) 30%, rgba(246, 80, 160, .5) 100%), radial-gradient(circle at ' + posX + 'px '+ posY + 'px, rgba(255, 152, 151,1) 30%, rgba(246, 80, 160, 1) 100%)'
+      $gradien.style('background', 'linear-gradient(' + angle + 'deg, rgba(255, 152, 151, .5) 30%, rgba(246, 80, 160, .5) 100%), radial-gradient(circle at ' + posX + 'px '+ posY + 'px, rgba(255, 152, 151,1) 30%, rgba(246, 80, 160, 1) 100%)')
     })
   }
 
@@ -55465,7 +55469,7 @@ function hypercube() {
 
 
 
-  var shotTimer = 600
+  var shotTimer = 500
 
 
 
@@ -55490,8 +55494,6 @@ function hypercube() {
     illustration = new p5(illustrationInit, 'illustration'),
 
     identity = new p5(identityInit, 'identity'),
-
-    design = new p5(designInit, 'design'),
 
     multidisciplinary = new p5(multidisciplinaryInit, 'multidisciplinary')
 
@@ -55679,7 +55681,9 @@ function hypercube() {
 
   page('/15', function (ctx, next) {
 
-    design 
+    u('#design').html('')
+
+    new p5(designInit, 'design')
 
     next()
 

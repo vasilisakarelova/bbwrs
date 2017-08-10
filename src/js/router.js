@@ -19,7 +19,7 @@
 
   changeHref(currentPageId)
 
-  var shotTimer = 600
+  var shotTimer = 500
 
   var build,
     graphic = new p5(graphicInit, 'graphic'),
@@ -32,7 +32,6 @@
     motion = new p5(motionInit, 'motion'),
     illustration = new p5(illustrationInit, 'illustration'),
     identity = new p5(identityInit, 'identity'),
-    design = new p5(designInit, 'design'),
     multidisciplinary = new p5(multidisciplinaryInit, 'multidisciplinary')
 
   page('/', function (ctx, next) {
@@ -126,7 +125,8 @@
   })
 
   page('/15', function (ctx, next) {
-    design 
+    u('#design').html('')
+    new p5(designInit, 'design')
     next()
   })
 
