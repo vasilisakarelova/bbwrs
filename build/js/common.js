@@ -55647,7 +55647,7 @@ function hypercube() {
   function resizerInit(p) {
     var $canvas
     var $title
-    var $r = p.select('.resizer')
+    var $body = p.select('body')
     var $img = p.select('.resizer-img')
     var isActive = false
     var $wrap
@@ -55666,7 +55666,7 @@ function hypercube() {
     function resizeHandler() {
       if (p.windowWidth < 1024) {
         if(!isActive) {
-          $r.addClass('active')
+          $body.addClass('is-dick')
           isActive = true
         }
         var w = p.round(p.map(window.innerWidth, 320, 1024, 76, 0))
@@ -55674,7 +55674,7 @@ function hypercube() {
 
       } else {
         isActive = false
-        $r.removeClass('active')
+        $body.removeClass('is-dick')
       }
     }
 

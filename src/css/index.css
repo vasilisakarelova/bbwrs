@@ -325,6 +325,10 @@ footer {
   animation: Wow 600ms forwards;
 }
 
+.is-dick .wrap {
+  display: none;
+}
+
 .resizer {
   position: fixed;
   top: 0;
@@ -336,7 +340,7 @@ footer {
   display: none;
 }
 
-.resizer.active {
+.is-dick .resizer {
   display: block;
 }
 
