@@ -147,7 +147,7 @@ function uxInit(p) {
     function fixedFigure(figure, shape) {
       figure.position.x -= (figure.position.x - shape.position.x) * 0.2
       figure.position.y -= (figure.position.y - shape.position.y) * 0.2
-      
+
       if(figure.rotation != 0)
         figure.rotation -= (figure.rotation - 0) * 0.1
     }
