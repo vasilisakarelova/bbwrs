@@ -55443,7 +55443,19 @@ function hypercube() {
 
   function changeHref (id) {
 
-    u('.ref-skip-button').attr('href', id + 1)
+    if(id < 18) {
+
+      u('.ref-skip-button').removeClass('skip-button_hidden')
+
+      u('.ref-skip-button').attr('href', id + 1)
+
+    } else {
+
+      u('.ref-skip-button').addClass('skip-button_hidden')
+
+    }
+
+
 
   }
 
@@ -55457,7 +55469,9 @@ function hypercube() {
 
     } else if (e.which == 39) {
 
-      page('/' + (currentPageId + 1))
+      if(currentPageId < 18)
+
+        page('/' + (currentPageId + 1))
 
     }
 
