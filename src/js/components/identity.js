@@ -15,8 +15,13 @@ function identityInit(p) {
   var currentColor
   var lastColor
   var agg, aggSrc
-  var fragment_1, fragment_src_1, fragment_2, fragment_src_2, fragment_3, fragment_src_3, fragment_4, fragment_src_4
+  let fragment_1, fragment_src_1
+  let fragment_2, fragment_src_2
+  let fragment_3, fragment_src_3
+  let fragment_4, fragment_src_4
   var fragments = []
+
+  p.preloader = function() {}
 
   p.setup = function () {
     $title = p.createElement('h1', 'Identity')
@@ -67,12 +72,16 @@ function identityInit(p) {
     }
     fragment_4.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(fragment_src_4)
     fragments.push(fragment_4)
-
   }
 
   p.draw = function() {
-    
+    //console.log(fragment_4)
   }
+
+  /*
+  fragment_src_1 = '<svg xmlns="http://www.w3.org/2000/svg" width="555" height="823" viewBox="0 0 800 823"><g fill="none" transform="translate(441 -246)" fill-rule="evenodd"><path fill="'+currentColor+'" d="M -4.45557e-07 239.342L 145.327 142.762L 169.329 85.757L 151.586 -2.86865e-07C 87.204 44.787 33.454 134.799 -4.45557e-07 239.342Z"/></g></svg>'
+  fragment_1.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(fragment_src_1)
+  */
 
   function updateColors() {
     currentColor = p.random(colors)

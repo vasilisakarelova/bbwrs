@@ -20,9 +20,25 @@ function illustrationInit(p) {
     $canvas.position(0, 0)
     $title = p.createElement('h1', 'Illustration')
     $title.addClass('title')
+
+    currentColor = p.random(colors)
   }
 
-  function drawDot() {
+  p.draw = function() {
+    if (p.mouseIsPressed) {
+      p.stroke(currentColor)
+      p.strokeWeight(10)
+      p.line(p.mouseX, p.mouseY, p.pmouseX, p.pmouseY)
+    }
+  }
+
+  p.mousePressed = function() {
+    p.strokeWeight(0)
+    p.fill(currentColor)
+    p.ellipse(p.mouseX, p.mouseY, 10, 10)
+  }
+
+  p.mouseReleased = function() {
     currentColor = p.random(colors)
 
     while (lastColor === currentColor) {
@@ -30,17 +46,5 @@ function illustrationInit(p) {
     }
 
     lastColor = currentColor
-    p.strokeWeight(0)
-    p.fill(currentColor)
-    p.ellipse(p.mouseX, p.mouseY, 10, 10)
   }
-
-  function drawLine() {
-    p.stroke(currentColor)
-    p.strokeWeight(10)
-    p.line(p.mouseX, p.mouseY, p.pmouseX, p.pmouseY)
-  }
-
-  p.touchStarted = drawDot
-  p.touchMoved = drawLine
 }
