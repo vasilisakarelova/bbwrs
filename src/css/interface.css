@@ -2,6 +2,8 @@
   position: absolute;
   will-change: transform;
   user-select: none;
+  left: 0;
+  top: 0;
 }
 
 .i-button {
@@ -36,7 +38,7 @@
   transition: transform 300ms;
 }
 
-.i-button:active .i-button-shadow {
+.i-button:hover .i-button-shadow {
   transform: translate3d(1px, 1px, 0);
 }
 
@@ -80,11 +82,11 @@
   position: absolute;
 }
 
-.i-plus:active .i-plus-line:nth-child(2) {
+.i-plus:hover .i-plus-line:nth-child(2) {
   transform: rotate(0) translate3d(-50%, -50%, 0);
 }
 
-.i-plus:active .i-plus-shadow {
+.i-plus:hover .i-plus-shadow {
   transform: translate3d(1px, 1px, 0);
 }
 
@@ -326,7 +328,7 @@
   transition: transform 300ms;
 }
 
-.i-range-thumb:active .i-range-thumb-shadow {
+.i-range-thumb:hover .i-range-thumb-shadow {
   transform: translate3d(1px, 1px, 0);
 }
 
@@ -405,9 +407,8 @@
 }
 
 .i-like-bg.is-animate {
-  transform: scale(1.5);
-  opacity: 0;
-  animation: Like 400ms;
+  transform-origin: center center;
+  animation: Like 400ms ease;
 }
 
 @keyframes Dots {

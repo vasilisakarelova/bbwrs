@@ -10,6 +10,13 @@ const include = require('gulp-include')
 
 let isProduction = util.env.prod ? true : false
 
+//copy assets
+// gulp.task('copy:images', function() {
+//   return gulp.src('./src/assets/*.*')
+//     .pipe(isProduction ? sourcemaps.write('./') : util.noop())
+//     .pipe(gulp.dest('./build/assets/'))
+// });
+
 // Build CSS
 gulp.task('css', () => {
   return gulp.src('./src/css/index.css')
@@ -44,7 +51,6 @@ gulp.task('serve', () => {
       index: '/index.html'
     }
   }))
-  
   browsersync.init({
     server: {
       baseDir: './build'
