@@ -12,25 +12,25 @@ function uxInit(p) {
   var center = p.windowWidth / 2.2
 
   p.setup = function () {
+    $canvas = p.createCanvas(p.windowWidth, p.windowHeight)
     $title = p.createElement('h1', 'User<br/>experience')
     $title.addClass('title')
-    $canvas = p.createCanvas(p.windowWidth, p.windowHeight)
 
-    circleShape = p.createSprite(p.windowWidth / 2.2, p.windowHeight / 1.5, 160, 160)
+    circleShape = p.createSprite(p.windowWidth / 2.2, p.windowHeight / 1.5, p.windowWidth/6, p.windowWidth/6)
     circleShape.draw = function() {
       p.push()
       p.noFill()
       p.stroke(grey)
-      p.ellipse(0, 0, 160, 160)
+      p.ellipse(0, 0, p.windowWidth/6, p.windowWidth/6)
       p.pop()
     }
 
-    circle = p.createSprite(p.random(160, p.windowWidth - 160), p.random(160, p.windowHeight - 160), 160, 160)
+    circle = p.createSprite(p.random(160, p.windowWidth - 160), p.random(160, p.windowHeight - 160), p.windowWidth/6, p.windowWidth/6)
 
     circle.draw = function() {
       p.push()
       p.fill(green)
-      p.ellipse(0,0, 160, 160)
+      p.ellipse(0,0, p.windowWidth/6, p.windowWidth/6)
       p.pop()
     }
 
@@ -39,35 +39,35 @@ function uxInit(p) {
       p.push()
       p.noFill()
       p.stroke(grey)
-      p.triangle(-80, 80, 0, -80, 80, 80)
+      p.triangle(-p.windowWidth/13, p.windowWidth/13, 0, -p.windowWidth/13, p.windowWidth/13, p.windowWidth/13)
       p.pop()
     }
 
-    triangle = p.createSprite(p.random(80, p.windowWidth - 80), p.random(80, p.windowHeight - 80), 100, 100)
+    triangle = p.createSprite(p.random(80, p.windowWidth - 80), p.random(80, p.windowHeight - 80), p.windowWidth/13, p.windowWidth/13)
     triangle.rotation = p.random(360)
     triangle.draw = function() {
       p.push()
       p.fill(blue)
-      p.triangle(-80, 80, 0, -80, 80, 80)
+      p.triangle(-p.windowWidth/13, p.windowWidth/13, 0, -p.windowWidth/13, p.windowWidth/13, p.windowWidth/13)
       p.pop()
     }
 
 
-    rectShape = p.createSprite(p.windowWidth / 1.5, p.windowHeight / 1.5, 100, 100)
+    rectShape = p.createSprite(p.windowWidth / 1.5, p.windowHeight / 1.5, p.windowWidth/6.5, p.windowWidth/6.5)
     rectShape.draw = function() {
       p.push()
       p.noFill()
       p.stroke(grey)
-      p.rect(0, 0, 160, 160)
+      p.rect(0, 0, p.windowWidth/6.5, p.windowWidth/6.5)
       p.pop()
     }
 
-    rect = p.createSprite(p.random(160, p.windowWidth - 160), p.random(160, p.windowHeight - 160), 100, 100)
+    rect = p.createSprite(p.random(160, p.windowWidth - 160), p.random(160, p.windowHeight - 160), p.windowWidth/6.5, p.windowWidth/6.5)
     rect.rotation = p.random(360)
     rect.draw = function() {
       p.push()
       p.fill(red)
-      p.rect(0, 0, 160, 160)
+      p.rect(0, 0, p.windowWidth/6.5, p.windowWidth/6.5)
       p.pop()
     }
 

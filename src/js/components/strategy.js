@@ -1,18 +1,11 @@
-// function strategyInit(p) {
-
-  'use strict';
-
-  //Define the variables
   var ctx, width, height;
 
   var board = document.getElementById('strategy-canvas');
   ctx = board.getContext('2d');
 
-  //Toggle between player and computer turn
   var turn = 0;
   var moves = 0;
 
-  //Game object
   var TicTacToe = {};
 
   TicTacToe.reset = function () {
@@ -28,46 +21,35 @@
   }
                        
 
-  //Keep track of the board
   TicTacToe.Board = [[null, null, null], [null, null, null], [null, null, null]];
 
-  //Game Start
   TicTacToe.Start = true;
 
-  //Create the game board
   TicTacToe.drawBoard = function () {
-    
     ctx.beginPath();
     ctx.strokeStyle = '#000';
     ctx.lineWidth = 2;
 
-    //Draw the first vertical line - Calculation based off of (500/3) = 166
     ctx.moveTo(166, 0);
     ctx.lineTo(166, 500);
 
-    //Draw the second vertical line
     ctx.moveTo(332, 0);
     ctx.lineTo(332, 500);
 
-    //Draw the first horizontal line
     ctx.moveTo(0, 166);
     ctx.lineTo(500, 166);
 
-    //Draw the second horizontal line
     ctx.moveTo(0, 332);
     ctx.lineTo(500, 332);
 
     ctx.stroke();
     ctx.closePath();
 
-    //Set click event
     board.addEventListener("click", TicTacToe.boardClick, false);
 
-    //Keep track of Player or Comp turn
     TicTacToe.playerTurn = false;
   }
 
-  //Click event
   TicTacToe.boardClick = function(e) {
     if(!TicTacToe.Start) {
       TicTacToe.reset()
@@ -75,7 +57,6 @@
     }
     var x,y;
 
-    //Get the x and y coords of the mouse click
     if (e.pageX != undefined && e.pageY != undefined) {
         x = e.pageX;
         y = e.pageY;
@@ -87,7 +68,6 @@
     var row = null, 
         col = null;
 
-    //Find the row
     if(y <= 166){
       row = 0;
     } else if (y > 166 && y <= 332) {
@@ -96,7 +76,6 @@
       row = 2;
     }
 
-    //Find the column
     if(x <= 166){
       col = 0;
     } else if (x > 166 && x <= 332) {
@@ -108,10 +87,8 @@
     TicTacToe.drawMark(col, row);
   }
 
-  TicTacToe.drawMark = function(col, row) 
-  {
+  TicTacToe.drawMark = function(col, row) {
 
-    //Check and see if the square is already taken
     if (TicTacToe.Board[col][row] != null) {
       return
     }
@@ -120,7 +97,7 @@
     ctx.strokeStyle = "#000";
     ctx.lineWidth = 3;
 
-    if(TicTacToe.playerTurn == 0) {
+    if (TicTacToe.playerTurn == 0) {
         var X1 = { "start" : { "x": 10, "y": 10 }, "end": { "x": 155, "y": 155} };
         var X2 = { "start" : { "x": 155, "y" : 10 }, "end": { "x": 10, "y": 155} };
         ctx.moveTo(X1.start.x + (col * 166), X1.start.y + (row * 166));
@@ -128,8 +105,7 @@
 
         ctx.moveTo(X2.start.x + (col * 166), X2.start.y + (row * 166));
         ctx.lineTo(X2.end.x + (col * 166), X2.end.y + (row * 166));
-    } 
-    else {
+    } else {
         var x = (col * 166) + (166 / 2);
         var y = (row * 166) + (166 / 2);
         var radius = 166 / 2 - 10;
@@ -153,8 +129,7 @@
     }
   }
 
-  TicTacToe.compTurn = function() 
-  {
+  TicTacToe.compTurn = function () {
     var tiles = TicTacToe.Board;
     
     if (TicTacToe.playerTurn == 1) 
@@ -222,9 +197,7 @@
     }
   }     
 
-  //Check for winner
-  TicTacToe.checkWin = function()
-  {
+  TicTacToe.checkWin = function () {
     var win = null;
     var player = TicTacToe.playerTurn;
     var tiles = TicTacToe.Board;
@@ -262,7 +235,6 @@
       win = 7; // Right to Left Diagonal
     }
     
-    //Line strikethrough for win
     var winLine = [
         {'start': {'x': 83, 'y': 10}, 'end': {'x': 83, 'y': 490}},
         {'start': {'x': 249, 'y': 10}, 'end': {'x': 249, 'y': 490}},
@@ -274,8 +246,7 @@
         {'start': {'x': 490, 'y': 10}, 'end': {'x': 10, 'y': 490}}
       ];
 
-    if (win != null) 
-    {
+    if (win != null) {
       ctx.beginPath();
       ctx.lineWidth = 5;
       ctx.strokeStyle = '#F00';
@@ -295,21 +266,4 @@
     }
   }
 
-  //Load the game board
-  window.onload = TicTacToe.drawBoard();
-
-
-
-  // var $canvas
-  // var $title
-
-  // var 
-
-  // p.setup = function () {
-  //   $title = p.createElement('h1', 'Strategy')
-  //   $title.addClass('title')
-  //   $canvas = p.createCanvas(p.windowWidth, p.windowHeight)
-
-
-  // }
-// }
+  window.onload = TicTacToe.drawBoard()

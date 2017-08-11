@@ -41,6 +41,8 @@
     identity = new p5(identityInit, 'identity'),
     multidisciplinary = new p5(multidisciplinaryInit, 'multidisciplinary')
 
+  page.base('/md')
+
   page('/', function (ctx, next) {
     u('.section')
       .removeClass('section_show')
@@ -134,6 +136,20 @@
   page('/15', function (ctx, next) {
     u('#design').html('')
     new p5(designInit, 'design')
+    next()
+  })
+
+  page('/16', function (ctx, next) {
+    requestTimeout(function () {
+      page('/17')
+    }, shotTimer)
+    next()
+  })
+
+  page('/17', function (ctx, next) {
+    requestTimeout(function () {
+      page('/18')
+    }, shotTimer)
     next()
   })
 

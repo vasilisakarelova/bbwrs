@@ -16,11 +16,11 @@ function identityInit(p) {
   var $canvas
   var ctx
   var $title
-  let shucksColor
-  let eggColor
+  var shucksColor
+  var eggColor
   var agg, aggSrc
-  let fragment_src = [], fragment_src_step = []
-  let state = 0, states = []
+  var fragment_src = [], fragment_src_step = []
+  var state = 0, states = []
 
   p.setup = function () {
     $title = p.createElement('h1', 'Identity')

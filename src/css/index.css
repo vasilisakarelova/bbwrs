@@ -39,11 +39,6 @@ a {
   text-align: center;
 }
 
-.title_middle {
-  top: 30%;
-  transform: translate3d(0, -30%, 0);
-}
-
 .title_single_unit {
   position: absolute;
   z-index: 1;
@@ -62,9 +57,10 @@ a {
   height: 100%;
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 1024px) {
   .title {
-    font-size: 135px;
+    font-size: 140px;
+    font-size: 10.25vw;
     line-height: 1;
   }
 }

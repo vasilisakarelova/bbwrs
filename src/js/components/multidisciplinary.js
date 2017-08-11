@@ -53,7 +53,7 @@ function multidisciplinaryInit(p) {
     p.createSpan("R", 0, 0).addClass('title title_single_unit rel')
     p.createSpan("Y", 0, 0).addClass('title title_single_unit rel')
 
-    particlesDom = [...document.querySelectorAll('.title_single_unit')]
+    particlesDom = document.querySelectorAll('.title_single_unit')
 
     engine = Engine.create()
     world = engine.world
@@ -78,9 +78,9 @@ function multidisciplinaryInit(p) {
     mConstraint = MouseConstraint.create(engine, options)
     World.add(world, mConstraint)
 
-    var prevParticle = null
-    var prevWidth = 0
-    var x
+    var prevParticle = null;
+    var prevWidth = 0;
+    var x;
 
     for (var i = 0; i < particlesDom.length; i++) {
       var fixed = true
@@ -99,9 +99,9 @@ function multidisciplinaryInit(p) {
 
       if (prevParticle) {
         var optionsConstraint = {
-          bodyA: particle.body,
-          bodyB: prevParticle.body,
-          stiffness: 0
+          'bodyA': particle.body,
+          'bodyB': prevParticle.body,
+          'stiffness': 0
         }
 
         var constraint = Constraint.create(optionsConstraint)
@@ -131,7 +131,7 @@ function multidisciplinaryInit(p) {
       var posX = ev.mouse.position.x
       var posY = ev.mouse.position.y
 
-      $gradien.style('background', 'linear-gradient(' + angle + 'deg, rgba(255, 152, 151, .5) 30%, rgba(246, 80, 160, .5) 100%), radial-gradient(circle at ' + posX + 'px '+ posY + 'px, rgba(255, 152, 151,1) 30%, rgba(246, 80, 160, 1) 100%)')
+      $gradien.style('background', 'linear-gradient(' + angle + 'deg, rgba(255, 152, 151, .5) 30%, rgba(246, 80, 160, .5) 100%), radial-gradient(circle at ' + posX + 'px ' + posY + 'px, rgba(255, 152, 151,1) 30%, rgba(246, 80, 160, 1) 100%)')
     })
   }
 
