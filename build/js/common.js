@@ -54506,13 +54506,12 @@ function designInit(p) {
 
     for (var i = 0; i < 15; i++) {
       var setColor
-      
+
       if (i < colors.length) {
         setColor = colors[i]
       } else {
-        for (var j = 0; j < colors.length; j++) {
-          setColor = colors[j]
-        }
+        var j = i - colors.length
+        setColor = colors[j]
       }
       console.log(setColor)
       boxes.push(new drawStack(Common.random(0, p.windowWidth), 1, Common.random(40, 300), Common.random(40, 300), setColor));
@@ -55302,9 +55301,6 @@ function multidisciplinaryInit(p) {
   p.setup = function () {
     $canvas = p.createCanvas(p.windowWidth, p.windowHeight)
     $canvas.position(0, 0)
-
-    $title = p.createElement('h1', 'multidisciplinary')
-    $title.addClass('title title_absolute is-white')
 
     $gradien = p.createDiv('')
     $gradien.size(p.windowWidth, p.windowHeight)
