@@ -82,6 +82,7 @@ canvas {
   left: 50%;
   margin-top: -250px;
   margin-left: -250px;
+  cursor: default;
 }
 
 #graphic {
@@ -372,4 +373,46 @@ footer {
   top: 50%;
   left: 0;
   width: 77824px;
+}
+
+.toe {
+  width: 150px;
+  position: absolute;
+  z-index: -1;
+  transform: translate3d(16px, 16px, 0);
+}
+
+.line-wrapper {
+  width: 500px;
+  height: 500px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-250px, -250px, 0);
+  z-index: -1;
+}
+
+.s-lineA {
+  position: absolute;
+  top: 33.33%;
+  width: 100%;
+}
+
+.s-lineB {
+  position: absolute;
+  top: 66.66%;
+  width: 100%;
+}
+
+.s-lineC {
+  position: absolute;
+  left: 33.33%;
+  width: 18px;
+  top: 0;
+}
+
+.s-lineD {
+  position: absolute;
+  left: 66.66%;
+  width: 14px;
 }
