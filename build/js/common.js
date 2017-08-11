@@ -55306,7 +55306,14 @@ function multidisciplinaryInit(p) {
     $canvas = p.createCanvas(p.windowWidth, p.windowHeight)
     $canvas.position(0, 0)
 
-    p.createSpan("M", 0, 0).addClass('title title_single_unit rel')
+    $title = p.createElement('h1', 'multidisciplinary')
+    $title.addClass('title title_absolute is-white')
+
+    $gradien = p.createDiv('')
+    $gradien.size(p.windowWidth, p.windowHeight)
+    $gradien.position(0, 0)
+
+    /*p.createSpan("M", 0, 0).addClass('title title_single_unit rel')
     p.createSpan("U", 0, 0).addClass('title title_single_unit rel')
     p.createSpan("L", 0, 0).addClass('title title_single_unit rel')
     p.createSpan("T", 0, 0).addClass('title title_single_unit rel')
@@ -55322,7 +55329,7 @@ function multidisciplinaryInit(p) {
     p.createSpan("N", 0, 0).addClass('title title_single_unit rel')
     p.createSpan("A", 0, 0).addClass('title title_single_unit rel')
     p.createSpan("R", 0, 0).addClass('title title_single_unit rel')
-    p.createSpan("Y", 0, 0).addClass('title title_single_unit rel')
+    p.createSpan("Y", 0, 0).addClass('title title_single_unit rel')*/
 
     particlesDom = document.querySelectorAll('.title_single_unit')
 
@@ -55379,10 +55386,6 @@ function multidisciplinaryInit(p) {
         World.add(world, constraint)
       }
       prevParticle = particle
-
-      $gradien = p.createDiv('')
-      $gradien.size(p.windowWidth, p.windowHeight)
-      $gradien.position(0, 0)
     }
 
     window.requestAnimationFrame(update)
