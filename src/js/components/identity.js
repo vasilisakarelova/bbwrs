@@ -20,7 +20,7 @@ function identityInit(p) {
   var eggColor
   var agg, aggSrc
   var fragment_src = [], fragment_src_step = []
-  var state = 0, states = []
+  var step = 0, steps = []
 
   p.setup = function () {
     $title = p.createElement('h1', 'Identity')
@@ -47,22 +47,26 @@ function identityInit(p) {
   }
 
   p.mousePressed = function() {
-    if (state < 4) {
-      state++
+    if (step < 4) {
+      step++
       ctx.clearRect(0,0,p.windowWidth, p.windowHeight)
       drawFragment(aggSrc, eggColor)
 
-      for (var i = state; i < 4; i++) {
+      for (var i = 0; i < step; i++) {
+        drawFragment(fragment_src[i], eggColor)
+      }
+
+      for (var i = step; i < 4; i++) {
         drawFragment(fragment_src[i], shucksColor)
       }
 
-      for (var i = 0; i < state; i++) {
+      for (var i = 0; i < step; i++) {
         drawFragment(fragment_src_step[i], shucksColor)
       }
     } else {
-      state = 0
-      /*shucksColor = eggColor
-      eggColor = p.random(colors)*/
+      step = 0
+      shucksColor = eggColor
+      eggColor = p.random(colors)
 
       initState(shucksColor, eggColor)
     }
