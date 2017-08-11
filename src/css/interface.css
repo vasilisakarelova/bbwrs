@@ -481,3 +481,20 @@
   line-height: 1;
   font-family: 'NimbusSanL';
 }
+
+.i-field {
+  display: block;
+  width: 350px;
+  height: 80px;
+  border: 3px solid #000;
+  outline: none;
+  font-size: 80px;
+  line-height: 80px;
+  padding: 0;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.i-field::placeholder {
+  color: #000;
+}
