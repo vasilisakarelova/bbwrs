@@ -30,7 +30,7 @@
 
   var build,
     graphic = new p5(graphicInit, 'graphic'),
-    strategy = new p5(strategyInit, 'strategy'),
+    // strategy = new p5(strategyInit, 'strategy'),
     interface = new p5(interfaceInit, 'interface'),
     ux = new p5(uxInit, 'ux'),
     details = new p5(detailsInit, 'detials'),
