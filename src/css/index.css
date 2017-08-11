@@ -51,8 +51,9 @@ a {
 }
 
 #multidisciplinary {
-  background: linear-gradient( 135deg, rgba(255, 152, 151, .5) 30%, rgba(246, 80, 160, .5) 100%),
-              radial-gradient(circle at 0px 0px, rgba(255, 152, 151, 1) 30%, rgba(246, 80, 160, 1) 100%);
+  background: radial-gradient(circle at 50% 0, rgba(255, 152, 151, 1), rgba(255, 0, 0, 0) 70.71%),
+              radial-gradient(circle at 6.7% 75%, rgba(246, 80, 160, 1), rgba(0, 0, 255, 0) 70.71%),
+              radial-gradient(circle at 93.3% 75%, rgba(193, 122, 252, 1), rgba(0, 255, 0, 0) 70.71%);
   position: relative;
   height: 100%;
 }
@@ -75,6 +76,7 @@ canvas {
   left: 50%;
   margin-top: -250px;
   margin-left: -250px;
+  cursor: default;
 }
 
 #graphic {
@@ -371,4 +373,40 @@ footer {
   width: 150px;
   position: absolute;
   z-index: -1;
+  transform: translate3d(16px, 16px, 0);
+}
+
+.line-wrapper {
+  width: 500px;
+  height: 500px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-250px, -250px, 0);
+  z-index: -1;
+}
+
+.s-lineA {
+  position: absolute;
+  top: 33.33%;
+  width: 100%;
+}
+
+.s-lineB {
+  position: absolute;
+  top: 66.66%;
+  width: 100%;
+}
+
+.s-lineC {
+  position: absolute;
+  left: 33.33%;
+  width: 18px;
+  top: 0;
+}
+
+.s-lineD {
+  position: absolute;
+  left: 66.66%;
+  width: 14px;
 }

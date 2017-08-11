@@ -54261,7 +54261,6 @@ function identityInit(p) {
 
   p.mousePressed = function() {
     if (state < 4) {
-      console.log(eggColor, shucksColor)
       state++
       ctx.clearRect(0,0,p.windowWidth, p.windowHeight)
       drawFragment(aggSrc, eggColor)
@@ -54298,15 +54297,16 @@ function identityInit(p) {
 
   function drawFragment(src, color) {
     var fragment = new Image()
-    fragment.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(src)
 
     if (color !== undefined) {
-      var decodedSrc = decodeURIComponent(src)
-      var fillIndex = decodedSrc.indexOf('fill="#')
-      var colorRegEx = new RegExp(decodedSrc.substr(fillIndex, 14), 'g')
+      var fillIndex = src.indexOf('fill="#')
+      console.log(src, encodeURIComponent(src))
+      var colorRegEx = new RegExp(src.substr(fillIndex + 7, 7), 'g')
 
-      decodedSrc.replace(colorRegEx, 'fill="#' + color + '')
-      fragment.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(decodedSrc)
+      src.replace(colorRegEx, color)
+      fragment.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(src)
+    } else {
+      fragment.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(src)
     }
 
     fragment.onload = function() {
@@ -54596,14 +54596,15 @@ function graphicInit(p) {
   }
 
   var toe = [
-    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 184 181"><path fill="none" stroke="#000000" stroke-width="5" d="M34.4267686,20.1851338 C9.24676863,43.3021338 -1.29523137,81.2831338 8.79176863,113.943134 C18.8797686,146.603134 49.2807686,172.128134 83.2457686,175.974134 C117.211769,179.820134 152.755769,161.517134 168.971769,131.425134 C185.186769,101.334134 180.786769,61.3041338 158.097769,35.7371338 C141.683769,17.2421338 117.212769,6.81413382 92.5347686,5.22813382 C67.8567686,3.64213382 43.0747686,10.4241338 21.2607686,22.0721338"/></svg>',
-    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 204 172"><path fill="none" stroke="#000000" stroke-width="5" d="M40.7461923,20.4417462 C16.2931923,30.9527462 2.34119226,59.5927462 5.42319226,86.0307462 C8.50419226,112.467746 26.5061923,135.775746 49.4921923,149.194746 C72.4781923,162.613746 99.8831923,166.983746 126.475192,165.828746 C140.003192,165.241746 153.787192,163.191746 165.736192,156.819746 C194.567192,141.443746 205.553192,102.332746 194.354192,71.6357462 C183.156192,40.9407462 153.974192,19.2127462 122.483192,10.4997462 C90.9911923,1.78674621 57.3941923,4.53274621 25.3811923,11.0727462"/></svg>'
+    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 184 181"><path fill="none" stroke="#000000" stroke-width="10" d="M34.4267686,20.1851338 C9.24676863,43.3021338 -1.29523137,81.2831338 8.79176863,113.943134 C18.8797686,146.603134 49.2807686,172.128134 83.2457686,175.974134 C117.211769,179.820134 152.755769,161.517134 168.971769,131.425134 C185.186769,101.334134 180.786769,61.3041338 158.097769,35.7371338 C141.683769,17.2421338 117.212769,6.81413382 92.5347686,5.22813382 C67.8567686,3.64213382 43.0747686,10.4241338 21.2607686,22.0721338"/></svg>',
+    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 204 172"><path fill="none" stroke="#000000" stroke-width="10" d="M40.7461923,20.4417462 C16.2931923,30.9527462 2.34119226,59.5927462 5.42319226,86.0307462 C8.50419226,112.467746 26.5061923,135.775746 49.4921923,149.194746 C72.4781923,162.613746 99.8831923,166.983746 126.475192,165.828746 C140.003192,165.241746 153.787192,163.191746 165.736192,156.819746 C194.567192,141.443746 205.553192,102.332746 194.354192,71.6357462 C183.156192,40.9407462 153.974192,19.2127462 122.483192,10.4997462 C90.9911923,1.78674621 57.3941923,4.53274621 25.3811923,11.0727462"/></svg>',
+    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 184 181"><path fill="none" stroke="#000000" stroke-width="10" d="M8,95.0877114 C16.038,113.551711 24.235,132.279711 37.012,147.845711 C49.789,163.412711 67.971,175.679711 88.08,176.754711 C120.664,178.494711 147.746,151.317711 163.358,122.665711 C176.086,99.3077114 184.397,71.1127114 174.984,46.2337114 C163.072,14.7537114 124.026,-1.11028855 91.403,7.17771145 C58.78,15.4657114 33.658,43.3847114 21.752,74.8687114"/></svg>'
   ]
 
   var tic = [
-    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 196 181"><g fill="none" fill-rule="evenodd" stroke="#000000" stroke-width="5"><path d="M32.5962 172.9216C78.7942 118.3136 124.9912 63.7046 171.1892 9.0956M4.2913 34.1131C66.3853 71.5671 128.4803 109.0211 190.5753 146.4751"/></g></svg>',
-    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 191 181"><g fill="none" fill-rule="evenodd" stroke="#000000" stroke-width="5"><path d="M10.8955 168.2556C64.2145 115.4286 117.5325 62.6026 170.8515 9.7766M20.4502 27.6511C63.6732 86.7021 119.8922 136.1871 183.9512 171.5671"/></g></svg>',
-    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 204 193"><g fill="none" fill-rule="evenodd" stroke="#000000" stroke-width="5"><path d="M10.9033 181.783C65.6603 123.382 120.4183 64.98 175.1753 6.579M5.1238 16.9143C64.6678 66.4543 128.5338 110.7973 195.7588 149.2743"/></g></svg>'
+    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 196 181"><g fill="none" fill-rule="evenodd" stroke="#000000" stroke-width="10"><path d="M32.5962 172.9216C78.7942 118.3136 124.9912 63.7046 171.1892 9.0956M4.2913 34.1131C66.3853 71.5671 128.4803 109.0211 190.5753 146.4751"/></g></svg>',
+    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 191 181"><g fill="none" fill-rule="evenodd" stroke="#000000" stroke-width="10"><path d="M10.8955 168.2556C64.2145 115.4286 117.5325 62.6026 170.8515 9.7766M20.4502 27.6511C63.6732 86.7021 119.8922 136.1871 183.9512 171.5671"/></g></svg>',
+    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 204 193"><g fill="none" fill-rule="evenodd" stroke="#000000" stroke-width="10"><path d="M10.9033 181.783C65.6603 123.382 120.4183 64.98 175.1753 6.579M5.1238 16.9143C64.6678 66.4543 128.5338 110.7973 195.7588 149.2743"/></g></svg>'
   ]
 
   var turn = 0;
@@ -54630,24 +54631,6 @@ function graphicInit(p) {
   TicTacToe.End = false;
 
   TicTacToe.drawBoard = function () {
-    ctx.beginPath();
-    ctx.strokeStyle = '#000';
-    ctx.lineWidth = 2;
-
-    ctx.moveTo(166, 0);
-    ctx.lineTo(166, 500);
-
-    ctx.moveTo(332, 0);
-    ctx.lineTo(332, 500);
-
-    ctx.moveTo(0, 166);
-    ctx.lineTo(500, 166);
-
-    ctx.moveTo(0, 332);
-    ctx.lineTo(500, 332);
-
-    ctx.stroke();
-    ctx.closePath();
 
     board.addEventListener('click', TicTacToe.boardClick, false);
 
@@ -54657,11 +54640,12 @@ function graphicInit(p) {
   TicTacToe.boardClick = function(e) {
     if(TicTacToe.End) {
       TicTacToe.reset()
-      return;
+      return
     }
-    var x,y;
 
-    //Get the x and y coords of the mouse click
+    var x
+    var y
+
     if (e.pageX != undefined && e.pageY != undefined) {
         x = e.pageX;
         y = e.pageY;
@@ -54716,7 +54700,7 @@ function graphicInit(p) {
 
       u(board).after($toe)
     } else {
-      var $toe = u('<div class="toe">' + toe[getRandomInt(0, 1)] + '</div>')
+      var $toe = u('<div class="toe">' + toe[getRandomInt(0, 2)] + '</div>')
 
       var leftMove = (u(board).size().width / 3) * col
       var topMove = (u(board).size().height / 3) * row
@@ -55368,11 +55352,16 @@ function multidisciplinaryInit(p) {
     })
 
     Events.on(mConstraint, 'mousemove', function(ev){
-      var angle = 360 * ( ev.mouse.position.x) / p.width
-      var posX = ev.mouse.position.x
-      var posY = ev.mouse.position.y
+      var posX_1 = ev.mouse.position.x * 50 / 100
+      var posY_1 = 0
 
-      $gradien.style('background', 'linear-gradient(' + angle + 'deg, rgba(255, 152, 151, .5) 30%, rgba(246, 80, 160, .5) 100%), radial-gradient(circle at ' + posX + 'px ' + posY + 'px, rgba(255, 152, 151,1) 30%, rgba(246, 80, 160, 1) 100%)')
+      var posX_2 = ev.mouse.position.x * 6.7 / 100
+      var posY_2 = ev.mouse.position.y * 75 / 100
+
+      var posX_3 = ev.mouse.position.x * 93.3 / 100
+      var posY_3 = ev.mouse.position.y * 75 / 100
+
+      $gradien.style('background', 'radial-gradient(circle at ' + posX_1 + '% ' + posY_1 + '%, rgba(255, 152, 151, 1), rgba(255, 0, 0, 0) 70.71%), radial-gradient(circle at ' + posX_2 + '% ' + posY_2 + '%, rgba(246, 80, 160, 1), rgba(0, 0, 255, 0) 70.71%), radial-gradient(circle at ' + posX_3 + '% ' + posY_3 + '%, rgba(193, 122, 252, 1), rgba(0, 255, 0, 0) 70.71%)')
     })
   }
 

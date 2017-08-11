@@ -127,11 +127,16 @@ function multidisciplinaryInit(p) {
     })
 
     Events.on(mConstraint, 'mousemove', function(ev){
-      var angle = 360 * ( ev.mouse.position.x) / p.width
-      var posX = ev.mouse.position.x
-      var posY = ev.mouse.position.y
+      var posX_1 = ev.mouse.position.x * 50 / 100
+      var posY_1 = 0
 
-      $gradien.style('background', 'linear-gradient(' + angle + 'deg, rgba(255, 152, 151, .5) 30%, rgba(246, 80, 160, .5) 100%), radial-gradient(circle at ' + posX + 'px ' + posY + 'px, rgba(255, 152, 151,1) 30%, rgba(246, 80, 160, 1) 100%)')
+      var posX_2 = ev.mouse.position.x * 6.7 / 100
+      var posY_2 = ev.mouse.position.y * 75 / 100
+
+      var posX_3 = ev.mouse.position.x * 93.3 / 100
+      var posY_3 = ev.mouse.position.y * 75 / 100
+
+      $gradien.style('background', 'radial-gradient(circle at ' + posX_1 + '% ' + posY_1 + '%, rgba(255, 152, 151, 1), rgba(255, 0, 0, 0) 70.71%), radial-gradient(circle at ' + posX_2 + '% ' + posY_2 + '%, rgba(246, 80, 160, 1), rgba(0, 0, 255, 0) 70.71%), radial-gradient(circle at ' + posX_3 + '% ' + posY_3 + '%, rgba(193, 122, 252, 1), rgba(0, 255, 0, 0) 70.71%)')
     })
   }
 
