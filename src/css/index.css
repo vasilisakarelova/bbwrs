@@ -365,8 +365,22 @@ footer {
 .resizer-img {
   position: absolute;
   top: 50%;
-  left: 0;
   width: 77824px;
+}
+
+.resizer-mobile {
+  position: absolute;
+  top: 3vw;
+  left: 3vw;
+  width: 150px;
+  z-index: 99;
+  display: none;
+}
+
+@media (max-device-width: 1024px) {
+  .resizer-mobile {
+    display: block;
+  }
 }
 
 .toe {
@@ -409,4 +423,9 @@ footer {
   position: absolute;
   left: 66.66%;
   width: 14px;
+}
+
+.line {
+  width: 600px;
+  position: absolute;
 }

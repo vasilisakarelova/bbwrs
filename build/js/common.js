@@ -54607,6 +54607,8 @@ function graphicInit(p) {
     '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 204 193"><g fill="none" fill-rule="evenodd" stroke="#000000" stroke-width="10"><path d="M10.9033 181.783C65.6603 123.382 120.4183 64.98 175.1753 6.579M5.1238 16.9143C64.6678 66.4543 128.5338 110.7973 195.7588 149.2743"/></g></svg>'
   ]
 
+  var line = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 984 46"><path fill="#000000" fill-rule="evenodd" d="M196.178369,19.2551834 C259.091653,15.8557197 322.077411,13.7851775 385.078254,13.0414788 C448.383411,12.2945111 511.705157,12.8877188 574.984966,14.8209515 C637.96118,16.7438708 700.897266,19.99491 763.735833,24.5719912 C826.974578,29.1777461 890.113857,35.1561177 953.098096,42.469269 C960.958041,43.3816258 968.816049,44.3167036 976.673001,45.2703524 C984.289835,46.1939269 986.84619,34.4631104 979.167314,33.5321318 C916.413562,25.9202552 853.504312,19.635109 790.485856,14.6561707 C727.070578,9.64638005 663.546912,5.98996005 599.974514,3.6851329 C536.706258,1.39145798 473.388855,0.437721364 410.080829,0.824073206 C346.4674,1.21201664 282.862924,2.9522477 219.324497,6.0482278 C156.089132,9.12982907 92.920578,13.5499916 29.8728714,19.312972 C21.99271,20.0329729 14.1139219,20.7771215 6.23688815,21.5368239 C-1.44050487,22.2789603 -0.897325277,34.2695601 6.80061021,33.526007 C69.817806,27.4406322 132.959508,22.6706598 196.178369,19.2551834 Z"/></svg>'
+
   var turn = 0;
   var moves = 0;
 
@@ -54615,6 +54617,7 @@ function graphicInit(p) {
   TicTacToe.reset = function () {
     ctx.clearRect(0, 0, board.width, board.height)
     u('.toe').remove()
+    u('.line').remove()
 
     turn = 0
     moves = 0
@@ -54709,8 +54712,10 @@ function graphicInit(p) {
 
       $toe.first().style.left = posX + 'px'
       $toe.first().style.top =  posY + 'px'
-
-      u(board).after($toe)
+      
+      setTimeout(function () {
+        u(board).after($toe)
+      }, 400)
     }
 
     ctx.stroke()
@@ -54799,7 +54804,6 @@ function graphicInit(p) {
     }
   }     
 
-  //Check for winner
   TicTacToe.checkWin = function()
   {
     var win = null;
@@ -54852,15 +54856,57 @@ function graphicInit(p) {
       ];
 
     if (win != null) {
-      ctx.beginPath();
-      ctx.lineWidth = 5;
-      ctx.strokeStyle = '#F00';
+      console.log(win)
+      $line = u('<div class="line">' + line + '</div>')
 
-      ctx.moveTo(winLine[win].start.x,winLine[win].start.y);
-      ctx.lineTo(winLine[win].end.x,winLine[win].end.y);
+      if(win == 0) {
+        $line.first().style.transform = 'rotate(90deg)'
+        $line.first().style.top = '250px'
+        $line.first().style.left = '80px'
+      }
 
-      ctx.stroke();
-      ctx.closePath();
+      if(win == 1) {
+        $line.first().style.transform = 'rotate(90deg)'
+        $line.first().style.top = '220px'
+        $line.first().style.left = '-50px'
+      }
+
+      if(win == 2) {
+        $line.first().style.transform = 'rotate(90deg)'
+        $line.first().style.top = '220px'
+        $line.first().style.left = '100px'
+      }
+
+      if(win == 3) {
+        $line.first().style.top = '70px'
+        $line.first().style.left = '-30px'
+      }
+
+      if(win == 4) {
+        $line.first().style.top = '240px'
+        $line.first().style.left = '-50px'
+      }
+
+      if(win == 5) {
+        $line.first().style.top = '440px'
+        $line.first().style.left = '-70px'
+      }
+
+      if(win == 6) {
+        $line.first().style.transform = 'rotate(45deg)'
+        $line.first().style.top = '220px'
+        $line.first().style.left = '-70px'
+      }
+
+      if(win == 7) {
+        $line.first().style.transform = 'rotate(-45deg)'
+        $line.first().style.top = '220px'
+        $line.first().style.left = '-35px'
+      }
+
+      setTimeout(function () {
+        u('.line-wrapper').append($line)
+      }, 600)
 
       TicTacToe.End = true
     }
