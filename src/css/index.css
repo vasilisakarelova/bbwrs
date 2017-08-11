@@ -30,6 +30,12 @@ a {
   font-weight: normal;
 }
 
+.is-white {
+  color: #fff;
+  font-size: 10vw !important;
+  opacity: .85;
+}
+
 .title_absolute {
   position: absolute;
   top: 50%;
@@ -41,9 +47,9 @@ a {
 
 .title_single_unit {
   position: absolute;
-  z-index: 1;
   top: 0;
   left: 0;
+  z-index: 1;
 }
 
 .title_single_unit.rel {
