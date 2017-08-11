@@ -38,7 +38,6 @@
     art = new p5(artInit, 'art'),
     motion = new p5(motionInit, 'motion'),
     illustration = new p5(illustrationInit, 'illustration'),
-    identity = new p5(identityInit, 'identity'),
     multidisciplinary = new p5(multidisciplinaryInit, 'multidisciplinary')
 
   page.base('/md')
@@ -129,7 +128,8 @@
   })
 
   page('/14', function (ctx, next) {
-    identity
+    u('#identity').html('')
+    new p5(identityInit, 'identity')
     next()
   })
 
