@@ -54506,13 +54506,12 @@ function designInit(p) {
 
     for (var i = 0; i < 15; i++) {
       var setColor
-      
+
       if (i < colors.length) {
         setColor = colors[i]
       } else {
-        for (var j = 0; j < colors.length; j++) {
-          setColor = colors[j]
-        }
+        var j = i - colors.length
+        setColor = colors[j]
       }
       console.log(setColor)
       boxes.push(new drawStack(Common.random(0, p.windowWidth), 1, Common.random(40, 300), Common.random(40, 300), setColor));
@@ -55398,10 +55397,10 @@ function multidisciplinaryInit(p) {
     })
 
     Events.on(mConstraint, 'mousemove', function(ev){
-      var posX_1 = ev.mouse.position.x * 50 / 100
+      var posX_1 = ev.mouse.position.x * 120 / 100
       var posY_1 = 0
 
-      var posX_2 = ev.mouse.position.x * 6.7 / 100
+      var posX_2 = ev.mouse.position.x * 6.7 / 50
       var posY_2 = ev.mouse.position.y * 75 / 100
 
       var posX_3 = ev.mouse.position.x * 93.3 / 100
@@ -55424,7 +55423,7 @@ function multidisciplinaryInit(p) {
       p.rectMode(p.CENTER)
       p.noStroke()
       p.fill(p.color('rgba(255, 152, 151,0)'))
-      p.rect(0, 0, particlesDom[i].offsetWidth, particlesDom[i].offsetHeight)
+      p.rect(0, 0, particlesDom[i].offsetWidth / 2, particlesDom[i].offsetHeight / 2)
       p.pop()
     }
   }

@@ -62,13 +62,12 @@ function designInit(p) {
 
     for (var i = 0; i < 15; i++) {
       var setColor
-      
+
       if (i < colors.length) {
         setColor = colors[i]
       } else {
-        for (var j = 0; j < colors.length; j++) {
-          setColor = colors[j]
-        }
+        var j = i - colors.length
+        setColor = colors[j]
       }
       console.log(setColor)
       boxes.push(new drawStack(Common.random(0, p.windowWidth), 1, Common.random(40, 300), Common.random(40, 300), setColor));
