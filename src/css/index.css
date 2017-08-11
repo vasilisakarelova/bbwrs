@@ -51,8 +51,9 @@ a {
 }
 
 #multidisciplinary {
-  background: linear-gradient( 135deg, rgba(255, 152, 151, .5) 30%, rgba(246, 80, 160, .5) 100%),
-              radial-gradient(circle at 0px 0px, rgba(255, 152, 151, 1) 30%, rgba(246, 80, 160, 1) 100%);
+  background: radial-gradient(circle at 50% 0, rgba(255, 152, 151, 1), rgba(255, 0, 0, 0) 70.71%),
+              radial-gradient(circle at 6.7% 75%, rgba(246, 80, 160, 1), rgba(0, 0, 255, 0) 70.71%),
+              radial-gradient(circle at 93.3% 75%, rgba(193, 122, 252, 1), rgba(0, 255, 0, 0) 70.71%);
   position: relative;
   height: 100%;
 }

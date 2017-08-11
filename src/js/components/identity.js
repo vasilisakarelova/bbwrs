@@ -52,7 +52,6 @@ function identityInit(p) {
 
   p.mousePressed = function() {
     if (state < 4) {
-      console.log(eggColor, shucksColor)
       state++
       ctx.clearRect(0,0,p.windowWidth, p.windowHeight)
       drawFragment(aggSrc, eggColor)
@@ -89,15 +88,16 @@ function identityInit(p) {
 
   function drawFragment(src, color) {
     var fragment = new Image()
-    fragment.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(src)
 
     if (color !== undefined) {
-      var decodedSrc = decodeURIComponent(src)
-      var fillIndex = decodedSrc.indexOf('fill="#')
-      var colorRegEx = new RegExp(decodedSrc.substr(fillIndex, 14), 'g')
+      var fillIndex = src.indexOf('fill="#')
+      console.log(src, encodeURIComponent(src))
+      var colorRegEx = new RegExp(src.substr(fillIndex + 7, 7), 'g')
 
-      decodedSrc.replace(colorRegEx, 'fill="#' + color + '')
-      fragment.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(decodedSrc)
+      src.replace(colorRegEx, color)
+      fragment.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(src)
+    } else {
+      fragment.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(src)
     }
 
     fragment.onload = function() {
