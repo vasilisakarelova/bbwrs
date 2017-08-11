@@ -1,7 +1,23 @@
+;(function () {
   var ctx, width, height;
 
   var board = document.getElementById('strategy-canvas');
   ctx = board.getContext('2d');
+
+  function getRandomInt (min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min
+  }
+
+  var toe = [
+    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 184 181"><path fill="none" stroke="#000000" stroke-width="5" d="M34.4267686,20.1851338 C9.24676863,43.3021338 -1.29523137,81.2831338 8.79176863,113.943134 C18.8797686,146.603134 49.2807686,172.128134 83.2457686,175.974134 C117.211769,179.820134 152.755769,161.517134 168.971769,131.425134 C185.186769,101.334134 180.786769,61.3041338 158.097769,35.7371338 C141.683769,17.2421338 117.212769,6.81413382 92.5347686,5.22813382 C67.8567686,3.64213382 43.0747686,10.4241338 21.2607686,22.0721338"/></svg>',
+    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 204 172"><path fill="none" stroke="#000000" stroke-width="5" d="M40.7461923,20.4417462 C16.2931923,30.9527462 2.34119226,59.5927462 5.42319226,86.0307462 C8.50419226,112.467746 26.5061923,135.775746 49.4921923,149.194746 C72.4781923,162.613746 99.8831923,166.983746 126.475192,165.828746 C140.003192,165.241746 153.787192,163.191746 165.736192,156.819746 C194.567192,141.443746 205.553192,102.332746 194.354192,71.6357462 C183.156192,40.9407462 153.974192,19.2127462 122.483192,10.4997462 C90.9911923,1.78674621 57.3941923,4.53274621 25.3811923,11.0727462"/></svg>'
+  ]
+
+  var tic = [
+    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 196 181"><g fill="none" fill-rule="evenodd" stroke="#000000" stroke-width="5"><path d="M32.5962 172.9216C78.7942 118.3136 124.9912 63.7046 171.1892 9.0956M4.2913 34.1131C66.3853 71.5671 128.4803 109.0211 190.5753 146.4751"/></g></svg>',
+    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 191 181"><g fill="none" fill-rule="evenodd" stroke="#000000" stroke-width="5"><path d="M10.8955 168.2556C64.2145 115.4286 117.5325 62.6026 170.8515 9.7766M20.4502 27.6511C63.6732 86.7021 119.8922 136.1871 183.9512 171.5671"/></g></svg>',
+    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 204 193"><g fill="none" fill-rule="evenodd" stroke="#000000" stroke-width="5"><path d="M10.9033 181.783C65.6603 123.382 120.4183 64.98 175.1753 6.579M5.1238 16.9143C64.6678 66.4543 128.5338 110.7973 195.7588 149.2743"/></g></svg>'
+  ]
 
   var turn = 0;
   var moves = 0;
@@ -10,12 +26,13 @@
 
   TicTacToe.reset = function () {
     ctx.clearRect(0, 0, board.width, board.height)
+    u('.toe').remove()
 
     turn = 0
     moves = 0
 
     TicTacToe.Board = [[null, null, null], [null, null, null], [null, null, null]];
-    TicTacToe.Start = true;
+    TicTacToe.End = false;
 
     TicTacToe.drawBoard()
   }
@@ -23,7 +40,7 @@
 
   TicTacToe.Board = [[null, null, null], [null, null, null], [null, null, null]];
 
-  TicTacToe.Start = true;
+  TicTacToe.End = false;
 
   TicTacToe.drawBoard = function () {
     ctx.beginPath();
@@ -45,18 +62,19 @@
     ctx.stroke();
     ctx.closePath();
 
-    board.addEventListener("click", TicTacToe.boardClick, false);
+    board.addEventListener('click', TicTacToe.boardClick, false);
 
     TicTacToe.playerTurn = false;
   }
 
   TicTacToe.boardClick = function(e) {
-    if(!TicTacToe.Start) {
+    if(TicTacToe.End) {
       TicTacToe.reset()
       return;
     }
     var x,y;
 
+    //Get the x and y coords of the mouse click
     if (e.pageX != undefined && e.pageY != undefined) {
         x = e.pageX;
         y = e.pageY;
@@ -87,7 +105,8 @@
     TicTacToe.drawMark(col, row);
   }
 
-  TicTacToe.drawMark = function(col, row) {
+  TicTacToe.drawMark = function(col, row) 
+  {
 
     if (TicTacToe.Board[col][row] != null) {
       return
@@ -95,21 +114,32 @@
 
     ctx.beginPath();
     ctx.strokeStyle = "#000";
-    ctx.lineWidth = 3;
+    ctx.lineWidth = 5;
 
-    if (TicTacToe.playerTurn == 0) {
-        var X1 = { "start" : { "x": 10, "y": 10 }, "end": { "x": 155, "y": 155} };
-        var X2 = { "start" : { "x": 155, "y" : 10 }, "end": { "x": 10, "y": 155} };
-        ctx.moveTo(X1.start.x + (col * 166), X1.start.y + (row * 166));
-        ctx.lineTo(X1.end.x + (col * 166), X1.end.y + (row * 166));
+    if(TicTacToe.playerTurn == 0) {
+      var $toe = u('<div class="toe">' + tic[getRandomInt(0, 2)] + '</div>')
 
-        ctx.moveTo(X2.start.x + (col * 166), X2.start.y + (row * 166));
-        ctx.lineTo(X2.end.x + (col * 166), X2.end.y + (row * 166));
+      var leftMove = (u(board).size().width / 3) * col
+      var topMove = (u(board).size().height / 3) * row
+      var posX = u(board).size().left + leftMove
+      var posY = u(board).size().top + topMove
+
+      $toe.first().style.left = posX + 'px'
+      $toe.first().style.top =  posY + 'px'
+
+      u(board).after($toe)
     } else {
-        var x = (col * 166) + (166 / 2);
-        var y = (row * 166) + (166 / 2);
-        var radius = 166 / 2 - 10;
-        ctx.arc(x, y, radius, 0, Math.PI * 2, false);
+      var $toe = u('<div class="toe">' + toe[getRandomInt(0, 1)] + '</div>')
+
+      var leftMove = (u(board).size().width / 3) * col
+      var topMove = (u(board).size().height / 3) * row
+      var posX = u(board).size().left + leftMove
+      var posY = u(board).size().top + topMove
+
+      $toe.first().style.left = posX + 'px'
+      $toe.first().style.top =  posY + 'px'
+
+      u(board).after($toe)
     }
 
     ctx.stroke()
@@ -129,7 +159,8 @@
     }
   }
 
-  TicTacToe.compTurn = function () {
+  TicTacToe.compTurn = function() 
+  {
     var tiles = TicTacToe.Board;
     
     if (TicTacToe.playerTurn == 1) 
@@ -197,7 +228,9 @@
     }
   }     
 
-  TicTacToe.checkWin = function () {
+  //Check for winner
+  TicTacToe.checkWin = function()
+  {
     var win = null;
     var player = TicTacToe.playerTurn;
     var tiles = TicTacToe.Board;
@@ -235,6 +268,7 @@
       win = 7; // Right to Left Diagonal
     }
     
+    //Line strikethrough for win
     var winLine = [
         {'start': {'x': 83, 'y': 10}, 'end': {'x': 83, 'y': 490}},
         {'start': {'x': 249, 'y': 10}, 'end': {'x': 249, 'y': 490}},
@@ -251,19 +285,21 @@
       ctx.lineWidth = 5;
       ctx.strokeStyle = '#F00';
 
-      //Strike the winning path
       ctx.moveTo(winLine[win].start.x,winLine[win].start.y);
       ctx.lineTo(winLine[win].end.x,winLine[win].end.y);
 
       ctx.stroke();
       ctx.closePath();
 
-      TicTacToe.Start = false;
+      TicTacToe.End = true
     }
     
     if (win == null && moves == 9) {
-      TicTacToe.Start = false;
+      TicTacToe.End = true
     }
   }
 
-  window.onload = TicTacToe.drawBoard()
+  window.addEventListener('load', function () {
+    TicTacToe.drawBoard()
+  })
+})()

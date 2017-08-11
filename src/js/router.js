@@ -40,7 +40,7 @@
     illustration = new p5(illustrationInit, 'illustration'),
     multidisciplinary = new p5(multidisciplinaryInit, 'multidisciplinary')
 
-  page.base('/md')
+  // page.base('/md')
 
   page('/', function (ctx, next) {
     u('.section')
@@ -92,7 +92,7 @@
   })
 
   page('/7', function (ctx, next) {
-    strategy
+    // strategy
     next()
   })
 
