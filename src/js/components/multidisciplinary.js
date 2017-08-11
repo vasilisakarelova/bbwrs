@@ -35,9 +35,6 @@ function multidisciplinaryInit(p) {
     $canvas = p.createCanvas(p.windowWidth, p.windowHeight)
     $canvas.position(0, 0)
 
-    $title = p.createElement('h1', 'multidisciplinary')
-    $title.addClass('title title_absolute is-white')
-
     $gradien = p.createDiv('')
     $gradien.size(p.windowWidth, p.windowHeight)
     $gradien.position(0, 0)
@@ -76,6 +73,9 @@ function multidisciplinaryInit(p) {
       Bodies.rectangle(p.width/2, p.height, p.width, 5, opts),
       Bodies.rectangle(0, p.height/2, 5, p.height, opts)
     ]);
+
+    $title = p.createElement('h1', 'multidisciplinary')
+    $title.addClass('title title_absolute is-white')
 
     var canvasmouse = Mouse.create($canvas.elt)
     canvasmouse.pixelRatio = p.pixelDensity()

@@ -77,7 +77,7 @@ function identityInit(p) {
   }
 
   function initState(shucksColor, eggColor) {
-    ctx.clearRect(0,0,p.windowWidth, p.windowHeight)
+    ctx.clearRect(0, 0, p.windowWidth, p.windowHeight)
 
     drawFragment(aggSrc, eggColor)
     drawFragment(fragment_src[0], shucksColor)

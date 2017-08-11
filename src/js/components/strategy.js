@@ -301,7 +301,7 @@
       }
 
       if(win == 5) {
-        $line.first().style.top = '440px'
+        $line.first().style.top = '400px'
         $line.first().style.left = '-70px'
       }
 
