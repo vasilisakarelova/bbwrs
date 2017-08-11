@@ -61,7 +61,17 @@ function designInit(p) {
     World.add(world, mConstraint);
 
     for (var i = 0; i < 15; i++) {
-      boxes.push(new drawStack(Common.random(0, p.windowWidth), 1, Common.random(40, 300), Common.random(40, 300)));
+      var setColor
+      
+      if (i < colors.length) {
+        setColor = colors[i]
+      } else {
+        for (var j = 0; j < colors.length; j++) {
+          setColor = colors[j]
+        }
+      }
+      console.log(setColor)
+      boxes.push(new drawStack(Common.random(0, p.windowWidth), 1, Common.random(40, 300), Common.random(40, 300), setColor));
     }
   }
 
@@ -78,7 +88,7 @@ function designInit(p) {
     p.resizeCanvas(p.windowWidth, (p.windowHeight))
   }
 
-  function drawStack(x, y, w, h) {
+  function drawStack(x, y, w, h, color) {
     var options = {
       friction: 0.1,
       restitution: 0.1
@@ -87,7 +97,7 @@ function designInit(p) {
     this.body = Bodies.rectangle(x, y, w, h, options)
     this.w = w
     this.h = h
-    this.color = p.random(colors)
+    this.color = color
 
     World.add(world, this.body)
 
