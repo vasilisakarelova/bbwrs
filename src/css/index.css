@@ -1,6 +1,7 @@
 @import url('normalize.css');
 @import url('./fonts.css');
 @import url('./interface.css');
+@import url('./identity.css');
 
 html,
 body {

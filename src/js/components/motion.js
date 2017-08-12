@@ -47,11 +47,11 @@ function motionInit(p) {
     }
 
     p.noStroke()
-    p.frameRate(60)
+    p.frameRate(30)
   }
 
   p.draw = function () {
-    p.fill(255)
+    p.fill(255, 70) // второе значени - шлейф!
     p.rect(0, 0, p.width, p.height)
     drawShape()
     moveShape()
@@ -78,7 +78,7 @@ function motionInit(p) {
 
     p.endShape(p.CLOSE)
   }
-  
+
   p.select('#motion').mouseMoved(function (e) {
     mouseX = e.x
     mouseY = e.y
@@ -90,6 +90,7 @@ function motionInit(p) {
 
     deltaX *= springing
     deltaY *= springing
+
     accelX += deltaX
     accelY += deltaY
 

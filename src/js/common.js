@@ -8,6 +8,7 @@
 //=require ./umbrella.js
 //=require ./share.js
 //=require ./interface.js
+//=require ./identity.js
 
 // Components
 // =============================================================================
