@@ -35,9 +35,6 @@ function multidisciplinaryInit(p) {
     $canvas = p.createCanvas(p.windowWidth, p.windowHeight)
     $canvas.position(0, 0)
 
-    $title = p.createElement('h1', 'multidisciplinary')
-    $title.addClass('title title_absolute is-white')
-
     $gradien = p.createDiv('')
     $gradien.size(p.windowWidth, p.windowHeight)
     $gradien.position(0, 0)
@@ -76,6 +73,9 @@ function multidisciplinaryInit(p) {
       Bodies.rectangle(p.width/2, p.height, p.width, 5, opts),
       Bodies.rectangle(0, p.height/2, 5, p.height, opts)
     ]);
+
+    $title = p.createElement('h1', 'multidisciplinary')
+    $title.addClass('title title_absolute is-white')
 
     var canvasmouse = Mouse.create($canvas.elt)
     canvasmouse.pixelRatio = p.pixelDensity()
@@ -130,10 +130,10 @@ function multidisciplinaryInit(p) {
     })
 
     Events.on(mConstraint, 'mousemove', function(ev){
-      var posX_1 = ev.mouse.position.x * 50 / 100
+      var posX_1 = ev.mouse.position.x * 120 / 100
       var posY_1 = 0
 
-      var posX_2 = ev.mouse.position.x * 6.7 / 100
+      var posX_2 = ev.mouse.position.x * 6.7 / 50
       var posY_2 = ev.mouse.position.y * 75 / 100
 
       var posX_3 = ev.mouse.position.x * 93.3 / 100
@@ -156,7 +156,7 @@ function multidisciplinaryInit(p) {
       p.rectMode(p.CENTER)
       p.noStroke()
       p.fill(p.color('rgba(255, 152, 151,0)'))
-      p.rect(0, 0, particlesDom[i].offsetWidth, particlesDom[i].offsetHeight)
+      p.rect(0, 0, particlesDom[i].offsetWidth / 2, particlesDom[i].offsetHeight / 2)
       p.pop()
     }
   }

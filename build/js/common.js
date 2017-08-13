@@ -54204,114 +54204,97 @@ window.addEventListener('load', function () {
   })()
 })
 
+/* global u, requestInterval, clearRequestInterval */
+
+window.addEventListener('load', function () {
+  ;(function () {
+    Array.prototype.random = function () {
+      return this[Math.floor((Math.random()*this.length))];
+    }
+
+    var colors = [
+      '#008AF4',
+      '#58595B',
+      '#3ABA38',
+      '#7B3BE0',
+      '#FF3021',
+      '#FF5D0D',
+      '#FFF700',
+      '#FF52D2',
+      '#BCBEC0',
+      '#A7F954',
+      '#D1D3D4'
+    ]
+
+    var step = 0
+    var shucks = []
+    var shucks_step = []
+    var newColor = colors.random()
+    var currentColor = colors.random()
+
+    while (newColor == currentColor) {
+      currentColor = colors.random()
+    }
+
+    u('.egg use').each(function (el) {
+      el.setAttribute('fill', newColor)
+    })
+
+    u('.shucks g use').each(function (el) {
+      el.setAttribute('fill', currentColor)
+      shucks.push(el)
+    })
+
+    u('.shucks_step g use').each(function (el) {
+      el.setAttribute('fill', 'none')
+      shucks_step.push(el)
+    })
+
+    u('#agg-canvas').each(function(el) {
+      u(el).on('click', function() {
+        if (step < 4) {
+          step++
+
+          for (var i = 0; i < step; i++) {
+            shucks[i].setAttribute('fill', newColor)
+          }
+
+          for (var i = step; i < 4; i++) {
+            shucks[i].setAttribute('fill', currentColor)
+          }
+
+          for (var i = 0; i < step; i++) {
+            shucks_step[i].setAttribute('fill', currentColor)
+          }
+        } else {
+          step = 0
+          for (var i = 0; i < shucks_step.length; i ++) {
+            shucks_step[i].setAttribute('fill', 'none')
+          }
+          currentColor = newColor
+          newColor = colors.random()
+
+          while (currentColor == newColor) {
+            newColor = colors.random()
+          }
+        }
+      })
+    })
+
+  })()
+})
+
 
 // Components
 // =============================================================================
 function identityInit(p) {
-  var colors = [
-    '#008AF4',
-    '#58595B',
-    '#3ABA38',
-    '#7B3BE0',
-    '#FF3021',
-    '#FF5D0D',
-    '#FFF700',
-    '#FF52D2',
-    '#BCBEC0',
-    '#A7F954',
-    '#D1D3D4'
-  ]
-
   var $canvas
-  var ctx
   var $title
-  var shucksColor
-  var eggColor
-  var agg, aggSrc
-  var fragment_src = [], fragment_src_step = []
-  var state = 0, states = []
 
   p.setup = function () {
     $title = p.createElement('h1', 'Identity')
     $title.addClass('title')
     $canvas = p.createCanvas(p.windowWidth, p.windowHeight)
-    ctx = $canvas.elt.getContext('2d')
-
-    shucksColor = p.random(colors) //скорлупа
-    eggColor = p.random(colors) //яйцо
-
-    while (eggColor === shucksColor) {
-      shucksColor = p.random(colors)
-    }
-
-    aggSrc = '<svg xmlns="http://www.w3.org/2000/svg" width="1700" height="601" viewBox="0 0 1700 901"><g fill="none" fill-rule="evenodd"><path fill="'+eggColor+'" d="M37.1022,269.5953 L182.4292,173.0153 L206.4312,116.0103 L188.6882,30.2533 C124.3062,75.0403 70.5562,165.0523 37.1022,269.5953"/><path fill="'+eggColor+'" d="M438.6256,309.5191 L381.5126,393.0831 L413.9836,502.5241 L413.9836,582.5241 L526.1556,668.0561 C544.3266,623.7201 554.5436,568.7571 554.5436,501.7311 C554.5436,456.7991 549.9546,410.5901 541.4586,365.2561 L438.6256,309.5191 Z"/><path fill="'+eggColor+'" d="M413.986,582.5225 L413.986,502.5225 L381.514,393.0815 L380.869,394.0265 L204.193,309.5175 L92.073,411.3365 L27.595,301.6635 C9.913,366.4345 0,435.3805 0,501.7295 C0,736.3455 123.91,822.6755 277.273,822.6755 C386.633,822.6755 481.001,778.2405 526.159,668.0545 L413.986,582.5225 Z"/><path fill="'+eggColor+'" d="M277.2711,0 C246.2801,0 216.4931,10.91 188.6871,30.253 L206.4301,116.01 L182.4281,173.016 L37.1001,269.595 C33.7231,280.149 30.5461,290.848 27.5931,301.667 L92.0701,411.34 L204.1911,309.521 L380.8671,394.03 L438.6251,309.521 L541.4581,365.257 C505.7831,174.904 401.1351,0 277.2711,0"/></g></svg>'
-
-    fragment_src[0] = '<svg xmlns="http://www.w3.org/2000/svg" width="1700" height="601" viewBox="0 0 1700 901"><g fill="none" fill-rule="evenodd"><path fill="'+shucksColor+'" d="M37.1022,269.5953 L182.4292,173.0153 L206.4312,116.0103 L188.6882,30.2533 C124.3062,75.0403 70.5562,165.0523 37.1022,269.5953"/></g></svg>'
-    fragment_src[1] = '<svg xmlns="http://www.w3.org/2000/svg" width="1700" height="601" viewBox="0 0 1700 901"><g fill="none" fill-rule="evenodd"><path fill="'+shucksColor+'" d="M438.6256,309.5191 L381.5126,393.0831 L413.9836,502.5241 L413.9836,582.5241 L526.1556,668.0561 C544.3266,623.7201 554.5436,568.7571 554.5436,501.7311 C554.5436,456.7991 549.9546,410.5901 541.4586,365.2561 L438.6256,309.5191 Z"/></g></svg>'
-    fragment_src[2] = '<svg xmlns="http://www.w3.org/2000/svg" width="1700" height="601" viewBox="0 0 1700 901"><g fill="none" fill-rule="evenodd"><path fill="'+shucksColor+'" d="M413.986,582.5225 L413.986,502.5225 L381.514,393.0815 L380.869,394.0265 L204.193,309.5175 L92.073,411.3365 L27.595,301.6635 C9.913,366.4345 0,435.3805 0,501.7295 C0,736.3455 123.91,822.6755 277.273,822.6755 C386.633,822.6755 481.001,778.2405 526.159,668.0545 L413.986,582.5225 Z"/></g></svg>'
-    fragment_src[3] = '<svg xmlns="http://www.w3.org/2000/svg" width="1700" height="601" viewBox="0 0 1700 901"><g fill="none" fill-rule="evenodd"><path fill="'+shucksColor+'" transform="none" d="M277.2711,0 C246.2801,0 216.4931,10.91 188.6871,30.253 L206.4301,116.01 L182.4281,173.016 L37.1001,269.595 C33.7231,280.149 30.5461,290.848 27.5931,301.667 L92.0701,411.34 L204.1911,309.521 L380.8671,394.03 L438.6251,309.521 L541.4581,365.257 C505.7831,174.904 401.1351,0 277.2711,0"/></g></svg>'
-
-    fragment_src_step[0] = '<svg xmlns="http://www.w3.org/2000/svg" width="1700" height="601" viewBox="0 0 1700 901"><g fill="none" transform="translate(-250,0)" fill-rule="evenodd"><path transform="matrix(-0.00791954 -0.999969 0.999969 -0.00791954 -63.659 823.219)" fill="'+shucksColor+'" d="M -4.45557e-07 239.342L 145.327 142.762L 169.329 85.757L 151.586 -2.86865e-07C 87.204 44.787 33.454 134.799 -4.45557e-07 239.342Z"/></g></svg>'
-    fragment_src_step[1] = '<svg xmlns="http://www.w3.org/2000/svg" width="1700" height="601" viewBox="0 0 1700 901"><g fill="none" transform="translate(-250,0)" fill-rule="evenodd"><path transform="matrix(0.980657 0.195734 -0.195734 0.980657 751.178 287)" fill="'+shucksColor+'" d="M 57.113 4.00391e-06L 3.75977e-06 83.564L 32.471 193.005L 32.471 273.005L 144.643 358.537C 162.814 314.201 173.031 259.238 173.031 192.212C 173.031 147.28 168.442 101.071 159.946 55.737L 57.113 4.00391e-06Z"/></g></svg>'
-    fragment_src_step[2] = '<svg xmlns="http://www.w3.org/2000/svg" width="1700" height="601" viewBox="0 0 1700 901"><g fill="none" transform="translate(-250,0)" fill-rule="evenodd"><path transform="matrix(0.913722 -0.40634 0.40634 0.913722 38.3483 483.779)" fill="'+shucksColor+'" d="M 413.986 280.859L 413.986 200.859L 381.514 91.418L 380.869 92.363L 204.193 7.85399L 92.073 109.673L 27.595 1.31836e-05C 9.913 64.771 0 133.717 0 200.066C 0 434.682 123.91 521.012 277.273 521.012C 386.633 521.012 481.001 476.577 526.159 366.391L 413.986 280.859Z"/></g></svg>'
-    fragment_src_step[3] = '<svg xmlns="http://www.w3.org/2000/svg" width="1700" height="601" viewBox="0 0 1700 901"><g fill="none" transform="translate(-250,0)" fill-rule="evenodd"><path transform="matrix(-0.249042 0.968493 -0.968493 -0.249042 1298.35 389.441)" fill="'+shucksColor+'" d="M 249.678 0C 218.687 0 188.9 10.91 161.094 30.253L 178.837 116.01L 154.835 173.016L 9.507 269.595C 6.13 280.149 2.953 290.848 -4.05884e-07 301.667L 64.477 411.34L 176.598 309.521L 353.274 394.03L 411.032 309.521L 513.865 365.257C 478.19 174.904 373.542 0 249.678 0Z"/></g></svg>'
-
-    initState(shucksColor, eggColor)
-  }
-
-  p.mousePressed = function() {
-    if (state < 4) {
-      state++
-      ctx.clearRect(0,0,p.windowWidth, p.windowHeight)
-      drawFragment(aggSrc, eggColor)
-
-      for (var i = state; i < 4; i++) {
-        drawFragment(fragment_src[i], shucksColor)
-      }
-
-      for (var i = 0; i < state; i++) {
-        drawFragment(fragment_src_step[i], shucksColor)
-      }
-    } else {
-      state = 0
-      shucksColor = eggColor
-      eggColor = p.random(colors)
-
-      while (eggColor === shucksColor) {
-        eggColor = p.random(colors)
-      }
-
-      initState(shucksColor, eggColor)
-    }
-  }
-
-  function initState(shucksColor, eggColor) {
-    ctx.clearRect(0,0,p.windowWidth, p.windowHeight)
-
-    drawFragment(aggSrc, eggColor)
-    drawFragment(fragment_src[0], shucksColor)
-    drawFragment(fragment_src[1], shucksColor)
-    drawFragment(fragment_src[2], shucksColor)
-    drawFragment(fragment_src[3], shucksColor)
-  }
-
-  function drawFragment(src, color) {
-    var fragment = new Image()
-
-    if (color !== undefined) {
-      var fillIndex = src.indexOf('fill="#')
-      console.log(src, encodeURIComponent(src))
-      var colorRegEx = new RegExp(src.substr(fillIndex + 7, 7), 'g')
-
-      src.replace(colorRegEx, color)
-      fragment.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(src)
-    } else {
-      fragment.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(src)
-    }
-
-    fragment.onload = function() {
-      ctx.drawImage(fragment, p.width / 3, 200)
-    }
   }
 }
 
@@ -54519,7 +54502,16 @@ function designInit(p) {
     World.add(world, mConstraint);
 
     for (var i = 0; i < 15; i++) {
-      boxes.push(new drawStack(Common.random(0, p.windowWidth), 1, Common.random(40, 300), Common.random(40, 300)));
+      var setColor
+
+      if (i < colors.length) {
+        setColor = colors[i]
+      } else {
+        var j = i - colors.length
+        setColor = colors[j]
+      }
+      console.log(setColor)
+      boxes.push(new drawStack(Common.random(0, p.windowWidth), 1, Common.random(40, 300), Common.random(40, 300), setColor));
     }
   }
 
@@ -54536,7 +54528,7 @@ function designInit(p) {
     p.resizeCanvas(p.windowWidth, (p.windowHeight))
   }
 
-  function drawStack(x, y, w, h) {
+  function drawStack(x, y, w, h, color) {
     var options = {
       friction: 0.1,
       restitution: 0.1
@@ -54545,7 +54537,7 @@ function designInit(p) {
     this.body = Bodies.rectangle(x, y, w, h, options)
     this.w = w
     this.h = h
-    this.color = p.random(colors)
+    this.color = color
 
     World.add(world, this.body)
 
@@ -54564,6 +54556,7 @@ function designInit(p) {
     }
   }
 }
+
 function graphicInit(p) {
   var $canvas
   var $title
@@ -54607,6 +54600,8 @@ function graphicInit(p) {
     '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 204 193"><g fill="none" fill-rule="evenodd" stroke="#000000" stroke-width="10"><path d="M10.9033 181.783C65.6603 123.382 120.4183 64.98 175.1753 6.579M5.1238 16.9143C64.6678 66.4543 128.5338 110.7973 195.7588 149.2743"/></g></svg>'
   ]
 
+  var line = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 984 46"><path fill="#000000" fill-rule="evenodd" d="M196.178369,19.2551834 C259.091653,15.8557197 322.077411,13.7851775 385.078254,13.0414788 C448.383411,12.2945111 511.705157,12.8877188 574.984966,14.8209515 C637.96118,16.7438708 700.897266,19.99491 763.735833,24.5719912 C826.974578,29.1777461 890.113857,35.1561177 953.098096,42.469269 C960.958041,43.3816258 968.816049,44.3167036 976.673001,45.2703524 C984.289835,46.1939269 986.84619,34.4631104 979.167314,33.5321318 C916.413562,25.9202552 853.504312,19.635109 790.485856,14.6561707 C727.070578,9.64638005 663.546912,5.98996005 599.974514,3.6851329 C536.706258,1.39145798 473.388855,0.437721364 410.080829,0.824073206 C346.4674,1.21201664 282.862924,2.9522477 219.324497,6.0482278 C156.089132,9.12982907 92.920578,13.5499916 29.8728714,19.312972 C21.99271,20.0329729 14.1139219,20.7771215 6.23688815,21.5368239 C-1.44050487,22.2789603 -0.897325277,34.2695601 6.80061021,33.526007 C69.817806,27.4406322 132.959508,22.6706598 196.178369,19.2551834 Z"/></svg>'
+
   var turn = 0;
   var moves = 0;
 
@@ -54615,6 +54610,7 @@ function graphicInit(p) {
   TicTacToe.reset = function () {
     ctx.clearRect(0, 0, board.width, board.height)
     u('.toe').remove()
+    u('.line').remove()
 
     turn = 0
     moves = 0
@@ -54709,8 +54705,10 @@ function graphicInit(p) {
 
       $toe.first().style.left = posX + 'px'
       $toe.first().style.top =  posY + 'px'
-
-      u(board).after($toe)
+      
+      setTimeout(function () {
+        u(board).after($toe)
+      }, 400)
     }
 
     ctx.stroke()
@@ -54799,7 +54797,6 @@ function graphicInit(p) {
     }
   }     
 
-  //Check for winner
   TicTacToe.checkWin = function()
   {
     var win = null;
@@ -54852,15 +54849,57 @@ function graphicInit(p) {
       ];
 
     if (win != null) {
-      ctx.beginPath();
-      ctx.lineWidth = 5;
-      ctx.strokeStyle = '#F00';
+      console.log(win)
+      $line = u('<div class="line">' + line + '</div>')
 
-      ctx.moveTo(winLine[win].start.x,winLine[win].start.y);
-      ctx.lineTo(winLine[win].end.x,winLine[win].end.y);
+      if(win == 0) {
+        $line.first().style.transform = 'rotate(90deg)'
+        $line.first().style.top = '250px'
+        $line.first().style.left = '80px'
+      }
 
-      ctx.stroke();
-      ctx.closePath();
+      if(win == 1) {
+        $line.first().style.transform = 'rotate(90deg)'
+        $line.first().style.top = '220px'
+        $line.first().style.left = '-50px'
+      }
+
+      if(win == 2) {
+        $line.first().style.transform = 'rotate(90deg)'
+        $line.first().style.top = '220px'
+        $line.first().style.left = '100px'
+      }
+
+      if(win == 3) {
+        $line.first().style.top = '70px'
+        $line.first().style.left = '-30px'
+      }
+
+      if(win == 4) {
+        $line.first().style.top = '240px'
+        $line.first().style.left = '-50px'
+      }
+
+      if(win == 5) {
+        $line.first().style.top = '400px'
+        $line.first().style.left = '-70px'
+      }
+
+      if(win == 6) {
+        $line.first().style.transform = 'rotate(45deg)'
+        $line.first().style.top = '220px'
+        $line.first().style.left = '-70px'
+      }
+
+      if(win == 7) {
+        $line.first().style.transform = 'rotate(-45deg)'
+        $line.first().style.top = '220px'
+        $line.first().style.left = '-35px'
+      }
+
+      setTimeout(function () {
+        u('.line-wrapper').append($line)
+      }, 600)
 
       TicTacToe.End = true
     }
@@ -55111,11 +55150,11 @@ function motionInit(p) {
     }
 
     p.noStroke()
-    p.frameRate(60)
+    p.frameRate(30)
   }
 
   p.draw = function () {
-    p.fill(255)
+    p.fill(255, 70) // второе значени - шлейф!
     p.rect(0, 0, p.width, p.height)
     drawShape()
     moveShape()
@@ -55142,7 +55181,7 @@ function motionInit(p) {
 
     p.endShape(p.CLOSE)
   }
-  
+
   p.select('#motion').mouseMoved(function (e) {
     mouseX = e.x
     mouseY = e.y
@@ -55154,6 +55193,7 @@ function motionInit(p) {
 
     deltaX *= springing
     deltaY *= springing
+
     accelX += deltaX
     accelY += deltaY
 
@@ -55172,6 +55212,7 @@ function motionInit(p) {
     }
   }
 }
+
 function illustrationInit(p) {
   var colors = [
     '#ff0000',
@@ -55260,7 +55301,11 @@ function multidisciplinaryInit(p) {
     $canvas = p.createCanvas(p.windowWidth, p.windowHeight)
     $canvas.position(0, 0)
 
-    p.createSpan("M", 0, 0).addClass('title title_single_unit rel')
+    $gradien = p.createDiv('')
+    $gradien.size(p.windowWidth, p.windowHeight)
+    $gradien.position(0, 0)
+
+    /*p.createSpan("M", 0, 0).addClass('title title_single_unit rel')
     p.createSpan("U", 0, 0).addClass('title title_single_unit rel')
     p.createSpan("L", 0, 0).addClass('title title_single_unit rel')
     p.createSpan("T", 0, 0).addClass('title title_single_unit rel')
@@ -55276,7 +55321,7 @@ function multidisciplinaryInit(p) {
     p.createSpan("N", 0, 0).addClass('title title_single_unit rel')
     p.createSpan("A", 0, 0).addClass('title title_single_unit rel')
     p.createSpan("R", 0, 0).addClass('title title_single_unit rel')
-    p.createSpan("Y", 0, 0).addClass('title title_single_unit rel')
+    p.createSpan("Y", 0, 0).addClass('title title_single_unit rel')*/
 
     particlesDom = document.querySelectorAll('.title_single_unit')
 
@@ -55294,6 +55339,9 @@ function multidisciplinaryInit(p) {
       Bodies.rectangle(p.width/2, p.height, p.width, 5, opts),
       Bodies.rectangle(0, p.height/2, 5, p.height, opts)
     ]);
+
+    $title = p.createElement('h1', 'multidisciplinary')
+    $title.addClass('title title_absolute is-white')
 
     var canvasmouse = Mouse.create($canvas.elt)
     canvasmouse.pixelRatio = p.pixelDensity()
@@ -55333,10 +55381,6 @@ function multidisciplinaryInit(p) {
         World.add(world, constraint)
       }
       prevParticle = particle
-
-      $gradien = p.createDiv('')
-      $gradien.size(p.windowWidth, p.windowHeight)
-      $gradien.position(0, 0)
     }
 
     window.requestAnimationFrame(update)
@@ -55352,10 +55396,10 @@ function multidisciplinaryInit(p) {
     })
 
     Events.on(mConstraint, 'mousemove', function(ev){
-      var posX_1 = ev.mouse.position.x * 50 / 100
+      var posX_1 = ev.mouse.position.x * 120 / 100
       var posY_1 = 0
 
-      var posX_2 = ev.mouse.position.x * 6.7 / 100
+      var posX_2 = ev.mouse.position.x * 6.7 / 50
       var posY_2 = ev.mouse.position.y * 75 / 100
 
       var posX_3 = ev.mouse.position.x * 93.3 / 100
@@ -55378,7 +55422,7 @@ function multidisciplinaryInit(p) {
       p.rectMode(p.CENTER)
       p.noStroke()
       p.fill(p.color('rgba(255, 152, 151,0)'))
-      p.rect(0, 0, particlesDom[i].offsetWidth, particlesDom[i].offsetHeight)
+      p.rect(0, 0, particlesDom[i].offsetWidth / 2, particlesDom[i].offsetHeight / 2)
       p.pop()
     }
   }
@@ -55791,6 +55835,8 @@ function hypercube() {
 
     interface = new p5(interfaceInit, 'interface'),
 
+    identity = new p5(identityInit, 'identity'),
+
     ux = new p5(uxInit, 'ux'),
 
     details = new p5(detailsInit, 'detials'),
@@ -55983,9 +56029,7 @@ function hypercube() {
 
   page('/14', function (ctx, next) {
 
-    u('#identity').html('')
-
-    new p5(identityInit, 'identity')
+    identity
 
     next()
 
